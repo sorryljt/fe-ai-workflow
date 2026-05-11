@@ -1,0 +1,111 @@
+---
+description: 前端 AI 开发工作流规则 - 五节点标准化开发流程（BRAINSTORM → ANALYZE → TDD → REVIEW → DOCUMENT）
+alwaysApply: true
+---
+
+# 前端 AI 开发工作流
+
+## 启动规则
+
+对话开始时，读取 `skills/using-fe-workflow/SKILL.md`，根据路由表判断当前处于哪个工作流节点并做出相应调度。
+
+**Skill-First 原则**：在执行任何开发任务之前，先确定当前节点，加载对应 Skill。
+
+## 工作流节点路由
+
+| 用户意图 | 路由节点 | 读取文件 |
+|---------|---------|---------|
+| 收到模糊需求/想法 | BRAINSTORM | `skills/01-brainstorming/SKILL.md` |
+| 收到 PRD 或 design.md 确认 | ANALYZE | `skills/02-requirements-analysis/SKILL.md` |
+| 开始写组件/功能/工具函数 | TDD | `skills/03-tdd-cycle/SKILL.md` |
+| 功能实现完成，需要检查 | REVIEW | `skills/04-code-review/SKILL.md` |
+| CR 通过，需要文档沉淀 | DOCUMENT | `skills/05-documentation/SKILL.md` |
+
+## Hard Gate（强制检查）
+
+**写任何实现代码之前，检查以下条件：**
+
+- `docs/specs/` 下是否存在已确认的 design.md，**或**
+- `docs/plans/` 下是否存在 tasks.md
+
+如果两者均不存在：停止编码，触发 BRAINSTORM 节点。
+
+## 工作流节点详情
+
+### BRAINSTORM — 需求澄清
+
+触发：`/brainstorm` 或检测到模糊需求
+
+执行：
+1. 读取 `skills/01-brainstorming/SKILL.md`
+2. 通过苏格拉底式提问逐步澄清需求（每次只问一个问题）
+3. 提出 2-3 个技术方案并对比
+4. 生成并保存 `docs/specs/YYYY-MM-DD--<feature>.md`
+5. 用户确认后提示进入 `/analyze`
+
+### ANALYZE — 需求分析
+
+触发：`/analyze` 或 BRAINSTORM 完成
+
+执行：
+1. 读取 `skills/02-requirements-analysis/SKILL.md`
+2. 解析 design.md 或 PRD，提取功能点
+3. 拆解为粒度合适的任务列表（每条 2-5 分钟，一个 TDD 循环）
+4. 标注优先级（P0/P1/P2）和依赖关系
+5. 保存 `docs/plans/YYYY-MM-DD--tasks.md`
+6. 提示进入 `/tdd`
+
+### TDD — 测试驱动开发
+
+触发：`/tdd`
+
+执行（每个任务循环）：
+1. 读取 `skills/03-tdd-cycle/SKILL.md`
+2. 从 tasks.md 取任务
+3. RED：先写 Vitest 测试，运行确认失败
+4. GREEN：写最少实现代码让测试通过
+5. REFACTOR：重构，确认测试仍通过
+6. `git commit -m "feat/fix: 描述"`
+7. 循环直到所有任务完成
+8. 提示进入 `/review`
+
+**强制规则**：没有红色的失败测试，禁止写实现代码。
+
+### REVIEW — 代码审查
+
+触发：`/review`
+
+执行：
+1. 读取 `skills/04-code-review/SKILL.md`
+2. 按五轴框架审查：正确性 / 可维护性 / 性能 / 安全性 / 测试质量
+3. 标记问题：`[BLOCKING]` / `[SUGGESTED]` / `[NIT]`
+4. 生成 `docs/reviews/YYYY-MM-DD--review.md`
+5. 有 BLOCKING → 提示修复后返回 `/tdd`；无 BLOCKING → 提示 `/document`
+
+### DOCUMENT — 文档沉淀
+
+触发：`/document`（前提：review 通过）
+
+执行：
+1. 读取 `skills/05-documentation/SKILL.md`
+2. 汇总 design.md + tasks.md + review.md
+3. 生成 `docs/adrs/YYYY-MM-DD--adr.md`
+4. 更新 `CHANGELOG.md`
+
+## 产物目录规范
+
+```
+docs/
+├── specs/      # design.md（/brainstorm 产物）
+├── plans/      # tasks.md（/analyze 产物）
+├── reviews/    # review.md（/review 产物）
+└── adrs/       # adr.md（/document 产物）
+```
+
+## 技术栈
+
+React / Next.js 14 App Router / TypeScript（strict mode）/ Vitest / React Testing Library / MSW
+
+参考规范：
+- `references/react-nextjs-conventions.md`
+- `references/testing-patterns.md`
