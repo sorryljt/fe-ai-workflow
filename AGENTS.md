@@ -52,12 +52,17 @@
 ### INIT
 
 **触发**：`viktor:init`
-**输出**：`docs/project-context.md`
+**输出**：`docs/project-context.md` + 活文档骨架（4 个文件）
 
 1. 扫描项目文件结构（排除 node_modules / .next / dist）
 2. 读取 `package.json` 提取技术栈
 3. 整理现有组件、Hooks、工具函数、API 路由
 4. 生成并保存 `docs/project-context.md`
+5. 检查并生成活文档骨架（文件已存在则跳过）：
+   - `docs/component-catalog.md`（组件目录）
+   - `docs/api-catalog.md`（API 接口目录）
+   - `docs/architecture.md`（架构决策速览）
+   - `docs/adrs/README.md`（ADR 索引）
 
 ---
 
@@ -146,12 +151,13 @@
 
 **触发**：`viktor:doc`
 **前置**：REVIEW 通过（无 BLOCKING 问题）
-**输出**：`docs/adrs/YYYY-MM-DD--<feature>--adr.md` + 更新 `CHANGELOG.md`
+**输出**：`docs/adrs/YYYY-MM-DD--<feature>--adr.md` + 活文档更新 + `CHANGELOG.md`
 
-1. 汇总 design.md + tasks.md + review.md
+1. 汇总 design.md + tasks.md + review.md；检测 `skills/` / `commands/` 变更，若有则提示同步三端入口
 2. 提取关键技术决策和权衡
-3. 生成 ADR 文档
-4. 更新 CHANGELOG.md
+3. 自动编号（读取 docs/adrs/ 文件数 +1 → ADR-001 格式）；询问是否替代历史 ADR，指定编号后自动更新旧 ADR 状态为 `已替代（见 ADR-XXX）`；生成 ADR 文档，状态默认为 `已接受`
+4. 条件更新活文档：组件变更 → `component-catalog.md`；API 变更 → `api-catalog.md`；架构决策 → `architecture.md`；任意 ADR → `adrs/README.md`
+5. 更新 CHANGELOG.md
 
 ---
 
@@ -179,11 +185,16 @@
 
 ```
 docs/
-├── specs/      # viktor:think 产物
-├── plans/      # viktor:plan 产物
-├── contracts/  # viktor:contract 产物（可选）
-├── reviews/    # viktor:cr 产物
-└── adrs/       # viktor:doc 产物
+├── project-context.md      # viktor:init 产物（知识地图）
+├── component-catalog.md    # viktor:init 初始化，viktor:doc 持续更新
+├── api-catalog.md          # viktor:init 初始化，viktor:doc 持续更新
+├── architecture.md         # viktor:init 初始化，viktor:doc 持续更新
+├── specs/                  # viktor:think 产物
+├── plans/                  # viktor:plan 产物
+├── contracts/              # viktor:contract 产物（可选）
+├── reviews/                # viktor:cr 产物
+└── adrs/                   # viktor:doc 产物
+    └── README.md           # ADR 索引，viktor:doc 持续更新
 ```
 
 ## 编码规范参考
@@ -191,6 +202,7 @@ docs/
 - `references/react-nextjs-conventions.md` — React/Next.js/TypeScript 规范
 - `references/testing-patterns.md` — Vitest + React Testing Library 模式
 - `references/prd-input-template.md` — PRD 输入格式
+- `references/living-docs-conventions.md` — 活文档体系规范（ADR 状态、更新原则、工作流同步）
 
 ## Git Tag 发布规范
 
