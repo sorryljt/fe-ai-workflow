@@ -109,7 +109,25 @@ ADR 标题中填入实际编号（如 `# ADR-002: ...`），状态默认填写 `
 
 如果以上任何一个问题答不上来，说明 ADR 需要补充。
 
-### 第 4 步：更新 CHANGELOG.md
+### 第 4 步：条件更新活文档
+
+根据本次需求的变更类型，有条件地更新以下活文档文件。若对应文件不存在，先创建骨架（参照 `references/living-docs-conventions.md` 中的骨架模板），再追加内容。
+
+| 变更类型 | 更新目标文件 | 更新规则 |
+|---------|------------|---------|
+| 新增或修改了 React 组件 | `docs/component-catalog.md` | 在组件表格中追加或更新对应行 |
+| 新增或修改了 API 路由 / Server Action | `docs/api-catalog.md` | 在接口表格中追加或更新对应行 |
+| 做出了重要架构决策（有方案对比的） | `docs/architecture.md` | 在决策速览表中追加一行摘要 |
+| 任意本次产出了 ADR | `docs/adrs/README.md` | 在 ADR 索引表中追加新条目 |
+
+**ADR 索引条目格式**：
+```markdown
+| ADR-{编号} | {标题} | {日期} | 已接受 | [链接](YYYY-MM-DD--feature--adr.md) |
+```
+
+**`project-context.md` 日期同步**：若 `docs/project-context.md` 存在，将其 `**最后更新**` 字段更新为今日日期。
+
+### 第 5 步：更新 CHANGELOG.md
 
 在 `CHANGELOG.md` 中的 `[Unreleased]` 部分添加本次变更：
 
@@ -131,14 +149,14 @@ ADR 标题中填入实际编号（如 `# ADR-002: ...`），状态默认填写 `
 - 说明变化对用户的影响，而不是"修改了 X 文件"
 - 每条变更附 ADR 链接，方便追溯决策背景
 
-### 第 5 步：最终 Commit
+### 第 6 步：最终 Commit
 
 ```bash
-git add docs/adrs/ CHANGELOG.md
+git add docs/adrs/ docs/component-catalog.md docs/api-catalog.md docs/architecture.md CHANGELOG.md
 git commit -m "docs: add ADR and update changelog for <feature-name>"
 ```
 
-### 第 6 步：完成提示
+### 第 7 步：完成提示
 
 提示用户：
 > "🎉 文档沉淀完成！本次需求已走完完整工作流。
@@ -225,9 +243,14 @@ git commit -m "docs: add ADR and update changelog for <feature-name>"
 ## 验证标准
 
 文档沉淀成功完成的标志：
+- [ ] ADR 标题含正确三位数编号（不含 XXX 占位符）
 - [ ] ADR 的"背景"部分足够具体，6 个月后能重建决策环境（避免"需要认证功能"这种空泛描述）
 - [ ] ADR 的"方案对比"清晰说明了为什么没选其他方案（不只是说选了什么）
 - [ ] ADR 的"结果"包含了已知问题（诚实记录，不回避负面）
+- [ ] ADR 状态字段为四个合法值之一（不是空占位符）
+- [ ] 若本次替代历史 ADR，旧文件状态字段已更新为 `已替代（见 ADR-XXX）`
+- [ ] `docs/adrs/README.md` 包含本次 ADR 的索引条目
+- [ ] 变更类型对应的活文档（component-catalog / api-catalog / architecture）已更新
 - [ ] CHANGELOG 面向使用者描述变化，不是"改了 X 文件"
 - [ ] 所有文档已 committed
 - [ ] 新成员读 ADR 能理解决策的「为什么」而不只是「是什么」
