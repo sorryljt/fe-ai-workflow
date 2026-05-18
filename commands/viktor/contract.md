@@ -51,9 +51,11 @@ $ARGUMENTS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-## 5. Hard Gate
+## 5. 执行中 Hard Gate
 
-**合约文件未获用户确认前，不响应 `/viktor:code` 请求。**
+**当前正在执行 CONTRACT 且合约文件尚未获用户确认时，不响应 `/viktor:code` 请求。**
 
 提示：
 > "合约文件尚未确认，请先确认类型结构再开始 TDD 实现。"
+
+> **注**：CONTRACT 节点为可选节点。若用户从未触发 `/viktor:contract`，可直接使用 `/viktor:code`，无需先执行 CONTRACT。
