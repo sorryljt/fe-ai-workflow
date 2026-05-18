@@ -22,9 +22,11 @@
 ### 流程概览
 
 ```
-用户需求 → BRAINSTORM → ANALYZE → TDD → REVIEW → DOCUMENT
-              ↓              ↓         ↓        ↓           ↓
-          design.md     tasks.md    代码   review.md    adr.md
+用户需求 → BRAINSTORM → ANALYZE → [CONTRACT] → TDD → REVIEW → DOCUMENT
+              ↓              ↓          ↓          ↓      ↓           ↓
+          design.md     tasks.md   types.ts      代码  review.md   adr.md
+
+注：[CONTRACT] 为可选节点，由 ANALYZE 根据任务构成智能推荐，用户决定是否执行。
 ```
 
 ### 节点详细说明
@@ -46,6 +48,15 @@
 - **输出**：`docs/plans/YYYY-MM-DD--<feature>--tasks.md`
 - **完成条件**：tasks.md 中所有任务粒度合理（每条约 2-5 分钟一个 TDD 循环）
 
+#### 节点 2.5：CONTRACT（类型合约）【可选】
+
+- **触发方式**：用户输入 `/viktor:contract`，或 ANALYZE 推荐后用户选择执行
+- **加载 Skill**：`skills/07-type-contract/SKILL.md`
+- **输入**：`docs/plans/YYYY-MM-DD--tasks.md`（优先）或 `docs/specs/YYYY-MM-DD--design.md`
+- **输出**：`docs/contracts/YYYY-MM-DD--<feature>.types.ts`
+- **完成条件**：用户明确确认类型结构
+- **智能推荐**：ANALYZE 完成后，若检测到 `[api]`/`[hook]`/`[store]` 类型任务，自动建议执行本节点
+
 #### 节点 3：TDD（测试驱动开发）
 
 - **触发方式**：用户输入 `/viktor:code`
@@ -58,11 +69,12 @@
 
 - **触发方式**：用户输入 `/viktor:cr`
 - **加载 Skill**：`skills/04-code-review/SKILL.md`
-- **输入**：所有实现代码 + 测试文件 + `tasks.md`
+- **输入**：所有实现代码 + 测试文件 + `tasks.md`（+ `contracts/*.types.ts` 若存在）
 - **输出**：`docs/reviews/YYYY-MM-DD--<feature>--review.md`
 - **特别规则**：
   - 有 `[BLOCKING]` 问题 → 输出修复建议，提示返回 `/viktor:code`
   - 全部通过 → 提示进入 `/viktor:doc`
+  - 若合约文件存在，执行第六检查轴（类型合约一致性）
 
 #### 节点 5：DOCUMENT（文档沉淀）
 
@@ -81,6 +93,8 @@ docs/
 │   └── YYYY-MM-DD--<feature>.md
 ├── plans/          # 任务计划（ANALYZE 产物）
 │   └── YYYY-MM-DD--<feature>--tasks.md
+├── contracts/      # 类型合约（CONTRACT 产物，可选）
+│   └── YYYY-MM-DD--<feature>.types.ts
 ├── reviews/        # Code Review 报告（REVIEW 产物）
 │   └── YYYY-MM-DD--<feature>--review.md
 └── adrs/           # 架构决策记录（DOCUMENT 产物）
@@ -108,6 +122,7 @@ AGENTS.md 是 Codex 的运行时指令，SKILL.md 是各节点的完整规范。
 对照顺序：
 - BRAINSTORM → `skills/01-brainstorming/SKILL.md`
 - ANALYZE → `skills/02-requirements-analysis/SKILL.md`
+- CONTRACT → `skills/07-type-contract/SKILL.md`
 - TDD → `skills/03-tdd-cycle/SKILL.md`
 - REVIEW → `skills/04-code-review/SKILL.md`
 - DOCUMENT → `skills/05-documentation/SKILL.md`
