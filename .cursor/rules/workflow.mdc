@@ -95,25 +95,41 @@ alwaysApply: true
 4. 生成 `docs/reviews/YYYY-MM-DD--review.md`
 5. 有 BLOCKING → 提示修复后返回 `/tdd`；无 BLOCKING → 提示 `/document`
 
+### INIT — 项目初始化
+
+触发：`/viktor:init`
+
+执行：
+1. 读取 `skills/06-project-init/SKILL.md`
+2. 扫描项目结构，生成 `docs/project-context.md`
+3. 检查并生成活文档骨架（文件已存在则跳过）：
+   `docs/component-catalog.md` / `docs/api-catalog.md` / `docs/architecture.md` / `docs/adrs/README.md`
+
 ### DOCUMENT — 文档沉淀
 
-触发：`/document`（前提：review 通过）
+触发：`/viktor:doc`（前提：review 通过）
 
 执行：
 1. 读取 `skills/05-documentation/SKILL.md`
-2. 汇总 design.md + tasks.md + review.md
-3. 生成 `docs/adrs/YYYY-MM-DD--adr.md`
-4. 更新 `CHANGELOG.md`
+2. 汇总产物；检测 `skills/` / `commands/` 变更，若有则提示同步三端入口
+3. 自动编号（ADR-001 格式）；询问是否替代历史 ADR；生成 ADR 文档
+4. 条件更新活文档（component-catalog / api-catalog / architecture / adrs/README）
+5. 更新 `CHANGELOG.md`
 
 ## 产物目录规范
 
 ```
 docs/
-├── specs/      # design.md（/brainstorm 产物）
-├── plans/      # tasks.md（/analyze 产物）
-├── contracts/  # types.ts（/viktor:contract 产物，可选）
-├── reviews/    # review.md（/review 产物）
-└── adrs/       # adr.md（/document 产物）
+├── project-context.md      # /viktor:init 产物（知识地图）
+├── component-catalog.md    # /viktor:init 初始化，/viktor:doc 持续更新
+├── api-catalog.md          # /viktor:init 初始化，/viktor:doc 持续更新
+├── architecture.md         # /viktor:init 初始化，/viktor:doc 持续更新
+├── specs/                  # design.md（/viktor:think 产物）
+├── plans/                  # tasks.md（/viktor:plan 产物）
+├── contracts/              # types.ts（/viktor:contract 产物，可选）
+├── reviews/                # review.md（/viktor:cr 产物）
+└── adrs/                   # adr.md（/viktor:doc 产物）
+    └── README.md           # ADR 索引，/viktor:doc 持续更新
 ```
 
 ## 技术栈
@@ -123,3 +139,4 @@ React / Next.js 14 App Router / TypeScript（strict mode）/ Vitest / React Test
 参考规范：
 - `references/react-nextjs-conventions.md`
 - `references/testing-patterns.md`
+- `references/living-docs-conventions.md`
