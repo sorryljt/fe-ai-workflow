@@ -1,6 +1,6 @@
 # fe-ai-workflow 团队试点指南
 
-**版本**：v0.3.0
+**版本**：v0.4.0
 **日期**：2026-05-18
 **适用范围**：团队内部小范围试点
 
@@ -32,7 +32,7 @@
 ```bash
 # 引入 workflow 并锁定版本
 git submodule add https://github.com/sorryljt/fe-ai-workflow.git .workflow/fe-ai-workflow
-cd .workflow/fe-ai-workflow && git checkout v0.3.0 && cd ../..
+cd .workflow/fe-ai-workflow && git checkout v0.4.0 && cd ../..
 
 # 同步入口文件到项目根目录
 .workflow/fe-ai-workflow/scripts/sync-workflow.sh .workflow/fe-ai-workflow .
@@ -42,7 +42,7 @@ npm pkg set scripts.postinstall=".workflow/fe-ai-workflow/scripts/sync-workflow.
 
 # 提交
 git add .gitmodules .workflow/fe-ai-workflow package.json
-git commit -m "chore: add fe-ai-workflow v0.3.0"
+git commit -m "chore: add fe-ai-workflow v0.4.0"
 ```
 
 ---
@@ -62,7 +62,7 @@ npm install
 ### 场景三：升级 workflow 版本
 
 ```bash
-.workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.3.0
+.workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.4.0
 ```
 
 完成后确认变更，按需提交。
