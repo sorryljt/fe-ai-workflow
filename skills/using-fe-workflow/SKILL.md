@@ -18,8 +18,9 @@ description: 前端 AI 开发工作流元调度器 - 对话开始时加载，提
 | `/viktor:init` | INIT | 首次接入项目，扫描代码库生成知识地图 |
 | `/viktor:think <需求>` | BRAINSTORM | 有新需求时，附带需求描述一步触发 |
 | `/viktor:plan` | ANALYZE | design.md 确认后，拆解为任务列表 |
+| `/viktor:contract` | CONTRACT | tasks.md 完成后（可选），生成 TypeScript 类型合约文件 |
 | `/viktor:code` | TDD | tasks.md 确认后，测试驱动实现 |
-| `/viktor:cr` | REVIEW | 实现完成后，五轴代码审查 |
+| `/viktor:cr` | REVIEW | 实现完成后，六轴代码审查 |
 | `/viktor:doc` | DOCUMENT | CR 通过后，生成 ADR 沉淀文档 |
 
 ## Codex 触发规则
@@ -35,6 +36,7 @@ description: 前端 AI 开发工作流元调度器 - 对话开始时加载，提
 - `viktor:init`
 - `viktor:think`
 - `viktor:plan`
+- `viktor:contract`
 - `viktor:code`
 - `viktor:cr`
 - `viktor:doc`
@@ -50,6 +52,7 @@ description: 前端 AI 开发工作流元调度器 - 对话开始时加载，提
 | “先扫一下项目结构” “初始化项目上下文” | INIT |
 | “先做需求澄清” “先设计方案” | BRAINSTORM |
 | “拆成任务” “给我一个可执行任务列表” | ANALYZE |
+| “生成类型合约” “锁定接口定义” “先定义类型” | CONTRACT |
 | “开始写代码” “按任务实现” | TDD |
 | “帮我做 code review” “审一下这版实现” | REVIEW |
 | “补 ADR” “整理最终文档” | DOCUMENT |
@@ -70,6 +73,7 @@ description: 前端 AI 开发工作流元调度器 - 对话开始时加载，提
 | INIT | `skills/06-project-init/SKILL.md` |
 | BRAINSTORM | `skills/01-brainstorming/SKILL.md` |
 | ANALYZE | `skills/02-requirements-analysis/SKILL.md` |
+| CONTRACT | `skills/07-type-contract/SKILL.md` |
 | TDD | `skills/03-tdd-cycle/SKILL.md` |
 | REVIEW | `skills/04-code-review/SKILL.md` |
 | DOCUMENT | `skills/05-documentation/SKILL.md` |
