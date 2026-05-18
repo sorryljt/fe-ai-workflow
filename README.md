@@ -23,7 +23,7 @@
 ```bash
 # 1. 引入 workflow 仓库并锁定版本
 git submodule add git@git.hzfapi.com:lijiangtao/fe-ai-workflow.git .workflow/fe-ai-workflow
-cd .workflow/fe-ai-workflow && git checkout v0.2.9 && cd ../..
+cd .workflow/fe-ai-workflow && git checkout v0.3.0 && cd ../..
 
 # 2. 同步入口文件到项目根目录
 ./.workflow/fe-ai-workflow/scripts/sync-workflow.sh .workflow/fe-ai-workflow .
@@ -33,7 +33,7 @@ npm pkg set scripts.postinstall=".workflow/fe-ai-workflow/scripts/sync-workflow.
 
 # 4. 提交
 git add .gitmodules .workflow/fe-ai-workflow package.json
-git commit -m "chore: add fe-ai-workflow v0.2.9"
+git commit -m "chore: add fe-ai-workflow v0.3.0"
 ```
 
 同步后，各 AI 工具会自动读取对应的入口文件：
@@ -88,7 +88,7 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 # 1. 引入 workflow 仓库并锁定版本
 git submodule add git@git.hzfapi.com:lijiangtao/fe-ai-workflow.git .workflow/fe-ai-workflow
 cd .workflow/fe-ai-workflow
-git checkout v0.2.9
+git checkout v0.3.0
 cd ../..
 
 # 2. 同步入口文件到项目根目录
@@ -99,13 +99,13 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 
 # 4. 提交
 git add .gitmodules .workflow/fe-ai-workflow package.json
-git commit -m "chore: add fe-ai-workflow v0.2.9"
+git commit -m "chore: add fe-ai-workflow v0.3.0"
 ```
 
 升级版本同理：
 
 ```powershell
-bash .workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.2.9
+bash .workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.3.0
 ```
 
 > **`bash` 无法识别？** 有两种原因：
@@ -119,20 +119,23 @@ bash .workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.2.9
 ### 更新 workflow 版本
 
 ```bash
-.workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.2.9
+.workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.3.0
 ```
 
 ## 工作流说明
 
 ```
-/viktor:think → /viktor:plan → /viktor:code → /viktor:cr → /viktor:doc
+/viktor:think → /viktor:plan → [/viktor:contract] → /viktor:code → /viktor:cr → /viktor:doc
 ```
+
+> `[/viktor:contract]` 为可选节点，由 `/viktor:plan` 根据任务构成智能推荐。
 
 | 命令 | 阶段 | 输入 | 输出 |
 |------|------|------|------|
 | `/viktor:init` | 项目初始化 | 现有项目代码结构 | `docs/project-context.md` |
 | `/viktor:think` | 需求澄清 | 模糊需求/想法 | `docs/specs/YYYY-MM-DD--design.md` |
 | `/viktor:plan` | 需求分析 | design.md 或 PRD | `docs/plans/YYYY-MM-DD--tasks.md` |
+| `/viktor:contract` | 类型合约（可选） | tasks.md 或 design.md | `docs/contracts/YYYY-MM-DD--<feature>.types.ts` |
 | `/viktor:code` | 测试驱动开发 | tasks.md | 代码 + 测试 |
 | `/viktor:cr` | 代码审查 | 代码 + tasks.md | `docs/reviews/YYYY-MM-DD--review.md` |
 | `/viktor:doc` | 文档沉淀 | 所有产物 | `docs/adrs/YYYY-MM-DD--adr.md` |
@@ -150,6 +153,8 @@ docs/
 │   └── 2026-01-15--user-auth.md
 ├── plans/          # 任务计划（/viktor:plan 产物）
 │   └── 2026-01-15--user-auth--tasks.md
+├── contracts/      # 类型合约（/viktor:contract 产物，可选）
+│   └── 2026-01-15--user-auth.types.ts
 ├── reviews/        # Code Review 报告（/viktor:cr 产物）
 │   └── 2026-01-15--user-auth--review.md
 └── adrs/           # 架构决策记录（/viktor:doc 产物）

@@ -1,7 +1,7 @@
 # fe-ai-workflow 团队试点指南
 
-**版本**：v0.2.9
-**日期**：2026-05-07
+**版本**：v0.3.0
+**日期**：2026-05-18
 **适用范围**：团队内部小范围试点
 
 ## 1. 背景
@@ -32,7 +32,7 @@
 ```bash
 # 引入 workflow 并锁定版本
 git submodule add git@git.hzfapi.com:lijiangtao/fe-ai-workflow.git .workflow/fe-ai-workflow
-cd .workflow/fe-ai-workflow && git checkout v0.2.9 && cd ../..
+cd .workflow/fe-ai-workflow && git checkout v0.3.0 && cd ../..
 
 # 同步入口文件到项目根目录
 .workflow/fe-ai-workflow/scripts/sync-workflow.sh .workflow/fe-ai-workflow .
@@ -42,7 +42,7 @@ npm pkg set scripts.postinstall=".workflow/fe-ai-workflow/scripts/sync-workflow.
 
 # 提交
 git add .gitmodules .workflow/fe-ai-workflow package.json
-git commit -m "chore: add fe-ai-workflow v0.2.9"
+git commit -m "chore: add fe-ai-workflow v0.3.0"
 ```
 
 ---
@@ -62,7 +62,7 @@ npm install
 ### 场景三：升级 workflow 版本
 
 ```bash
-.workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.2.9
+.workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.3.0
 ```
 
 完成后确认变更，按需提交。
@@ -134,6 +134,16 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 ### 4.3 `/viktor:plan` / `viktor:plan`
 
 将设计文档拆解为任务列表 `docs/plans/YYYY-MM-DD--tasks.md`。
+完成后根据任务构成自动推荐是否执行 `/viktor:contract`。
+
+### 4.3.5 `/viktor:contract` / `viktor:contract`（可选）
+
+从任务列表提取 TypeScript 类型定义，生成 `docs/contracts/YYYY-MM-DD--<feature>.types.ts`。
+
+- ANALYZE 完成后若检测到 `[api]`/`[hook]`/`[store]` 类型任务，会主动推荐
+- 用户可选择执行或跳过，直接进入 `/viktor:code`
+- TDD 实现时会自动感知合约文件，将其作为类型锚点
+- REVIEW 时若合约存在，会增加第六检查轴（类型一致性）
 
 ### 4.4 `/viktor:code` / `viktor:code`
 
@@ -160,6 +170,12 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 ### ANALYZE
 
 把设计文档拆成小任务，每个任务都应该能在一个短 TDD 循环里完成。
+完成后根据任务构成给出推荐：含接口/Hook/Store 类型 → 推荐先执行 CONTRACT。
+
+### CONTRACT（可选）
+
+从任务列表提取结构化 TypeScript 类型，生成合约文件。
+消除节点间的"类型漂移"，让 TDD 和 REVIEW 都有明确的类型锚点。
 
 ### TDD
 
@@ -167,7 +183,8 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 
 ### REVIEW
 
-按正确性、可维护性、性能、安全性、测试质量五轴审查。
+按正确性、可维护性、性能、安全性、测试质量、类型合约一致性六轴审查。
+若无合约文件，第六轴自动跳过，不影响原有审查流程。
 
 ### DOCUMENT
 
