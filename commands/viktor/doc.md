@@ -1,5 +1,5 @@
 ---
-description: 文档沉淀 生成 ADR + 更新 CHANGELOG
+description: 文档沉淀 生成 ADR（自动编号）+ 更新活文档 + 更新 CHANGELOG
 ---
 
 # /viktor:doc

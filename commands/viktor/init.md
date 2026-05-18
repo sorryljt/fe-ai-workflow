@@ -1,5 +1,5 @@
 ---
-description: 初始化项目知识地图 扫描代码库生成 project-context.md
+description: 初始化项目知识地图 扫描代码库生成 project-context.md + 活文档骨架
 ---
 
 # /viktor:init
