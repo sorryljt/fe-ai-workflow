@@ -56,6 +56,23 @@ description: 测试驱动开发循环 - 针对 React/Next.js/Vitest 项目的完
 
 ---
 
+### 第 0 步：检查类型合约文件（每次进入 TDD 循环前执行一次）
+
+检查 `docs/contracts/` 下是否存在与当前功能对应的 `.types.ts` 文件：
+
+**存在时**：
+1. 读取合约文件内容
+2. 在对话中记录：
+   ```
+   已加载类型合约：docs/contracts/YYYY-MM-DD--<feature>.types.ts
+   共 N 个类型定义。写测试和实现时，import 类型应来自此文件，不要另行定义。
+   ```
+3. 后续每个任务的测试和实现文件中，相关类型均 `import type` 自该合约文件
+
+**不存在时**：静默继续，无需提示，正常执行 TDD 循环。
+
+---
+
 ### 第 1 步：从 tasks.md 取任务
 
 读取 `docs/plans/YYYY-MM-DD--tasks.md`，选择一个未完成的任务：
