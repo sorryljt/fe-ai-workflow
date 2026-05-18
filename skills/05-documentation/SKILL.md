@@ -1,6 +1,6 @@
 ---
 name: 05-documentation
-description: 架构决策记录与文档沉淀 - CR 通过后汇总所有产物，生成 ADR 和更新 CHANGELOG，关闭本次需求的完整工作流
+description: 架构决策记录与文档沉淀 - CR 通过后汇总所有产物，生成 ADR（自动编号）、更新活文档、更新 CHANGELOG，关闭本次需求的完整工作流
 ---
 
 # DOCUMENT — 文档沉淀
@@ -111,7 +111,7 @@ ADR 标题中填入实际编号（如 `# ADR-002: ...`），状态默认填写 `
 
 ### 第 4 步：条件更新活文档
 
-根据本次需求的变更类型，有条件地更新以下活文档文件。若对应文件不存在，先创建骨架（参照 `references/living-docs-conventions.md` 中的骨架模板），再追加内容。
+根据本次需求的变更类型，有条件地更新以下活文档文件。若对应文件不存在，先创建骨架（骨架格式参照 `skills/06-project-init/SKILL.md` 第 6 步中的骨架模板），再追加内容。
 
 | 变更类型 | 更新目标文件 | 更新规则 |
 |---------|------------|---------|
@@ -152,7 +152,7 @@ ADR 标题中填入实际编号（如 `# ADR-002: ...`），状态默认填写 `
 ### 第 6 步：最终 Commit
 
 ```bash
-git add docs/adrs/ docs/component-catalog.md docs/api-catalog.md docs/architecture.md CHANGELOG.md
+git add docs/adrs/ docs/component-catalog.md docs/api-catalog.md docs/architecture.md docs/project-context.md CHANGELOG.md
 git commit -m "docs: add ADR and update changelog for <feature-name>"
 ```
 
