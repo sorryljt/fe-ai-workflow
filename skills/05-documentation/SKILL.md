@@ -32,6 +32,22 @@ description: 架构决策记录与文档沉淀 - CR 通过后汇总所有产物�
 - 最终测试覆盖率（来自 review.md 中的自动化检查结果）
 - Review 中发现的 [SUGGESTED] 问题列表（记入 ADR 的"已知问题"）
 
+**工作流自身变更检测**（在 git 项目中执行，非 git 项目跳过此步）：
+
+```bash
+git diff --name-only HEAD~1 HEAD | grep -E "^(skills/|commands/)"
+```
+
+若有输出（即本次涉及 `skills/` 或 `commands/` 路径的文件变更），在继续之前输出专项提示：
+
+> ⚠️ **检测到工作流自身变更**
+> 本次需求修改了 `skills/` 或 `commands/` 文件。
+> 请在完成 ADR 后，手动确认以下文件是否已同步更新：
+> - `skills/using-fe-workflow/SKILL.md`（命令速查表 / 自然语言路由）
+> - `CLAUDE.md`（节点定义 / 产物目录）
+> - `AGENTS.md`（Codex 触发表 / 节点说明）
+> - `.cursor/rules/workflow.mdc`（Cursor 路由规则）
+
 ### 第 2 步：提取关键技术决策
 
 从以上文档中识别以下内容，为 ADR 做准备：
