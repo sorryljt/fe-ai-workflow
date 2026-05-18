@@ -18,7 +18,7 @@
 
 ### P0 核心任务（阻塞性，最先完成）
 
-#### T001：DOCUMENT SKILL — 工作流变更检测 [docs]
+#### T001：DOCUMENT SKILL — 工作流变更检测 [docs] ✓
 
 - **描述**：在 `skills/05-documentation/SKILL.md` 第 1 步末尾新增工作流变更检测逻辑：汇总产物时执行 git diff，若检测到 `skills/` 或 `commands/` 路径变更，输出专项提示列出需同步的四个文件。
 - **文件路径**：`skills/05-documentation/SKILL.md`
@@ -28,7 +28,7 @@
   - [ ] 非 git 项目场景有跳过说明（不报错）
 - **依赖**：无
 
-#### T002：DOCUMENT SKILL — ADR 自动编号 + 替代流程 + 模板状态字段 [docs]
+#### T002：DOCUMENT SKILL — ADR 自动编号 + 替代流程 + 模板状态字段 [docs] ✓
 
 - **描述**：在 `skills/05-documentation/SKILL.md` 第 3 步新增：（1）读取 docs/adrs/ 文件数自动计算编号；（2）询问用户是否替代历史 ADR，指定编号后自动更新旧文件状态字段；（3）更新 ADR 模板，将状态字段改为 4 选项格式。
 - **文件路径**：`skills/05-documentation/SKILL.md`
@@ -41,7 +41,7 @@
   - [ ] ADR 模板标题注释说明编号由 DOCUMENT 自动填入
 - **依赖**：T001（同文件，顺序修改）
 
-#### T003：DOCUMENT SKILL — 条件更新活文档 [docs]
+#### T003：DOCUMENT SKILL — 条件更新活文档 [docs] ✓
 
 - **描述**：在 `skills/05-documentation/SKILL.md` 第 4 步新增条件更新活文档逻辑：根据变更类型更新 component-catalog.md / api-catalog.md / architecture.md / adrs/README.md；若文件不存在则先创建骨架再追加；同步更新 project-context.md 的最后更新日期。
 - **文件路径**：`skills/05-documentation/SKILL.md`
@@ -52,7 +52,7 @@
   - [ ] 骨架创建前不需要用户干预（自动处理）
 - **依赖**：T002（同文件，顺序修改）
 
-#### T004：INIT SKILL — 新增第 6 步生成活文档骨架 [docs]
+#### T004：INIT SKILL — 新增第 6 步生成活文档骨架 [docs] ✓
 
 - **描述**：在 `skills/06-project-init/SKILL.md` 新增第 6 步：在生成 project-context.md 后检查并生成其余 4 个活文档骨架，文件已存在则跳过。嵌入 4 个骨架模板内容（component-catalog、api-catalog、architecture、docs/adrs/README）。
 - **文件路径**：`skills/06-project-init/SKILL.md`
@@ -68,7 +68,7 @@
 
 ### P1 主要任务
 
-#### T005：新建 references/living-docs-conventions.md [docs]
+#### T005：新建 references/living-docs-conventions.md [docs] ✓
 
 - **描述**：创建活文档体系规范文件，供后续所有迭代参照，共 5 个章节。
 - **文件路径**：`references/living-docs-conventions.md`（新建）
@@ -80,7 +80,7 @@
   - [ ] 第 5 节：活文档退化的识别与修复（何时需要重跑 /viktor:init）
 - **依赖**：T002（状态机制内容参照）
 
-#### T006：三端同步 — CLAUDE.md [docs]
+#### T006：三端同步 — CLAUDE.md [docs] ✓
 
 - **描述**：更新 CLAUDE.md 中 INIT 节点说明（新增活文档骨架生成）、DOCUMENT 节点说明（新增自动编号/替代/活文档更新/变更检测）、产物目录（新增 component-catalog.md / api-catalog.md / architecture.md / docs/adrs/README.md）。
 - **文件路径**：`CLAUDE.md`
@@ -90,7 +90,7 @@
   - [ ] 产物目录 `docs/` 章节包含 4 个新文件
 - **依赖**：T001、T002、T003、T004
 
-#### T007：三端同步 — AGENTS.md [docs]
+#### T007：三端同步 — AGENTS.md [docs] ✓
 
 - **描述**：同 T006，更新 AGENTS.md 对应章节。
 - **文件路径**：`AGENTS.md`
@@ -101,7 +101,7 @@
   - [ ] 与 CLAUDE.md 的节点说明逻辑一致（可简化，但不能矛盾）
 - **依赖**：T006（参照 CLAUDE.md 作为对照基准）
 
-#### T008：三端同步 — .cursor/rules/workflow.mdc [docs]
+#### T008：三端同步 — .cursor/rules/workflow.mdc [docs] ✓
 
 - **描述**：同 T006，更新 workflow.mdc 对应章节。
 - **文件路径**：`.cursor/rules/workflow.mdc`
@@ -112,7 +112,7 @@
   - [ ] 与 CLAUDE.md / AGENTS.md 逻辑一致
 - **依赖**：T007（完成 AGENTS.md 后一并交叉检查）
 
-#### T009：skills/using-fe-workflow/SKILL.md 更新 [docs]
+#### T009：skills/using-fe-workflow/SKILL.md 更新 [docs] ✓
 
 - **描述**：更新元调度器中 INIT 和 DOCUMENT 的功能描述，反映活文档骨架生成和新增 DOCUMENT 能力。
 - **文件路径**：`skills/using-fe-workflow/SKILL.md`
@@ -126,7 +126,7 @@
 
 ### P2 优化任务（可选）
 
-#### T010：命令文件描述更新 [docs]
+#### T010：命令文件描述更新 [docs] ✓
 
 - **描述**：更新 `commands/viktor/doc.md`、`commands/viktor/init.md` 及对应 `.claude/commands/viktor/` 文件的 description frontmatter，反映新能力。
 - **文件路径**：
@@ -139,7 +139,7 @@
   - [ ] init.md description 包含"活文档骨架"
 - **依赖**：T009
 
-#### T011：版本号 v0.4.0 + README/团队指南更新 [docs]
+#### T011：版本号 v0.4.0 + README/团队指南更新 [docs] ✓
 
 - **描述**：更新 `README.md` 和 `docs/team-workflow-guide.md` 版本号至 v0.4.0，在 CHANGELOG.md [Unreleased] 中记录本次变更。
 - **文件路径**：
