@@ -22,7 +22,7 @@
 
 ```bash
 # 1. 引入 workflow 仓库并锁定版本
-git submodule add git@git.hzfapi.com:lijiangtao/fe-ai-workflow.git .workflow/fe-ai-workflow
+git submodule add https://github.com/sorryljt/fe-ai-workflow.git .workflow/fe-ai-workflow
 cd .workflow/fe-ai-workflow && git checkout v0.3.0 && cd ../..
 
 # 2. 同步入口文件到项目根目录
@@ -86,7 +86,7 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 
 ```powershell
 # 1. 引入 workflow 仓库并锁定版本
-git submodule add git@git.hzfapi.com:lijiangtao/fe-ai-workflow.git .workflow/fe-ai-workflow
+git submodule add https://github.com/sorryljt/fe-ai-workflow.git .workflow/fe-ai-workflow
 cd .workflow/fe-ai-workflow
 git checkout v0.3.0
 cd ../..
