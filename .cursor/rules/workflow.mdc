@@ -1,5 +1,5 @@
 ---
-description: 前端 AI 开发工作流规则 - 五节点标准化开发流程（BRAINSTORM → ANALYZE → TDD → REVIEW → DOCUMENT）
+description: 前端 AI 开发工作流规则 - 六节点标准化开发流程（BRAINSTORM → ANALYZE → [CONTRACT] → TDD → REVIEW → DOCUMENT）
 alwaysApply: true
 ---
 
@@ -17,6 +17,7 @@ alwaysApply: true
 |---------|---------|---------|
 | 收到模糊需求/想法 | BRAINSTORM | `skills/01-brainstorming/SKILL.md` |
 | 收到 PRD 或 design.md 确认 | ANALYZE | `skills/02-requirements-analysis/SKILL.md` |
+| 生成类型合约 / 锁定接口定义（可选） | CONTRACT | `skills/07-type-contract/SKILL.md` |
 | 开始写组件/功能/工具函数 | TDD | `skills/03-tdd-cycle/SKILL.md` |
 | 功能实现完成，需要检查 | REVIEW | `skills/04-code-review/SKILL.md` |
 | CR 通过，需要文档沉淀 | DOCUMENT | `skills/05-documentation/SKILL.md` |
@@ -53,7 +54,18 @@ alwaysApply: true
 3. 拆解为粒度合适的任务列表（每条 2-5 分钟，一个 TDD 循环）
 4. 标注优先级（P0/P1/P2）和依赖关系
 5. 保存 `docs/plans/YYYY-MM-DD--tasks.md`
-6. 提示进入 `/tdd`
+6. 根据任务构成评估是否推荐 CONTRACT 节点，输出双路导航卡
+
+### CONTRACT — 类型合约（可选）
+
+触发：`/viktor:contract` 或 ANALYZE 推荐后用户选择
+
+执行：
+1. 读取 `skills/07-type-contract/SKILL.md`
+2. 检查前置产物（tasks.md > design.md，两者均无则停止引导）
+3. 提取并分组类型：实体 / Props / API / 状态 / 工具函数签名
+4. 生成 `docs/contracts/YYYY-MM-DD--<feature>.types.ts`
+5. 用户确认后 commit，提示进入 `/viktor:code`
 
 ### TDD — 测试驱动开发
 
@@ -77,7 +89,8 @@ alwaysApply: true
 
 执行：
 1. 读取 `skills/04-code-review/SKILL.md`
-2. 按五轴框架审查：正确性 / 可维护性 / 性能 / 安全性 / 测试质量
+2. 按六轴框架审查：正确性 / 可维护性 / 性能 / 安全性 / 测试质量 / 类型合约一致性
+   - 轴六仅在 `docs/contracts/` 存在合约文件时执行
 3. 标记问题：`[BLOCKING]` / `[SUGGESTED]` / `[NIT]`
 4. 生成 `docs/reviews/YYYY-MM-DD--review.md`
 5. 有 BLOCKING → 提示修复后返回 `/tdd`；无 BLOCKING → 提示 `/document`
@@ -98,6 +111,7 @@ alwaysApply: true
 docs/
 ├── specs/      # design.md（/brainstorm 产物）
 ├── plans/      # tasks.md（/analyze 产物）
+├── contracts/  # types.ts（/viktor:contract 产物，可选）
 ├── reviews/    # review.md（/review 产物）
 └── adrs/       # adr.md（/document 产物）
 ```

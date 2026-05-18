@@ -29,6 +29,7 @@
 | `viktor:init` / `/viktor:init` | INIT |
 | `viktor:think` / `/viktor:think` | BRAINSTORM |
 | `viktor:plan` / `/viktor:plan` | ANALYZE |
+| `viktor:contract` / `/viktor:contract` | CONTRACT |
 | `viktor:code` / `/viktor:code` | TDD |
 | `viktor:cr` / `/viktor:cr` | REVIEW |
 | `viktor:doc` / `/viktor:doc` | DOCUMENT |
@@ -39,6 +40,7 @@
 |---------|------|
 | "做需求澄清" / "先设计方案" / "brainstorm" | BRAINSTORM |
 | "拆任务" / "生成任务列表" | ANALYZE |
+| "生成类型合约" / "锁定接口定义" / "先定义类型" | CONTRACT |
 | "开始写代码" / "按任务实现" | TDD |
 | "code review" / "审查代码" | REVIEW |
 | "生成文档" / "补 ADR" | DOCUMENT |
@@ -90,6 +92,22 @@
 
 ---
 
+### CONTRACT（可选节点）
+
+**触发**：`viktor:contract`
+**前置**：`docs/plans/` 下存在 `tasks.md`（优先），或 `docs/specs/` 下存在 `design.md`
+**输出**：`docs/contracts/YYYY-MM-DD--<feature>.types.ts`
+
+1. 检查前置产物（tasks.md > design.md，两者均无则停止并引导）
+2. 从任务列表提取实体 / Props / API 请求响应 / 状态 / 工具函数签名
+3. 生成 `.types.ts`，按分组组织，每个 export 附 JSDoc
+4. 自审：无 `any`、无 `TODO`、PascalCase、无重复定义
+5. 用户确认后 commit
+
+**ANALYZE 推荐规则**：检测到 `[api]`/`[hook]`/`[store]` 类型任务时，推荐执行本节点；全部为 `[utils]`/`[style]` 时建议跳过。用户最终决定。
+
+---
+
 ### TDD
 
 **触发**：`viktor:code`
@@ -116,7 +134,8 @@
 
 1. 运行 `npx vitest run` / `npx tsc --noEmit` / `npx eslint src/`
 2. 对照 tasks.md 逐条验证验收标准
-3. 五轴审查：正确性 / 可维护性 / 性能 / 安全性 / 测试质量
+3. 六轴审查：正确性 / 可维护性 / 性能 / 安全性 / 测试质量 / 类型合约一致性
+   - 轴六仅在 `docs/contracts/` 存在合约文件时执行
 4. 标记问题：`[BLOCKING]` / `[SUGGESTED]` / `[NIT]`
 5. 生成 review.md
 6. 有 `[BLOCKING]` → 提示返回 `viktor:code`；无 → 提示进入 `viktor:doc`
@@ -138,7 +157,7 @@
 
 ## 核心约束
 
-1. **顺序不可跳过**：BRAINSTORM → ANALYZE → TDD → REVIEW → DOCUMENT
+1. **顺序不可跳过**：BRAINSTORM → ANALYZE → [CONTRACT] → TDD → REVIEW → DOCUMENT（CONTRACT 可选）
 2. **确认后推进**：每个节点完成后，获得用户明确确认才进入下一节点
 3. **文档先行**：没有 design.md 或 tasks.md，不开始写实现代码
 4. **测试先行**：没有失败的测试，不写实现代码
@@ -151,6 +170,7 @@
 
 - `skills/01-brainstorming/SKILL.md`
 - `skills/02-requirements-analysis/SKILL.md`
+- `skills/07-type-contract/SKILL.md`
 - `skills/03-tdd-cycle/SKILL.md`
 - `skills/04-code-review/SKILL.md`
 - `skills/05-documentation/SKILL.md`
@@ -161,6 +181,7 @@
 docs/
 ├── specs/      # viktor:think 产物
 ├── plans/      # viktor:plan 产物
+├── contracts/  # viktor:contract 产物（可选）
 ├── reviews/    # viktor:cr 产物
 └── adrs/       # viktor:doc 产物
 ```
