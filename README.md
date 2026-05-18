@@ -130,15 +130,15 @@ bash .workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.4.0
 
 > `[/viktor:contract]` 为可选节点，由 `/viktor:plan` 根据任务构成智能推荐。
 
-| 命令 | 阶段 | 输入 | 输出 |
-|------|------|------|------|
-| `/viktor:init` | 项目初始化 | 现有项目代码结构 | `docs/project-context.md` |
-| `/viktor:think` | 需求澄清 | 模糊需求/想法 | `docs/specs/YYYY-MM-DD--design.md` |
-| `/viktor:plan` | 需求分析 | design.md 或 PRD | `docs/plans/YYYY-MM-DD--tasks.md` |
-| `/viktor:contract` | 类型合约（可选） | tasks.md 或 design.md | `docs/contracts/YYYY-MM-DD--<feature>.types.ts` |
-| `/viktor:code` | 测试驱动开发 | tasks.md | 代码 + 测试 |
-| `/viktor:cr` | 代码审查 | 代码 + tasks.md | `docs/reviews/YYYY-MM-DD--review.md` |
-| `/viktor:doc` | 文档沉淀 | 所有产物 | `docs/adrs/YYYY-MM-DD--adr.md` |
+| 命令 | 阶段 | 节点作用 | 输入 | 输出 |
+|------|------|---------|------|------|
+| `/viktor:init` | 项目初始化 | 扫描项目结构，生成知识地图和活文档骨架；让后续每个节点都能读取项目上下文，而不是每次重新探索 | 现有项目代码结构 | `docs/project-context.md` + 活文档骨架 |
+| `/viktor:think` | 需求澄清 | 把模糊需求转成结构化设计文档，明确方案对比、假设声明和可测试验收标准；没有此产物不能开始拆任务 | 模糊需求/想法 | `docs/specs/YYYY-MM-DD--design.md` |
+| `/viktor:plan` | 需求分析 | 把设计文档拆成粒度合适的任务列表（每条约 2-5 分钟一个 TDD 循环），并自动评估是否需要生成类型合约 | design.md 或 PRD | `docs/plans/YYYY-MM-DD--tasks.md` |
+| `/viktor:contract` | 类型合约（可选） | 在编码前将接口/Hook/Store 类型固化为可 import 的 `.types.ts` 文件，消除节点间类型漂移；ANALYZE 检测到 API/Hook/Store 任务时会主动推荐 | tasks.md 或 design.md | `docs/contracts/YYYY-MM-DD--<feature>.types.ts` |
+| `/viktor:code` | 测试驱动开发 | 强制先写测试再写实现，确保每个任务都有可验证的测试用例；RED → GREEN → REFACTOR 循环 | tasks.md | 代码 + 测试 |
+| `/viktor:cr` | 代码审查 | 按六轴框架（正确性/可维护性/性能/安全性/测试质量/类型合约一致性）系统审查，输出结构化报告，BLOCKING 问题必须修复才能继续 | 代码 + tasks.md | `docs/reviews/YYYY-MM-DD--review.md` |
+| `/viktor:doc` | 文档沉淀 | 生成 ADR（自动编号、支持替代历史决策），更新活文档（组件目录/接口目录/架构速览/ADR 索引），更新 CHANGELOG；检测到工作流自身变更时提示同步三端入口 | 所有产物 | `docs/adrs/ADR-XXX--adr.md` + 活文档更新 |
 
 > 旧的 `/brainstorm`、`/analyze`、`/tdd`、`/review`、`/document` 仅作为历史说明保留，不再作为对外入口。
 
@@ -148,16 +148,20 @@ bash .workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.4.0
 
 ```
 docs/
-├── project-context.md # 项目知识地图（/viktor:init 产物）
-├── specs/          # 设计文档（/viktor:think 产物）
+├── project-context.md      # 项目知识地图（/viktor:init 产物，持续更新）
+├── component-catalog.md    # 组件目录（/viktor:init 初始化，/viktor:doc 持续更新）
+├── api-catalog.md          # API 接口目录（/viktor:init 初始化，/viktor:doc 持续更新）
+├── architecture.md         # 架构决策速览（/viktor:init 初始化，/viktor:doc 持续更新）
+├── specs/                  # 设计文档（/viktor:think 产物）
 │   └── 2026-01-15--user-auth.md
-├── plans/          # 任务计划（/viktor:plan 产物）
+├── plans/                  # 任务计划（/viktor:plan 产物）
 │   └── 2026-01-15--user-auth--tasks.md
-├── contracts/      # 类型合约（/viktor:contract 产物，可选）
+├── contracts/              # 类型合约（/viktor:contract 产物，可选）
 │   └── 2026-01-15--user-auth.types.ts
-├── reviews/        # Code Review 报告（/viktor:cr 产物）
+├── reviews/                # Code Review 报告（/viktor:cr 产物）
 │   └── 2026-01-15--user-auth--review.md
-└── adrs/           # 架构决策记录（/viktor:doc 产物）
+└── adrs/                   # 架构决策记录（/viktor:doc 产物）
+    ├── README.md           # ADR 索引（/viktor:doc 持续更新）
     └── 2026-01-15--user-auth--adr.md
 ```
 
@@ -179,7 +183,8 @@ fe-ai-workflow/
 ├── references/                  # 编码规范参考
 │   ├── react-nextjs-conventions.md
 │   ├── testing-patterns.md
-│   └── prd-input-template.md
+│   ├── prd-input-template.md
+│   └── living-docs-conventions.md  # 活文档体系规范（v0.4.0 新增）
 ├── commands/                    # 快捷命令说明
 │   ├── init.md
 │   ├── think.md

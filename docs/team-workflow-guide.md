@@ -125,7 +125,7 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 
 ### 4.1 `/viktor:init` / `viktor:init`
 
-初始化项目知识地图，扫描当前项目并生成 `docs/project-context.md`。
+初始化项目知识地图，扫描当前项目并生成 `docs/project-context.md`，同时创建活文档骨架（`component-catalog.md`、`api-catalog.md`、`architecture.md`、`docs/adrs/README.md`），为后续每次需求完成后的活文档更新做好准备。
 
 ### 4.2 `/viktor:think` / `viktor:think`
 
@@ -155,13 +155,13 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 
 ### 4.6 `/viktor:doc` / `viktor:doc`
 
-沉淀 ADR 并更新 `CHANGELOG.md`。
+生成 ADR（自动编号，支持标记历史 ADR 为"已替代"），有条件地更新活文档（组件目录 / 接口目录 / 架构速览 / ADR 索引），更新 `CHANGELOG.md`。若本次修改了工作流自身文件，会提示同步三端入口。
 
 ## 5. 各节点说明
 
 ### INIT
 
-先扫描项目结构，生成 `docs/project-context.md`，让后续需求分析不必重复摸索项目上下文。
+先扫描项目结构，生成 `docs/project-context.md`，同时创建活文档骨架（4 个文件），让后续需求分析不必重复摸索项目上下文，也为每次 DOCUMENT 的活文档更新准备好落脚点。
 
 ### BRAINSTORM
 
@@ -188,7 +188,7 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 
 ### DOCUMENT
 
-总结最终决策、权衡和已知问题，形成团队可追溯的 ADR。
+生成 ADR（自动三位数编号，支持替代历史决策），有条件地更新活文档（组件目录 / 接口目录 / 架构决策速览 / ADR 索引），并更新 CHANGELOG。若本次变更涉及工作流自身规则文件，自动提示同步三端入口，防止平台间不一致。
 
 ## 6. 试点建议与反馈入口
 
