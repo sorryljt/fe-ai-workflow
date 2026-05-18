@@ -72,8 +72,34 @@ git diff --name-only HEAD~1 HEAD | grep -E "^(skills/|commands/)"
 
 ### 第 3 步：生成 ADR 文档
 
+**3.1 自动编号**
+
+生成 ADR 文件前，先计算编号：
+
+1. 统计 `docs/adrs/` 下 `.md` 文件数量（排除 `README.md`）
+2. 当前 ADR 编号 = 文件数 + 1，格式为三位数，如 `ADR-001`、`ADR-002`
+3. 若 `docs/adrs/` 目录不存在，则自动创建，编号从 `ADR-001` 开始
+
+**3.2 历史 ADR 替代流程**
+
+询问用户：
+
+> "本次 ADR 是否替代了某条历史决策？
+> 请输入被替代的 ADR 编号（如 `ADR-001`），或输入「无」跳过。"
+
+- 若用户指定编号：
+  1. 在 `docs/adrs/` 下定位文件名含该编号的 `.md` 文件
+  2. 将其 `**状态**` 字段更新为 `已替代（见 ADR-{当前编号}）`
+  3. 将该文件加入本次 commit
+  4. 若找不到对应文件：提示 "未找到该编号对应文件，请重新输入或输入「无」跳过"
+- 若用户输入「无」：继续，不修改任何历史文件
+
+**3.3 生成当前 ADR**
+
 按下方「ADR 模板」生成文档，保存到：
 `docs/adrs/YYYY-MM-DD--<feature-name>--adr.md`
+
+ADR 标题中填入实际编号（如 `# ADR-002: ...`），状态默认填写 `已接受`。
 
 **质量标准（生成后自检）**：
 6 个月后，新加入的团队成员读到这篇 ADR，能回答以下问题：
@@ -131,10 +157,10 @@ git commit -m "docs: add ADR and update changelog for <feature-name>"
 ## ADR 模板
 
 ```markdown
-# ADR-XXX: [决策标题，动词开头，例：使用 httpOnly Cookie 存储 JWT Token]
+# ADR-{编号由 DOCUMENT 自动填入}: [决策标题，动词开头，例：使用 httpOnly Cookie 存储 JWT Token]
 
 **日期**：YYYY-MM-DD
-**状态**：已接受
+**状态**：草稿 / 已接受 / 已废弃 / 已替代（见 ADR-XXX）  ← 四选一，DOCUMENT 默认填入「已接受」
 **提出者**：[姓名/团队]
 **关联需求**：[功能名称]
 
