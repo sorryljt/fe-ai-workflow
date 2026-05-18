@@ -1,0 +1,1 @@
+../../../commands/viktor/contract.md
