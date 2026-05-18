@@ -96,9 +96,80 @@ HTTP 客户端：[axios / 原生 fetch]
 
 保存到 `docs/project-context.md`，使用下方模板。
 
+### 第 6 步：生成活文档骨架
+
+`project-context.md` 保存后，逐一检查以下 4 个活文档文件。若文件**已存在**，跳过并提示"已存在，跳过"；若**不存在**，使用下方对应骨架模板创建：
+
+**`docs/component-catalog.md`**：
+
+```markdown
+# 组件目录
+
+> 由 `/viktor:init` 初始化，由 `/viktor:doc` 在每次需求完成后自动维护。
+> 新增组件前先查阅此目录，避免重复实现。
+
+## UI 基础组件
+
+| 组件 | 文件路径 | 功能描述 | 引入版本 |
+|------|---------|---------|---------|
+| （示例）Button | `components/ui/Button.tsx` | 通用按钮，支持 variant/size | - |
+
+## 业务组件
+
+| 组件 | 文件路径 | 功能描述 | 引入版本 |
+|------|---------|---------|---------|
+| - | - | - | - |
+```
+
+**`docs/api-catalog.md`**：
+
+```markdown
+# API 接口目录
+
+> 由 `/viktor:init` 初始化，由 `/viktor:doc` 在每次需求完成后自动维护。
+
+## API 路由 / Server Actions
+
+| 路由 / 函数 | 方法 | 功能描述 | 引入版本 |
+|------------|------|---------|---------|
+| （示例）/api/auth/login | POST | 用户登录，返回 JWT | - |
+```
+
+**`docs/architecture.md`**：
+
+```markdown
+# 架构决策速览
+
+> 由 `/viktor:init` 初始化，由 `/viktor:doc` 在每次产出 ADR 后自动追加摘要。
+> 完整决策背景见 `docs/adrs/` 目录。
+
+## 决策记录
+
+| 编号 | 决策摘要 | 日期 | 状态 | ADR 链接 |
+|------|---------|------|------|---------|
+| - | - | - | - | - |
+```
+
+**`docs/adrs/README.md`**：
+
+```markdown
+# ADR 索引
+
+> Architecture Decision Records — 记录项目中所有重要的架构和技术决策。
+> 每次 `/viktor:doc` 完成后自动追加新条目。
+
+## 决策列表
+
+| 编号 | 标题 | 日期 | 状态 | 链接 |
+|------|------|------|------|------|
+| - | - | - | - | - |
+```
+
+完成后统一 commit：
+
 ```bash
-git add docs/project-context.md
-git commit -m "docs: add project context map"
+git add docs/project-context.md docs/component-catalog.md docs/api-catalog.md docs/architecture.md docs/adrs/README.md
+git commit -m "docs: init project context and living doc skeleton"
 ```
 
 ---
@@ -189,10 +260,15 @@ git commit -m "docs: add project context map"
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ✅ INIT 已完成
-📄 产物：docs/project-context.md
+📄 产物：docs/project-context.md（项目知识地图）
+         docs/component-catalog.md（组件目录）
+         docs/api-catalog.md（API 目录）
+         docs/architecture.md（架构决策速览）
+         docs/adrs/README.md（ADR 索引）
 ──────────────────────────────
-▶ 下一步：输入 /viktor:think开始第一个需求
-  后续每次 BRAINSTORM 会自动读取此知识地图
+▶ 下一步：输入 /viktor:think 开始第一个需求
+  后续每次 BRAINSTORM 会自动读取知识地图
+  每次 DOCUMENT 会自动更新活文档
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -202,4 +278,8 @@ git commit -m "docs: add project context map"
 - [ ] 现有 UI 组件清单完整（覆盖 components/ui/）
 - [ ] 技术选型信息准确（与 package.json 一致）
 - [ ] 目录约定已记录（测试文件放哪、别名怎么用）
+- [ ] `docs/component-catalog.md` 已生成（或已存在跳过）
+- [ ] `docs/api-catalog.md` 已生成（或已存在跳过）
+- [ ] `docs/architecture.md` 已生成（或已存在跳过）
+- [ ] `docs/adrs/README.md` 已生成（或已存在跳过）
 - [ ] 「设计约束」列出了至少 2-3 条团队已有的决策（避免 AI 重复造轮子）
