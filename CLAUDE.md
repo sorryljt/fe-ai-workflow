@@ -81,7 +81,12 @@
 - **触发方式**：用户输入 `/viktor:doc`（前提：CR 已通过）
 - **加载 Skill**：`skills/05-documentation/SKILL.md`
 - **输入**：`design.md` + `tasks.md` + `review.md` + 所有代码
-- **输出**：`docs/adrs/YYYY-MM-DD--<feature>--adr.md` + 更新 `CHANGELOG.md`
+- **输出**：`docs/adrs/YYYY-MM-DD--<feature>--adr.md` + 更新活文档 + 更新 `CHANGELOG.md`
+- **新增能力（v0.4.0）**：
+  - **工作流变更检测**：自动检测本次是否修改了 `skills/` 或 `commands/`，若是则提示同步三端入口
+  - **ADR 自动编号**：读取 `docs/adrs/` 文件数自动生成三位数编号（ADR-001、ADR-002 等）
+  - **ADR 替代流程**：询问是否替代历史 ADR，用户指定编号后自动将旧 ADR 状态更新为 `已替代（见 ADR-XXX）`
+  - **条件更新活文档**：根据变更类型更新 `component-catalog.md`、`api-catalog.md`、`architecture.md`、`adrs/README.md`
 
 ## 产物目录规范
 
@@ -89,15 +94,20 @@
 
 ```
 docs/
-├── specs/          # 设计文档（BRAINSTORM 产物）
+├── project-context.md        # 项目知识地图（INIT 产物）
+├── component-catalog.md      # 组件目录（INIT 初始化，DOCUMENT 持续更新）
+├── api-catalog.md            # API 接口目录（INIT 初始化，DOCUMENT 持续更新）
+├── architecture.md           # 架构决策速览（INIT 初始化，DOCUMENT 持续更新）
+├── specs/                    # 设计文档（BRAINSTORM 产物）
 │   └── YYYY-MM-DD--<feature>.md
-├── plans/          # 任务计划（ANALYZE 产物）
+├── plans/                    # 任务计划（ANALYZE 产物）
 │   └── YYYY-MM-DD--<feature>--tasks.md
-├── contracts/      # 类型合约（CONTRACT 产物，可选）
+├── contracts/                # 类型合约（CONTRACT 产物，可选）
 │   └── YYYY-MM-DD--<feature>.types.ts
-├── reviews/        # Code Review 报告（REVIEW 产物）
+├── reviews/                  # Code Review 报告（REVIEW 产物）
 │   └── YYYY-MM-DD--<feature>--review.md
-└── adrs/           # 架构决策记录（DOCUMENT 产物）
+└── adrs/                     # 架构决策记录（DOCUMENT 产物）
+    ├── README.md             # ADR 索引（DOCUMENT 持续更新）
     └── YYYY-MM-DD--<feature>--adr.md
 ```
 
@@ -110,6 +120,7 @@ docs/
 - `references/react-nextjs-conventions.md` — React/Next.js/TypeScript 编码规范
 - `references/testing-patterns.md` — Vitest + RTL 测试模式与最佳实践
 - `references/prd-input-template.md` — PRD 标准输入模板
+- `references/living-docs-conventions.md` — 活文档体系规范（ADR 状态机制、更新原则、工作流同步规则）
 
 在实现任何代码时，必须对照 `references/react-nextjs-conventions.md` 确认规范符合。
 
