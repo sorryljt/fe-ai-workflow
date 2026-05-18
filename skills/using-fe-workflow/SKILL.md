@@ -15,13 +15,13 @@ description: 前端 AI 开发工作流元调度器 - 对话开始时加载，提
 
 | 命令 | 节点 | 触发时机 |
 |------|------|---------|
-| `/viktor:init` | INIT | 首次接入项目，扫描代码库生成知识地图 |
+| `/viktor:init` | INIT | 首次接入项目，扫描代码库生成知识地图 + 活文档骨架 |
 | `/viktor:think <需求>` | BRAINSTORM | 有新需求时，附带需求描述一步触发 |
 | `/viktor:plan` | ANALYZE | design.md 确认后，拆解为任务列表 |
 | `/viktor:contract` | CONTRACT | tasks.md 完成后（可选），生成 TypeScript 类型合约文件 |
 | `/viktor:code` | TDD | tasks.md 确认后，测试驱动实现 |
 | `/viktor:cr` | REVIEW | 实现完成后，六轴代码审查 |
-| `/viktor:doc` | DOCUMENT | CR 通过后，生成 ADR 沉淀文档 |
+| `/viktor:doc` | DOCUMENT | CR 通过后，生成 ADR（自动编号）、更新活文档、沉淀 CHANGELOG |
 
 ## Codex 触发规则
 
