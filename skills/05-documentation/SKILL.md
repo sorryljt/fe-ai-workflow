@@ -81,6 +81,26 @@ git diff --name-only HEAD~1 HEAD | grep -E "^(skills/|commands/)"
 > - `AGENTS.md`（Codex 触发表 / 节点说明）
 > - `.cursor/rules/workflow.mdc`（Cursor 路由规则）
 
+**references 变更检测**（与工作流变更检测同时执行）：
+
+```bash
+git diff --name-only HEAD~1 HEAD | grep -E "^references/"
+```
+
+若有输出（即本次涉及 `references/` 路径的文件变更），追加提示：
+
+> ⚠️ **检测到 references 规范文件变更**
+> 本次需求修改了 `references/` 下的规范文档。以下 Skill 引用了这些文件，请确认是否需要同步更新：
+>
+> | 变更文件 | 引用该文件的 Skill |
+> |---------|-----------------|
+> | `references/react-nextjs-conventions.md` | `skills/03-tdd-cycle/SKILL.md`（REFACTOR 步骤规范检查）、`skills/04-code-review/SKILL.md`（正确性 / 可维护性审查） |
+> | `references/testing-patterns.md` | `skills/03-tdd-cycle/SKILL.md`（TDD 技术规范）、`skills/04-code-review/SKILL.md`（测试质量审查） |
+> | `references/living-docs-conventions.md` | `skills/05-documentation/SKILL.md`（ADR 状态机制）、`skills/06-project-init/SKILL.md`（活文档骨架） |
+> | `references/prd-input-template.md` | `skills/01-brainstorming/SKILL.md`（PRD 输入路径） |
+>
+> 若规范变更影响 Skill 的执行步骤，请在完成文档沉淀后进一步更新对应 Skill 文件。（非阻塞，可在后续迭代处理）
+
 ### 第 2 步：提取关键技术决策
 
 从以上文档中识别以下内容，为 ADR 做准备：
