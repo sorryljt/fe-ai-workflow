@@ -51,6 +51,7 @@
 - **输入**：`docs/specs/YYYY-MM-DD--design.md` 或 PRD 文档
 - **输出**：`docs/plans/YYYY-MM-DD--<feature>--tasks.md`
 - **完成条件**：tasks.md 中所有任务粒度合理（每条约 2-5 分钟一个 TDD 循环）
+- **冷启动行为**：对话中无 BRAINSTORM 完成信号时，扫描 `docs/specs/` 下已有文件供用户选择；检测到已有 tasks.md 时询问覆盖或新建
 
 #### 节点 2.5：CONTRACT（类型合约）【可选】
 
@@ -60,6 +61,7 @@
 - **输出**：`docs/contracts/YYYY-MM-DD--<feature>.types.ts`
 - **完成条件**：用户明确确认类型结构
 - **智能推荐**：ANALYZE 完成后，若检测到 `[api]`/`[hook]`/`[store]` 类型任务，自动建议执行本节点
+- **冷启动行为**：对话中无 ANALYZE 完成信号时，扫描 tasks.md 供用户选择；已有合约文件时询问覆盖或追加
 
 #### 节点 3：TDD（测试驱动开发）
 
@@ -68,6 +70,7 @@
 - **输入**：`docs/plans/YYYY-MM-DD--tasks.md`
 - **输出**：实现代码（`src/`）+ 测试文件（`__tests__/` 或 `*.test.ts`）
 - **完成条件**：tasks.md 中所有任务均有对应测试，测试全部通过
+- **冷启动行为**：对话中无 ANALYZE 完成信号时，列出所有 tasks.md 及完成度，全部完成的文件加警告；用户选择文件或选 N 重定向到 `/viktor:think`
 
 #### 节点 4：REVIEW（代码审查）
 
@@ -79,6 +82,7 @@
   - 有 `[BLOCKING]` 问题 → 输出修复建议，提示返回 `/viktor:code`
   - 全部通过 → 提示进入 `/viktor:doc`
   - 若合约文件存在，执行第六检查轴（类型合约一致性）
+- **冷启动行为**：对话中无 TDD 完成信号时，检查 tasks.md 未完成任务数并警告；已有 review.md 时询问是否覆盖
 
 #### 节点 5：DOCUMENT（文档沉淀）
 
@@ -92,6 +96,7 @@
   - **ADR 替代流程**：询问是否替代历史 ADR，用户指定编号后自动将旧 ADR 状态更新为 `已替代（见 ADR-XXX）`
   - **条件更新活文档**：根据变更类型更新 `component-catalog.md`、`api-catalog.md`、`architecture.md`、`adrs/README.md`
   - **digest 建议**：完成后若 ADR 数量为 5 的倍数，非阻塞建议执行 `/viktor:digest`
+- **冷启动行为**：对话中无 REVIEW PASS 信号时，扫描 `docs/reviews/` 供用户选择；选中文件含 BLOCKING 时警告并确认
 
 #### 节点 T：CONTEXT（项目快照）【工具节点，随时可用】
 
