@@ -114,6 +114,14 @@
 - **输入**：`docs/` 下所有文档（specs / plans / reviews / adrs / 活文档）
 - **输出**：`docs/digest/YYYY-MM-DD--digest.md`（5 个必需章节）+ git commit
 
+#### 节点 0：INIT（项目初始化）【首次接入时运行】
+
+- **触发方式**：用户输入 `/viktor:init`
+- **加载 Skill**：`skills/06-project-init/SKILL.md`
+- **输入**：项目目录（`package.json` / `tsconfig.json` / 源码文件）
+- **输出**：`docs/project-context.md`（项目知识地图）+ 4 个活文档骨架文件
+- **幂等行为**：`project-context.md` 已存在时，询问"重新扫描更新"还是"仅补全缺失骨架"；活文档骨架已存在的文件一律跳过——**重复执行是安全的**
+
 ## 产物目录规范
 
 所有文档产物统一放在 `docs/` 目录下：

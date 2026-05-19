@@ -57,6 +57,7 @@
 
 **触发**：`viktor:init`
 **输出**：`docs/project-context.md` + 活文档骨架（4 个文件）
+**幂等行为**：`project-context.md` 已存在时，询问"重新扫描更新"还是"仅补全缺失骨架"；活文档文件已存在则跳过——重复执行安全
 
 1. 扫描项目文件结构（排除 node_modules / .next / dist）
 2. 读取 `package.json` 提取技术栈
