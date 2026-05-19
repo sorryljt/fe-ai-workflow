@@ -138,7 +138,9 @@ bash .workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.4.0
 | `/viktor:contract` | 类型合约（可选） | 在编码前将接口/Hook/Store 类型固化为可 import 的 `.types.ts` 文件，消除节点间类型漂移；ANALYZE 检测到 API/Hook/Store 任务时会主动推荐 | tasks.md 或 design.md | `docs/contracts/YYYY-MM-DD--<feature>.types.ts` |
 | `/viktor:code` | 测试驱动开发 | 强制先写测试再写实现，确保每个任务都有可验证的测试用例；RED → GREEN → REFACTOR 循环 | tasks.md | 代码 + 测试 |
 | `/viktor:cr` | 代码审查 | 按六轴框架（正确性/可维护性/性能/安全性/测试质量/类型合约一致性）系统审查，输出结构化报告，BLOCKING 问题必须修复才能继续 | 代码 + tasks.md | `docs/reviews/YYYY-MM-DD--review.md` |
-| `/viktor:doc` | 文档沉淀 | 生成 ADR（自动编号、支持替代历史决策），更新活文档（组件目录/接口目录/架构速览/ADR 索引），更新 CHANGELOG；检测到工作流自身变更时提示同步三端入口 | 所有产物 | `docs/adrs/ADR-XXX--adr.md` + 活文档更新 |
+| `/viktor:doc` | 文档沉淀 | 生成 ADR（自动编号、支持替代历史决策），更新活文档（组件目录/接口目录/架构速览/ADR 索引），更新 CHANGELOG；检测到工作流自身变更时提示同步三端入口；ADR 累积到 5 的倍数时建议执行 `/viktor:digest` | 所有产物 | `docs/adrs/ADR-XXX--adr.md` + 活文档更新 |
+| `/viktor:context` | 项目快照（工具节点） | 读取 5 个活文档并格式化输出到对话；随时可用，无副作用；BRAINSTORM 开始时若知识地图存在会非阻塞提示 | 5 个活文档 | 对话输出（不生成文件） |
+| `/viktor:digest` | 文档整合（工具节点） | 读取 docs/ 下所有文档，生成阶段性摘要，包含：项目状态 / 完成需求 / 架构决策 / 活文档现状 / 待关注问题 | docs/ 下所有文档 | `docs/digest/YYYY-MM-DD--digest.md` |
 
 > 旧的 `/brainstorm`、`/analyze`、`/tdd`、`/review`、`/document` 仅作为历史说明保留，不再作为对外入口。
 
@@ -160,9 +162,11 @@ docs/
 │   └── 2026-01-15--user-auth.types.ts
 ├── reviews/                # Code Review 报告（/viktor:cr 产物）
 │   └── 2026-01-15--user-auth--review.md
-└── adrs/                   # 架构决策记录（/viktor:doc 产物）
-    ├── README.md           # ADR 索引（/viktor:doc 持续更新）
-    └── 2026-01-15--user-auth--adr.md
+├── adrs/                   # 架构决策记录（/viktor:doc 产物）
+│   ├── README.md           # ADR 索引（/viktor:doc 持续更新）
+│   └── 2026-01-15--user-auth--adr.md
+└── digest/                 # 阶段性整合摘要（/viktor:digest 产物）
+    └── 2026-01-15--digest.md
 ```
 
 ## 目录说明
@@ -179,7 +183,9 @@ fe-ai-workflow/
 │   ├── 02-requirements-analysis/ # 任务拆分
 │   ├── 03-tdd-cycle/            # TDD 循环
 │   ├── 04-code-review/          # 代码审查
-│   └── 05-documentation/        # 文档沉淀
+│   ├── 05-documentation/        # 文档沉淀
+│   ├── 08-context/              # 项目快照（工具节点）
+│   └── 09-digest/               # 文档整合（工具节点）
 ├── references/                  # 编码规范参考
 │   ├── react-nextjs-conventions.md
 │   ├── testing-patterns.md
@@ -191,7 +197,9 @@ fe-ai-workflow/
 │   ├── plan.md
 │   ├── code.md
 │   ├── cr.md
-│   └── doc.md
+│   ├── doc.md
+│   ├── context.md               # 项目快照命令
+│   └── digest.md                # 文档整合命令
 └── examples/                    # 工作流产物示例
 ```
 
