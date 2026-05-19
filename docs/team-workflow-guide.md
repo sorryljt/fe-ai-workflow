@@ -1,7 +1,7 @@
 # fe-ai-workflow 团队试点指南
 
-**版本**：v0.4.0
-**日期**：2026-05-18
+**版本**：v0.5.0
+**日期**：2026-05-19
 **适用范围**：团队内部小范围试点
 
 ## 1. 背景
@@ -32,7 +32,7 @@
 ```bash
 # 引入 workflow 并锁定版本
 git submodule add https://github.com/sorryljt/fe-ai-workflow.git .workflow/fe-ai-workflow
-cd .workflow/fe-ai-workflow && git checkout v0.4.0 && cd ../..
+cd .workflow/fe-ai-workflow && git checkout v0.5.0 && cd ../..
 
 # 同步入口文件到项目根目录
 .workflow/fe-ai-workflow/scripts/sync-workflow.sh .workflow/fe-ai-workflow .
@@ -42,7 +42,7 @@ npm pkg set scripts.postinstall=".workflow/fe-ai-workflow/scripts/sync-workflow.
 
 # 提交
 git add .gitmodules .workflow/fe-ai-workflow package.json
-git commit -m "chore: add fe-ai-workflow v0.4.0"
+git commit -m "chore: add fe-ai-workflow v0.5.0"
 ```
 
 ---
@@ -62,33 +62,10 @@ npm install
 ### 场景三：升级 workflow 版本
 
 ```bash
-.workflow/fe-ai-workflow/scripts/upgrade-workflow.sh v0.4.0
+.workflow/fe-ai-workflow/scripts/upgrade-workflow.sh <新版本tag>
 ```
 
 完成后确认变更，按需提交。
-
----
-
-### Windows 说明
-
-> **前提**：需要安装 [Git for Windows](https://git-scm.com/download/win)，安装完成后重新打开终端使 PATH 生效。
-
-上方命令均为 bash 语法，Windows 用户有两种方式：
-
-**推荐：Git Bash**（Git for Windows 自带）  
-在项目根目录右键 → **Git Bash Here**，执行与 macOS/Linux 完全相同的命令。  
-唯一差异：`postinstall` 步骤改为：
-
-```bash
-npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-workflow.sh .workflow/fe-ai-workflow . || true"
-```
-
-**备选：PowerShell**  
-`&&` 需改为分行执行，`.sh` 脚本加 `bash` 前缀，其余命令相同。详见 [README - Windows 安装](../README.md#windows-安装)。
-
-**`bash` 无法识别？**
-- Git for Windows 未安装 → 先安装，安装后重新打开 PowerShell
-- 已安装但命令找不到 → 在 PowerShell 运行 `$env:PATH += ";C:\Program Files\Git\bin"` 后重试
 
 ---
 
@@ -98,7 +75,7 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 
 如果项目知识地图（`docs/project-context.md`）不存在，工作流会在 BRAINSTORM 开始前自动扫描项目并生成，无需手动执行 `/viktor:init`。
 
-> 也可以提前手动执行 `/viktor:init`，适合想先了解项目结构再开始需求的场景。
+> 也可以提前手动执行 `/viktor:init`，适合想先了解项目结构再开始需求的场景。新成员接入时，也可以先执行 `/viktor:context` 快速获取项目全貌。
 
 ## 3. 平台差异说明
 
@@ -125,16 +102,15 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 
 ### 4.1 `/viktor:init` / `viktor:init`
 
-初始化项目知识地图，扫描当前项目并生成 `docs/project-context.md`，同时创建活文档骨架（`component-catalog.md`、`api-catalog.md`、`architecture.md`、`docs/adrs/README.md`），为后续每次需求完成后的活文档更新做好准备。
+扫描当前项目并生成 `docs/project-context.md`（项目知识地图），同时创建活文档骨架（`component-catalog.md`、`api-catalog.md`、`architecture.md`、`docs/adrs/README.md`），为后续每次需求完成后的活文档更新做好准备。
 
 ### 4.2 `/viktor:think` / `viktor:think`
 
-需求澄清，生成设计文档 `docs/specs/YYYY-MM-DD--design.md`。
+需求澄清，生成设计文档 `docs/specs/YYYY-MM-DD--design.md`。把模糊需求转成结构化方案，明确验收标准，是整个流程的起点。
 
 ### 4.3 `/viktor:plan` / `viktor:plan`
 
-将设计文档拆解为任务列表 `docs/plans/YYYY-MM-DD--tasks.md`。
-完成后根据任务构成自动推荐是否执行 `/viktor:contract`。
+将设计文档拆解为任务列表 `docs/plans/YYYY-MM-DD--tasks.md`。完成后根据任务构成自动推荐是否执行 `/viktor:contract`。
 
 ### 4.3.5 `/viktor:contract` / `viktor:contract`（可选）
 
@@ -147,11 +123,11 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 
 ### 4.4 `/viktor:code` / `viktor:code`
 
-按 TDD 实现任务，输出代码与测试。
+按 TDD 循环实现任务：先写测试（RED）→ 写实现（GREEN）→ 重构（REFACTOR），每个任务 commit 一次。
 
 ### 4.5 `/viktor:cr` / `viktor:cr`
 
-审查实现，生成 `docs/reviews/YYYY-MM-DD--review.md`。
+六轴代码审查（正确性 / 可维护性 / 性能 / 安全性 / 测试质量 / 类型合约一致性），生成 `docs/reviews/YYYY-MM-DD--review.md`。有 `[BLOCKING]` 问题必须修复后才能继续。
 
 ### 4.6 `/viktor:doc` / `viktor:doc`
 
@@ -176,48 +152,7 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
 - DOCUMENT 节点完成后，若 ADR 数量达到 5 的倍数（如 ADR-005、ADR-010），会非阻塞建议执行本命令
 - 产物自动 commit
 
-## 5. 各节点说明
-
-### INIT
-
-先扫描项目结构，生成 `docs/project-context.md`，同时创建活文档骨架（4 个文件），让后续需求分析不必重复摸索项目上下文，也为每次 DOCUMENT 的活文档更新准备好落脚点。
-
-### BRAINSTORM
-
-把模糊需求转成可确认的设计文档，重点是方案对比、假设声明和可测试验收标准。
-
-### ANALYZE
-
-把设计文档拆成小任务，每个任务都应该能在一个短 TDD 循环里完成。
-完成后根据任务构成给出推荐：含接口/Hook/Store 类型 → 推荐先执行 CONTRACT。
-
-### CONTRACT（可选）
-
-从任务列表提取结构化 TypeScript 类型，生成合约文件。
-消除节点间的"类型漂移"，让 TDD 和 REVIEW 都有明确的类型锚点。
-
-### TDD
-
-先写测试，再写实现，再重构，确保每一步都可验证。
-
-### REVIEW
-
-按正确性、可维护性、性能、安全性、测试质量、类型合约一致性六轴审查。
-若无合约文件，第六轴自动跳过，不影响原有审查流程。
-
-### DOCUMENT
-
-生成 ADR（自动三位数编号，支持替代历史决策），有条件地更新活文档（组件目录 / 接口目录 / 架构决策速览 / ADR 索引），并更新 CHANGELOG。若本次变更涉及工作流自身规则文件，自动提示同步三端入口，防止平台间不一致。ADR 累积到 5 的倍数时，非阻塞建议执行 DIGEST。
-
-### CONTEXT（工具节点）
-
-只读输出 5 个活文档的格式化快照，无副作用。适合在开始新需求前快速获取项目状态，或供新成员快速了解项目全貌。BRAINSTORM 开始时若知识地图存在会自动提示。
-
-### DIGEST（工具节点）
-
-读取 docs/ 下所有文档，生成阶段性整合摘要，帮助团队在一批需求完成后回顾阶段性成果。由 DOCUMENT 在 ADR 到达 5 的倍数时非阻塞建议，也可随时手动执行。
-
-## 6. 试点建议与反馈入口
+## 5. 试点建议与反馈入口
 
 - 先让 1-3 名成员试用，不要一开始全员铺开
 - 先选一个小而完整的需求，走完全流程
@@ -226,12 +161,12 @@ npm pkg set scripts.postinstall="bash .workflow/fe-ai-workflow/scripts/sync-work
   - 门禁是否好理解
   - 文档是否真的帮助团队协作
 
-## 7. 版本更新方式
+## 6. 版本更新方式
 
 当 workflow 仓库发布新版本后，在业务项目根目录执行一条命令即可：
 
 ```bash
-.workflow/fe-ai-workflow/scripts/upgrade-workflow.sh <新版本 tag>
+.workflow/fe-ai-workflow/scripts/upgrade-workflow.sh <新版本tag>
 ```
 
 脚本会自动完成：切换版本 → 同步入口文件 → 提交。建议先在非关键项目上验证新版本后再推广。
