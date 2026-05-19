@@ -23,6 +23,8 @@ description: 需求澄清与设计文档生成 - AI 主导推荐方案并声明�
 
 **情况 A — `docs/project-context.md` 存在**：直接读取，无需重新扫描。
 
+> 💡 可执行 `/viktor:context` 快速回顾现有组件和接口，再开始需求设计。（非阻塞，可直接跳过）
+
 **情况 B — `docs/project-context.md` 不存在**：
 1. 告知用户：`"未检测到项目知识地图，正在自动扫描项目结构，完成后继续需求分析..."`
 2. 执行 `skills/06-project-init/SKILL.md` 的第 1-4 步（扫描并生成 `docs/project-context.md`）
