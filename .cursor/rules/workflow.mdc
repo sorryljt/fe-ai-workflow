@@ -1,5 +1,5 @@
 ---
-description: 前端 AI 开发工作流规则 - 六节点标准化开发流程（BRAINSTORM → ANALYZE → [CONTRACT] → TDD → REVIEW → DOCUMENT）
+description: 前端 AI 开发工作流规则 - 标准开发流程（BRAINSTORM → ANALYZE → [CONTRACT] → TDD → REVIEW → DOCUMENT）+ 工具节点（CONTEXT / DIGEST）
 alwaysApply: true
 ---
 

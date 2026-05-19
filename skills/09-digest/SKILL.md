@@ -42,7 +42,7 @@ description: 文档整合 - 读取 docs/ 下所有文档，生成阶段性摘要
 - specs/：N 个设计文档
 - plans/：N 个任务列表
 - reviews/：N 个 Review 报告
-- adrs/：N 个 ADR（含 README.md）
+- adrs/：N 个 ADR（不含 README.md）
 - digest/：N 个历史摘要
 ```
 
