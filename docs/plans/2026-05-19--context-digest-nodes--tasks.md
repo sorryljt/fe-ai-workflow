@@ -22,12 +22,12 @@
 - **文件路径**：
   - 实现：`skills/08-context/SKILL.md`
 - **验收标准**：
-  - [ ] frontmatter 包含 name / description 字段
-  - [ ] 明确列出读取的 5 个文件路径
-  - [ ] 输出格式模板完整（5 个区块标题）
-  - [ ] 文件缺失时的处理逻辑（给出说明而非报错）
-  - [ ] 明确声明：不生成文件，不创建 commit
-  - [ ] 包含导航卡（无下一步，因为是工具节点）
+  - [x] frontmatter 包含 name / description 字段
+  - [x] 明确列出读取的 5 个文件路径
+  - [x] 输出格式模板完整（5 个区块标题）
+  - [x] 文件缺失时的处理逻辑（给出说明而非报错）
+  - [x] 明确声明：不生成文件，不创建 commit
+  - [x] 包含导航卡（无下一步，因为是工具节点）
 - **依赖**：无
 
 #### T002：创建 `commands/viktor/context.md` [utils]
@@ -36,9 +36,9 @@
 - **文件路径**：
   - 实现：`commands/viktor/context.md`
 - **验收标准**：
-  - [ ] description frontmatter 存在
-  - [ ] 明确指向 `skills/08-context/SKILL.md`
-  - [ ] 说明无前置条件（随时可用）
+  - [x] description frontmatter 存在
+  - [x] 明确指向 `skills/08-context/SKILL.md`
+  - [x] 说明无前置条件（随时可用）
 - **依赖**：T001
 
 #### T003：创建 `skills/09-digest/SKILL.md` [utils]
@@ -47,12 +47,12 @@
 - **文件路径**：
   - 实现：`skills/09-digest/SKILL.md`
 - **验收标准**：
-  - [ ] frontmatter 包含 name / description 字段
-  - [ ] 明确读取范围（specs/、plans/、reviews/、adrs/、5 个活文档）
-  - [ ] 输出路径：`docs/digest/YYYY-MM-DD--digest.md`
-  - [ ] 输出模板包含 5 个章节：项目当前状态 / 本阶段完成需求 / 关键架构决策 / 活文档现状 / 待关注问题
-  - [ ] 包含 commit 命令
-  - [ ] 包含导航卡
+  - [x] frontmatter 包含 name / description 字段
+  - [x] 明确读取范围（specs/、plans/、reviews/、adrs/、5 个活文档）
+  - [x] 输出路径：`docs/digest/YYYY-MM-DD--digest.md`
+  - [x] 输出模板包含 5 个章节：项目当前状态 / 本阶段完成需求 / 关键架构决策 / 活文档现状 / 待关注问题
+  - [x] 包含 commit 命令
+  - [x] 包含导航卡
 - **依赖**：无
 
 #### T004：创建 `commands/viktor/digest.md` [utils]
@@ -61,9 +61,9 @@
 - **文件路径**：
   - 实现：`commands/viktor/digest.md`
 - **验收标准**：
-  - [ ] description frontmatter 存在
-  - [ ] 明确指向 `skills/09-digest/SKILL.md`
-  - [ ] 说明可随时手动执行
+  - [x] description frontmatter 存在
+  - [x] 明确指向 `skills/09-digest/SKILL.md`
+  - [x] 说明可随时手动执行
 - **依赖**：T003
 
 #### T005：更新 `skills/01-brainstorming/SKILL.md` — 第 1 步加非阻塞提示 [utils]
@@ -72,10 +72,10 @@
 - **文件路径**：
   - 修改：`skills/01-brainstorming/SKILL.md`
 - **验收标准**：
-  - [ ] 仅在情况 A（project-context.md 存在）时显示提示
-  - [ ] 提示为 💡 非阻塞格式（不影响流程推进）
-  - [ ] 提示文案：「💡 可执行 `/viktor:context` 快速回顾现有组件和接口，再开始需求设计。」
-  - [ ] 原有步骤内容不变
+  - [x] 仅在情况 A（project-context.md 存在）时显示提示
+  - [x] 提示为 💡 非阻塞格式（不影响流程推进）
+  - [x] 提示文案：「💡 可执行 `/viktor:context` 快速回顾现有组件和接口，再开始需求设计。」
+  - [x] 原有步骤内容不变
 - **依赖**：T001
 
 #### T006：更新 `skills/05-documentation/SKILL.md` — 完成后加 digest 提示 [utils]
@@ -84,11 +84,11 @@
 - **文件路径**：
   - 修改：`skills/05-documentation/SKILL.md`
 - **验收标准**：
-  - [ ] ADR 计数逻辑：读取 `docs/adrs/` 下的 `.md` 文件数（排除 README.md）
-  - [ ] 仅当数量 > 0 且为 5 的倍数时显示建议
-  - [ ] 建议为非阻塞格式，用户可忽略
-  - [ ] 建议文案：「💡 已累积 N 个 ADR，建议执行 `/viktor:digest` 生成阶段性整合文档。」
-  - [ ] 原有导航卡和步骤不变
+  - [x] ADR 计数逻辑：读取 `docs/adrs/` 下的 `.md` 文件数（排除 README.md）
+  - [x] 仅当数量 > 0 且为 5 的倍数时显示建议
+  - [x] 建议为非阻塞格式，用户可忽略
+  - [x] 建议文案：「💡 已累积 N 个 ADR，建议执行 `/viktor:digest` 生成阶段性整合文档。」
+  - [x] 原有导航卡和步骤不变
 - **依赖**：T003
 
 ### P1 主要任务
@@ -99,12 +99,12 @@
 - **文件路径**：
   - 修改：`skills/using-fe-workflow/SKILL.md`
 - **验收标准**：
-  - [ ] 命令速查表新增：`/viktor:context` — CONTEXT — 随时可用，快速查看项目现状
-  - [ ] 命令速查表新增：`/viktor:digest` — DIGEST — 周期性整合，生成阶段性摘要
-  - [ ] Skill 映射表新增：CONTEXT → `skills/08-context/SKILL.md`
-  - [ ] Skill 映射表新增：DIGEST → `skills/09-digest/SKILL.md`
-  - [ ] 自然语言路由表新增 context 意图示例（"看看项目现状" "查一下现有组件"）
-  - [ ] 自然语言路由表新增 digest 意图示例（"生成整合文档" "做一个阶段总结"）
+  - [x] 命令速查表新增：`/viktor:context` — CONTEXT — 随时可用，快速查看项目现状
+  - [x] 命令速查表新增：`/viktor:digest` — DIGEST — 周期性整合，生成阶段性摘要
+  - [x] Skill 映射表新增：CONTEXT → `skills/08-context/SKILL.md`
+  - [x] Skill 映射表新增：DIGEST → `skills/09-digest/SKILL.md`
+  - [x] 自然语言路由表新增 context 意图示例（"看看项目现状" "查一下现有组件"）
+  - [x] 自然语言路由表新增 digest 意图示例（"生成整合文档" "做一个阶段总结"）
 - **依赖**：T001, T003
 
 #### T008：更新 `CLAUDE.md` — 新增节点定义 [utils]
@@ -113,9 +113,9 @@
 - **文件路径**：
   - 修改：`CLAUDE.md`
 - **验收标准**：
-  - [ ] 新增「节点 0.5：CONTEXT（项目快照）」— 随时可用，加载 skills/08-context/SKILL.md，无文件输出
-  - [ ] 新增「节点 5.5：DIGEST（文档整合）」— 随时手动，或 DOCUMENT 提示时执行，加载 skills/09-digest/SKILL.md，输出 docs/digest/YYYY-MM-DD--digest.md
-  - [ ] 与现有节点格式一致
+  - [x] 新增「节点 0.5：CONTEXT（项目快照）」— 随时可用，加载 skills/08-context/SKILL.md，无文件输出
+  - [x] 新增「节点 5.5：DIGEST（文档整合）」— 随时手动，或 DOCUMENT 提示时执行，加载 skills/09-digest/SKILL.md，输出 docs/digest/YYYY-MM-DD--digest.md
+  - [x] 与现有节点格式一致
 - **依赖**：T007
 
 #### T009：三端同步 — `AGENTS.md` + `.cursor/rules/workflow.mdc` [utils]
@@ -125,10 +125,10 @@
   - 修改：`AGENTS.md`
   - 修改：`.cursor/rules/workflow.mdc`
 - **验收标准**：
-  - [ ] AGENTS.md 节点描述与 CLAUDE.md 一致（精简版）
-  - [ ] AGENTS.md 文本触发规则新增 `viktor:context` 和 `viktor:digest`
-  - [ ] .cursor/rules/workflow.mdc 同步对应节点说明
-  - [ ] 三端描述逻辑无矛盾
+  - [x] AGENTS.md 节点描述与 CLAUDE.md 一致（精简版）
+  - [x] AGENTS.md 文本触发规则新增 `viktor:context` 和 `viktor:digest`
+  - [x] .cursor/rules/workflow.mdc 同步对应节点说明
+  - [x] 三端描述逻辑无矛盾
 - **依赖**：T008
 
 ### P2 优化任务（可选）
@@ -139,9 +139,9 @@
 - **文件路径**：
   - 修改：`README.md`
 - **验收标准**：
-  - [ ] 表格新增 `/viktor:context` 行（随时可用工具）
-  - [ ] 表格新增 `/viktor:digest` 行（周期性整合工具）
-  - [ ] 目录说明中 commands/ 部分新增 context.md 和 digest.md
+  - [x] 表格新增 `/viktor:context` 行（随时可用工具）
+  - [x] 表格新增 `/viktor:digest` 行（周期性整合工具）
+  - [x] 目录说明中 commands/ 部分新增 context.md 和 digest.md
 - **依赖**：T008
 
 #### T011：更新 `docs/team-workflow-guide.md` — 命令总览新增两节 [utils]
@@ -150,9 +150,9 @@
 - **文件路径**：
   - 修改：`docs/team-workflow-guide.md`
 - **验收标准**：
-  - [ ] 4.7 节描述 context 的用途和执行时机
-  - [ ] 4.8 节描述 digest 的用途和触发场景（手动 + DOCUMENT 提示）
-  - [ ] 与现有格式一致
+  - [x] 4.7 节描述 context 的用途和执行时机
+  - [x] 4.8 节描述 digest 的用途和触发场景（手动 + DOCUMENT 提示）
+  - [x] 与现有格式一致
 - **依赖**：T010
 
 ## 风险标注
