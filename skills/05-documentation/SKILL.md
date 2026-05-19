@@ -203,11 +203,9 @@ git commit -m "docs: add ADR and update changelog for <feature-name>"
 >
 > 可以开始下一个需求了。输入 `/viktor:think` 继续。"
 
-**digest 非阻塞建议**（在完成提示之后执行一次检测）：
+**digest 非阻塞建议**（每次 DOCUMENT 完成后固定输出，无条件触发）：
 
-统计 `docs/adrs/` 下 `.md` 文件数量（排除 `README.md`）。若数量 > 0 且为 5 的倍数，输出：
-
-> 💡 已累积 **N** 个 ADR，建议执行 `/viktor:digest` 生成阶段性整合文档，便于团队回顾和归档。（可跳过，不影响后续开发）
+> 💡 每个需求阶段完成后都可以执行 `/viktor:digest` 生成阶段性整合文档，便于团队回顾和归档。（可跳过，不影响后续开发）
 
 ---
 
@@ -307,5 +305,6 @@ git commit -m "docs: add ADR and update changelog for <feature-name>"
 ──────────────────────────────
 ▶ 下一个需求：输入 /viktor:think
   开始新一轮需求澄清
+💡 可选：/viktor:digest  生成本阶段整合摘要（随时可执行，不影响后续开发）
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
