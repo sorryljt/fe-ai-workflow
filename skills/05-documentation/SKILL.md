@@ -11,6 +11,39 @@ description: 架构决策记录与文档沉淀 - CR 通过后汇总所有产物�
 - 用户输入 `/viktor:doc` 命令
 - REVIEW 节点完成且无 BLOCKING 问题
 
+## 前置步骤：会话感知冷启动检测
+
+检查当前对话历史中，是否存在 **REVIEW 节点刚完成且结论为 PASS 的信号**（导航卡中含有指向 `/viktor:doc` 的 `▶` 提示）：
+
+**在流模式（检测到信号）**：
+- 直接使用对话中 REVIEW 刚输出的 review.md 路径，跳过以下扫描步骤
+- 继续执行前置条件检查
+
+**冷启动模式（未检测到信号）**：
+
+1. 扫描 `docs/reviews/` 下所有 `*.md` 文件：
+   - **有多个文件** → 列出让用户选择：
+     ```
+     找到以下 Review 文件：
+
+     A. 2026-05-19 · session-aware-confirmation--review.md
+     B. 2026-05-18 · contract-node--review.md
+
+     请选择要归档的 Review 文件（输入 A / B / ...）：
+     ```
+   - **只有一个文件** → 直接告知「将使用 [文件名]」，继续
+   - **没有任何文件** → 停止，提示：「请先运行 `/viktor:cr` 完成代码审查。」
+
+2. 检查选定 review.md 是否包含 `[BLOCKING]` 标记：
+   - **存在 BLOCKING** → 警告并给出选择：
+     ```
+     ⚠️ 该 Review 文件存在未解决的 BLOCKING 问题。
+     建议先返回 /viktor:code 修复后再执行文档节点。
+     确认强制继续？(y/n)
+     ```
+
+---
+
 **前置条件检查**（缺少时停止并提示）：
 - `docs/reviews/` 下必须存在 review.md 且结论为 PASS
 - 如果 review.md 不存在：提示 "请先运行 `/viktor:cr` 完成代码审查"
