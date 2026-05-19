@@ -22,6 +22,8 @@ description: 前端 AI 开发工作流元调度器 - 对话开始时加载，提
 | `/viktor:code` | TDD | tasks.md 确认后，测试驱动实现 |
 | `/viktor:cr` | REVIEW | 实现完成后，六轴代码审查 |
 | `/viktor:doc` | DOCUMENT | CR 通过后，生成 ADR（自动编号）、更新活文档、沉淀 CHANGELOG |
+| `/viktor:context` | CONTEXT | 随时可用，输出 5 个活文档的格式化快照到对话（只读） |
+| `/viktor:digest` | DIGEST | 随时手动执行，或 ADR 累积到 5 的倍数时响应 DOCUMENT 建议 |
 
 ## Codex 触发规则
 
@@ -56,6 +58,8 @@ description: 前端 AI 开发工作流元调度器 - 对话开始时加载，提
 | “开始写代码” “按任务实现” | TDD |
 | “帮我做 code review” “审一下这版实现” | REVIEW |
 | “补 ADR” “整理最终文档” | DOCUMENT |
+| “看看项目现状” “查一下现有组件” “列出现有接口” | CONTEXT |
+| “生成整合文档” “做阶段总结” “整理一下文档” | DIGEST |
 
 如果用户同时给出了需求描述，直接带入对应节点，不要求重复输入标准命令。
 
@@ -77,6 +81,8 @@ description: 前端 AI 开发工作流元调度器 - 对话开始时加载，提
 | TDD | `skills/03-tdd-cycle/SKILL.md` |
 | REVIEW | `skills/04-code-review/SKILL.md` |
 | DOCUMENT | `skills/05-documentation/SKILL.md` |
+| CONTEXT | `skills/08-context/SKILL.md` |
+| DIGEST | `skills/09-digest/SKILL.md` |
 
 ## Hard Gate 规则（强制）
 
