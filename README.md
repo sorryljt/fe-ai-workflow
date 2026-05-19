@@ -58,11 +58,11 @@ npm install
 
 ### 安装后第一步
 
-直接用 `/viktor:think <需求描述>` 开始第一个需求即可。
+**推荐**：先执行 `/viktor:init`，扫描项目结构并生成知识地图，再开始需求。尤其适合已有大量代码（组件库、现有 API、Hooks）的项目——提前建立知识地图，后续每次 BRAINSTORM 都能复用，避免重复探索。
 
-如果项目知识地图（`docs/project-context.md`）不存在，工作流会在 BRAINSTORM 开始前自动扫描项目并生成，无需手动执行 `/viktor:init`。
+> `/viktor:init` 支持幂等执行，重复运行不会覆盖已有内容，安全。
 
-> 也可以提前手动执行 `/viktor:init`，适合想先了解项目结构再开始需求的场景。
+如果跳过 init 直接执行 `/viktor:think <需求描述>`，工作流会在 BRAINSTORM 开始前自动触发一次基础扫描，适合快速上手的场景。
 
 ### 更新 workflow 版本
 
@@ -87,7 +87,7 @@ npm install
 | `/viktor:contract` | 类型合约（可选） | 在编码前将接口/Hook/Store 类型固化为可 import 的 `.types.ts` 文件，消除节点间类型漂移；ANALYZE 检测到 API/Hook/Store 任务时会主动推荐 | tasks.md 或 design.md |
 | `/viktor:code` | 测试驱动开发 | 强制先写测试再写实现，确保每个任务都有可验证的测试用例；RED → GREEN → REFACTOR 循环 | tasks.md |
 | `/viktor:cr` | 代码审查 | 按六轴框架（正确性/可维护性/性能/安全性/测试质量/类型合约一致性）系统审查，输出结构化报告，BLOCKING 问题必须修复才能继续 | 代码 + tasks.md |
-| `/viktor:doc` | 文档沉淀 | 生成 ADR（自动编号、支持替代历史决策），更新活文档（组件目录/接口目录/架构速览/ADR 索引），更新 CHANGELOG；检测到工作流自身变更时提示同步三端入口；ADR 累积到 5 的倍数时建议执行 `/viktor:digest` | 所有产物 |
+| `/viktor:doc` | 文档沉淀 | 生成 ADR（自动编号、支持替代历史决策），更新活文档（组件目录/接口目录/架构速览/ADR 索引），更新 CHANGELOG；检测到工作流自身变更或 `references/` 规范变更时分别提示同步；完成后导航卡固定提供 `/viktor:digest` 可选入口 | 所有产物 |
 | `/viktor:context` | 项目快照（工具节点） | 读取 5 个活文档并格式化输出到对话；随时可用，无副作用；BRAINSTORM 开始时若知识地图存在会非阻塞提示 | 5 个活文档 |
 | `/viktor:digest` | 文档整合（工具节点） | 读取 docs/ 下所有文档，生成阶段性摘要，包含：项目状态 / 完成需求 / 架构决策 / 活文档现状 / 待关注问题 | docs/ 下所有文档 |
 
@@ -128,6 +128,7 @@ fe-ai-workflow/
 │   ├── 06-project-init/         # 项目知识地图初始化
 │   ├── 01-brainstorming/        # 需求澄清
 │   ├── 02-requirements-analysis/ # 任务拆分
+│   ├── 07-type-contract/        # 类型合约（可选节点）
 │   ├── 03-tdd-cycle/            # TDD 循环
 │   ├── 04-code-review/          # 代码审查
 │   ├── 05-documentation/        # 文档沉淀
@@ -148,10 +149,15 @@ fe-ai-workflow/
 
 ## 贡献指南
 
-1. **新增 Skill**：在 `skills/` 下创建新目录，遵循现有 SKILL.md 的 frontmatter 格式（name/description/触发条件）
-2. **修改规范**：修改 `references/` 下的对应文件，在 PR 描述中说明修改原因
-3. **添加示例**：在`examples/` 下添加真实项目的工作流产物，帮助新成员理解产物质量标准
-4. **提交格式**：`docs/feat/fix: 简短描述`
+1. **新增 Skill**：需同步完成以下步骤——
+   - 在 `skills/<编号>-<name>/` 下创建 `SKILL.md`（frontmatter 含 name/description）
+   - 创建 `commands/viktor/<name>.md`（命令描述 + 加载 Skill 指令）
+   - 创建 `.claude/commands/viktor/<name>.md`（单行内容，指向 `../../../commands/viktor/<name>.md`）
+   - 更新 `skills/using-fe-workflow/SKILL.md` 命令速查表和路由表
+   - 同步 `CLAUDE.md` / `AGENTS.md` / `.cursor/rules/workflow.mdc` 节点定义
+2. **修改规范**：修改 `references/` 下的对应文件，在 PR 描述中说明修改原因；同时检查引用该文件的 Skill 是否需要同步更新
+3. **添加示例**：在 `examples/` 下添加真实项目的工作流产物，帮助新成员理解产物质量标准
+4. **提交格式**：`feat/fix/docs/nit: 简短描述`
 
 每次修改 Skill 后，请用一个最小示例验证 Skill 按预期工作后再合并。
 
