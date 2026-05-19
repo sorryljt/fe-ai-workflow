@@ -96,7 +96,7 @@
   - **ADR 自动编号**：读取 `docs/adrs/` 文件数自动生成三位数编号（ADR-001、ADR-002 等）
   - **ADR 替代流程**：询问是否替代历史 ADR，用户指定编号后自动将旧 ADR 状态更新为 `已替代（见 ADR-XXX）`
   - **条件更新活文档**：根据变更类型更新 `component-catalog.md`、`api-catalog.md`、`architecture.md`、`adrs/README.md`
-  - **digest 建议**：完成后若 ADR 数量为 5 的倍数，非阻塞建议执行 `/viktor:digest`
+  - **digest 建议**：每次完成后在导航卡中固定提供 `/viktor:digest` 非阻塞选项，无需等到特定 ADR 数量
 - **冷启动行为**：对话中无 REVIEW PASS 信号时，扫描 `docs/reviews/` 供用户选择；选中文件含 BLOCKING 时警告并确认
 
 #### 节点 T：CONTEXT（项目快照）【工具节点，随时可用】

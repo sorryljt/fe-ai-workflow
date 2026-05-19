@@ -124,7 +124,7 @@ alwaysApply: true
 3. 自动编号（ADR-001 格式）；询问是否替代历史 ADR；生成 ADR 文档
 4. 条件更新活文档（component-catalog / api-catalog / architecture / adrs/README）
 5. 更新 `CHANGELOG.md`
-6. 完成后检测 ADR 数量：若为 5 的倍数，非阻塞建议执行 `/viktor:digest`
+6. 完成后在导航卡中固定提供 `/viktor:digest` 非阻塞选项（无条件触发，不依赖 ADR 数量）
 
 ### CONTEXT — 项目快照（工具节点，随时可用）
 
