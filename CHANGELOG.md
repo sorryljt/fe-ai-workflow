@@ -12,13 +12,15 @@
 - **`/viktor:context` 节点**：只读项目快照命令，读取 5 个活文档并格式化输出到对话，无副作用，随时可用。文件缺失时给出说明而非报错。([ADR-003](docs/adrs/2026-05-19--context-digest-nodes--adr.md))
 - **`/viktor:digest` 节点**：阶段性文档整合命令，读取 `docs/` 下所有文档，生成 `docs/digest/YYYY-MM-DD--digest.md`，包含项目状态 / 完成需求 / 架构决策 / 活文档现状 / 待关注问题五个章节。([ADR-003](docs/adrs/2026-05-19--context-digest-nodes--adr.md))
 - **`/viktor:context` 和 `/viktor:digest` 命令入口**：补全 `.claude/commands/viktor/context.md` 和 `digest.md`，两个命令现可在 Claude Code 命令列表中直接找到。([ADR-004](docs/adrs/2026-05-19--session-aware-confirmation--adr.md))
+- **DOCUMENT references 变更检测**：`/viktor:doc` 第 1 步新增 `references/` 变更检测，若规范文件有变更则输出映射表，提示确认相关 Skill 是否需要同步。([ADR-005](docs/adrs/2026-05-19--workflow-completeness-polish--adr.md))
 
 ### Changed
 
-- **BRAINSTORM 节点**：`/viktor:think` 执行第 1 步时，若 `docs/project-context.md` 存在，非阻塞提示用户可执行 `/viktor:context` 回顾项目现状。
-- **DOCUMENT 节点**：`/viktor:doc` 完成后，自动检测 ADR 数量，若为 5 的倍数则非阻塞建议执行 `/viktor:digest`。
-- **三端入口同步**：`CLAUDE.md` / `AGENTS.md` / `.cursor/rules/workflow.mdc` 全部新增 CONTEXT 和 DIGEST 节点定义；Cursor frontmatter description 更新。
-- **元调度器**：`skills/using-fe-workflow/SKILL.md` 命令速查表 / Skill 映射表 / 自然语言路由表均新增两个节点。
+- **BRAINSTORM 节点**：新增冷启动前置检测——扫描 `docs/specs/` 已有文件，询问新建还是更新；支持 PRD 文档输入路径（引用 `prd-input-template.md`，自动跳过提问轮次）；新增"新项目建议先 `/viktor:init`"非阻塞提示。([ADR-005](docs/adrs/2026-05-19--workflow-completeness-polish--adr.md))
+- **INIT 节点**：幂等化——`project-context.md` 已存在时询问"重新扫描"或"仅补全缺失骨架"，重复执行安全；`CLAUDE.md` 新增 INIT 节点独立说明块。([ADR-005](docs/adrs/2026-05-19--workflow-completeness-polish--adr.md))
+- **DOCUMENT 节点**：`/viktor:doc` 完成后，导航卡固定提供 `/viktor:digest` 非阻塞选项，不再依赖 ADR 数量倍数条件。([ADR-005](docs/adrs/2026-05-19--workflow-completeness-polish--adr.md))
+- **CONTRACT / REVIEW 节点**：冷启动单文件场景"直接使用"逻辑明文化，消除隐含行为。([ADR-005](docs/adrs/2026-05-19--workflow-completeness-polish--adr.md))
+- **三端入口同步**：`CLAUDE.md` / `AGENTS.md` / `.cursor/rules/workflow.mdc` 同步以上所有变更。
 - **会话感知冷启动检测**：ANALYZE / CONTRACT / TDD / REVIEW / DOCUMENT 五个节点均新增前置检测步骤。对话内连续执行（在流模式）零打扰；跨会话冷启动时自动扫描历史产物，展示完成状态，让用户明确选择操作目标或重定向到 `/viktor:think`。([ADR-004](docs/adrs/2026-05-19--session-aware-confirmation--adr.md))
 
 ---

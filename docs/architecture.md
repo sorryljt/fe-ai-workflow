@@ -11,3 +11,4 @@
 | ADR-002 | 建立 5 文件活文档体系，DOCUMENT 新增自动编号/替代流程/条件更新，INIT 生成骨架 | 2026-05-18 | 已接受 | [ADR-002](adrs/2026-05-18--doc-system-upgrade--adr.md) |
 | ADR-003 | 新增 CONTEXT（只读项目快照）和 DIGEST（阶段性整合）两个工具节点，集成到 BRAINSTORM 和 DOCUMENT | 2026-05-19 | 已接受 | [ADR-003](adrs/2026-05-19--context-digest-nodes--adr.md) |
 | ADR-004 | 引入会话感知冷启动检测：对话内在流零打扰，跨会话冷启动扫描产物并确认；修复 context/digest 命令入口缺失 | 2026-05-19 | 已接受 | [ADR-004](adrs/2026-05-19--session-aware-confirmation--adr.md) |
+| ADR-005 | 补全工作流完整性缺口：BRAINSTORM 冷启动（检测已有 spec）、INIT 幂等化（A/B 两模式）、digest 固定导航卡选项、references 变更检测 | 2026-05-19 | 已接受 | [ADR-005](adrs/2026-05-19--workflow-completeness-polish--adr.md) |
