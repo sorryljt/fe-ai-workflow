@@ -10,3 +10,4 @@
 | ADR-001 | 新增 CONTRACT 节点，将类型合约接入工作流 | 2026-05-18 | 已接受 | [链接](2026-05-18--contract-node--adr.md) |
 | ADR-002 | 建立活文档体系，改造 DOCUMENT 和 INIT 节点 | 2026-05-18 | 已接受 | [链接](2026-05-18--doc-system-upgrade--adr.md) |
 | ADR-003 | 新增 CONTEXT 和 DIGEST 两个工具节点 | 2026-05-19 | 已接受 | [链接](2026-05-19--context-digest-nodes--adr.md) |
+| ADR-004 | 引入会话感知冷启动检测机制，修复 context/digest 命令入口 | 2026-05-19 | 已接受 | [链接](2026-05-19--session-aware-confirmation--adr.md) |
