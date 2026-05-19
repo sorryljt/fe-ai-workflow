@@ -74,6 +74,7 @@
 
 **触发**：`viktor:think <需求描述>`
 **输出**：`docs/specs/YYYY-MM-DD--<feature>.md`
+**冷启动行为**：扫描 `docs/specs/` 下已有文件；有文件时询问新建还是更新已有文档，选择更新则加载该文件直接进入修改模式
 
 1. 检查 `docs/project-context.md` 是否存在：
    - **存在** → 直接读取，了解项目上下文

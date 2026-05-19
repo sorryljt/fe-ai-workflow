@@ -38,6 +38,7 @@ alwaysApply: true
 ### BRAINSTORM — 需求澄清
 
 触发：`/brainstorm` 或检测到模糊需求
+冷启动：扫描 `docs/specs/` 下已有文件；有文件时询问新建还是更新已有文档，选择更新则加载该文件直接进入修改模式
 
 执行：
 1. 读取 `skills/01-brainstorming/SKILL.md`
