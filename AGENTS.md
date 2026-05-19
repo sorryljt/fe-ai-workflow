@@ -92,6 +92,7 @@
 **触发**：`viktor:plan`
 **前置**：`docs/specs/` 下存在已确认的 `design.md`
 **输出**：`docs/plans/YYYY-MM-DD--<feature>--tasks.md`
+**冷启动行为**：对话中无 BRAINSTORM 完成信号时，扫描 `docs/specs/` 供用户选择；检测到已有 tasks.md 时询问覆盖或新建
 
 1. 读取 design.md，提取功能点和验收标准
 2. 识别技术依赖和风险
@@ -106,6 +107,7 @@
 **触发**：`viktor:contract`
 **前置**：`docs/plans/` 下存在 `tasks.md`（优先），或 `docs/specs/` 下存在 `design.md`
 **输出**：`docs/contracts/YYYY-MM-DD--<feature>.types.ts`
+**冷启动行为**：对话中无 ANALYZE 完成信号时，扫描 tasks.md 供用户选择；已有合约文件时询问覆盖或追加
 
 1. 检查前置产物（tasks.md > design.md，两者均无则停止并引导）
 2. 从任务列表提取实体 / Props / API 请求响应 / 状态 / 工具函数签名
@@ -122,6 +124,7 @@
 **触发**：`viktor:code`
 **前置**：`docs/plans/` 下存在 `tasks.md`
 **输出**：实现代码 + 测试文件
+**冷启动行为**：对话中无 ANALYZE 完成信号时，列出所有 tasks.md 及完成度；全部完成的文件加警告；用户选择文件或选 N 重定向到 `viktor:think`
 
 每个任务循环执行：
 
@@ -140,6 +143,7 @@
 **触发**：`viktor:cr`
 **前置**：`tasks.md` 存在 + 代码存在 + `npx vitest run` 无失败
 **输出**：`docs/reviews/YYYY-MM-DD--<feature>--review.md`
+**冷启动行为**：对话中无 TDD 完成信号时，检查 tasks.md 未完成任务数并警告；已有 review.md 时询问是否覆盖
 
 1. 运行 `npx vitest run` / `npx tsc --noEmit` / `npx eslint src/`
 2. 对照 tasks.md 逐条验证验收标准
@@ -156,6 +160,7 @@
 **触发**：`viktor:doc`
 **前置**：REVIEW 通过（无 BLOCKING 问题）
 **输出**：`docs/adrs/YYYY-MM-DD--<feature>--adr.md` + 活文档更新 + `CHANGELOG.md`
+**冷启动行为**：对话中无 REVIEW PASS 信号时，扫描 `docs/reviews/` 供用户选择；选中文件含 BLOCKING 时警告并确认
 
 1. 汇总 design.md + tasks.md + review.md；检测 `skills/` / `commands/` 变更，若有则提示同步三端入口
 2. 提取关键技术决策和权衡

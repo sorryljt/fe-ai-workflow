@@ -49,6 +49,7 @@ alwaysApply: true
 ### ANALYZE — 需求分析
 
 触发：`/analyze` 或 BRAINSTORM 完成
+冷启动：对话中无 BRAINSTORM 信号时，扫描 `docs/specs/` 供选择；已有 tasks.md 时询问覆盖或新建
 
 执行：
 1. 读取 `skills/02-requirements-analysis/SKILL.md`
@@ -61,6 +62,7 @@ alwaysApply: true
 ### CONTRACT — 类型合约（可选）
 
 触发：`/viktor:contract` 或 ANALYZE 推荐后用户选择
+冷启动：对话中无 ANALYZE 信号时，扫描 tasks.md 供选择；已有合约文件时询问覆盖或追加
 
 执行：
 1. 读取 `skills/07-type-contract/SKILL.md`
@@ -72,6 +74,7 @@ alwaysApply: true
 ### TDD — 测试驱动开发
 
 触发：`/tdd`
+冷启动：对话中无 ANALYZE 信号时，列出所有 tasks.md 及完成度；全部完成的加警告；用户选文件或选 N 重定向到 `think`
 
 执行（每个任务循环）：
 1. 读取 `skills/03-tdd-cycle/SKILL.md`
@@ -88,6 +91,7 @@ alwaysApply: true
 ### REVIEW — 代码审查
 
 触发：`/review`
+冷启动：对话中无 TDD 完成信号时，检查 tasks.md 未完成任务数并警告；已有 review.md 时询问是否覆盖
 
 执行：
 1. 读取 `skills/04-code-review/SKILL.md`
@@ -110,6 +114,7 @@ alwaysApply: true
 ### DOCUMENT — 文档沉淀
 
 触发：`/viktor:doc`（前提：review 通过）
+冷启动：对话中无 REVIEW PASS 信号时，扫描 `docs/reviews/` 供选择；含 BLOCKING 时警告并确认
 
 执行：
 1. 读取 `skills/05-documentation/SKILL.md`
