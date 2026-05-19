@@ -27,6 +27,10 @@
           design.md     tasks.md   types.ts      代码  review.md   adr.md
 
 注：[CONTRACT] 为可选节点，由 ANALYZE 根据任务构成智能推荐，用户决定是否执行。
+
+工具节点（随时可用，不影响主流程）：
+  /viktor:context — 只读输出 5 个活文档的格式化快照
+  /viktor:digest  — 整合 docs/ 下所有文档，生成阶段性摘要
 ```
 
 ### 节点详细说明
@@ -82,11 +86,27 @@
 - **加载 Skill**：`skills/05-documentation/SKILL.md`
 - **输入**：`design.md` + `tasks.md` + `review.md` + 所有代码
 - **输出**：`docs/adrs/YYYY-MM-DD--<feature>--adr.md` + 更新活文档 + 更新 `CHANGELOG.md`
-- **新增能力（v0.4.0）**：
+- **能力**：
   - **工作流变更检测**：自动检测本次是否修改了 `skills/` 或 `commands/`，若是则提示同步三端入口
   - **ADR 自动编号**：读取 `docs/adrs/` 文件数自动生成三位数编号（ADR-001、ADR-002 等）
   - **ADR 替代流程**：询问是否替代历史 ADR，用户指定编号后自动将旧 ADR 状态更新为 `已替代（见 ADR-XXX）`
   - **条件更新活文档**：根据变更类型更新 `component-catalog.md`、`api-catalog.md`、`architecture.md`、`adrs/README.md`
+  - **digest 建议**：完成后若 ADR 数量为 5 的倍数，非阻塞建议执行 `/viktor:digest`
+
+#### 节点 T：CONTEXT（项目快照）【工具节点，随时可用】
+
+- **触发方式**：用户输入 `/viktor:context`（无前置条件）
+- **加载 Skill**：`skills/08-context/SKILL.md`
+- **输入**：5 个活文档（project-context / component-catalog / api-catalog / architecture / adrs/README）
+- **输出**：格式化快照输出到对话（**不生成文件，不创建 commit**）
+- **集成**：BRAINSTORM 开始时，若 `docs/project-context.md` 存在，自动提示用户可执行本命令
+
+#### 节点 T+1：DIGEST（文档整合）【工具节点，随时可用】
+
+- **触发方式**：用户输入 `/viktor:digest`（无前置条件），或响应 DOCUMENT 节点的非阻塞建议
+- **加载 Skill**：`skills/09-digest/SKILL.md`
+- **输入**：`docs/` 下所有文档（specs / plans / reviews / adrs / 活文档）
+- **输出**：`docs/digest/YYYY-MM-DD--digest.md`（5 个必需章节）+ git commit
 
 ## 产物目录规范
 
@@ -106,9 +126,11 @@ docs/
 │   └── YYYY-MM-DD--<feature>.types.ts
 ├── reviews/                  # Code Review 报告（REVIEW 产物）
 │   └── YYYY-MM-DD--<feature>--review.md
-└── adrs/                     # 架构决策记录（DOCUMENT 产物）
-    ├── README.md             # ADR 索引（DOCUMENT 持续更新）
-    └── YYYY-MM-DD--<feature>--adr.md
+├── adrs/                     # 架构决策记录（DOCUMENT 产物）
+│   ├── README.md             # ADR 索引（DOCUMENT 持续更新）
+│   └── YYYY-MM-DD--<feature>--adr.md
+└── digest/                   # 阶段性整合摘要（DIGEST 产物）
+    └── YYYY-MM-DD--digest.md
 ```
 
 文件命名规范：`YYYY-MM-DD--<feature-name>.<ext>`，使用双横线分隔日期和功能名。
@@ -137,6 +159,8 @@ AGENTS.md 是 Codex 的运行时指令，SKILL.md 是各节点的完整规范。
 - TDD → `skills/03-tdd-cycle/SKILL.md`
 - REVIEW → `skills/04-code-review/SKILL.md`
 - DOCUMENT → `skills/05-documentation/SKILL.md`
+- CONTEXT → `skills/08-context/SKILL.md`
+- DIGEST → `skills/09-digest/SKILL.md`
 
 ## Git Tag 发布规范
 
