@@ -35,9 +35,9 @@
 - **文件路径**：
   - 创建：`.claude/commands/viktor/context.md`
 - **验收标准**：
-  - [ ] 文件内容为单行相对路径 `../../../commands/viktor/context.md`
-  - [ ] 格式与现有 `.claude/commands/viktor/contract.md` 完全一致
-  - [ ] Claude Code 命令列表可识别 `/viktor:context`
+  - [x] 文件内容为单行相对路径 `../../../commands/viktor/context.md`
+  - [x] 格式与现有 `.claude/commands/viktor/contract.md` 完全一致
+  - [x] Claude Code 命令列表可识别 `/viktor:context`
 - **依赖**：无
 
 #### T002：创建 `.claude/commands/viktor/digest.md` [command]
@@ -46,9 +46,9 @@
 - **文件路径**：
   - 创建：`.claude/commands/viktor/digest.md`
 - **验收标准**：
-  - [ ] 文件内容为单行相对路径 `../../../commands/viktor/digest.md`
-  - [ ] 格式与现有 `.claude/commands/viktor/contract.md` 完全一致
-  - [ ] Claude Code 命令列表可识别 `/viktor:digest`
+  - [x] 文件内容为单行相对路径 `../../../commands/viktor/digest.md`
+  - [x] 格式与现有 `.claude/commands/viktor/contract.md` 完全一致
+  - [x] Claude Code 命令列表可识别 `/viktor:digest`
 - **依赖**：无
 
 ---
@@ -61,14 +61,14 @@
 - **文件路径**：
   - 修改：`skills/03-tdd-cycle/SKILL.md`
 - **验收标准**：
-  - [ ] 新章节标题为"前置步骤 0：会话感知冷启动检测"，位于合约文件检查之前
-  - [ ] 在流模式：检测到对话中有 ANALYZE 导航卡 → 直接使用对应 tasks.md，跳过以下检测
-  - [ ] 冷启动模式：扫描 `docs/plans/` 下所有 `*tasks.md`，按日期倒序列出，每项显示（文件名、功能名、总任务数/已完成数）
-  - [ ] 全部任务已完成的文件标注 `⚠️ 已全部完成`
-  - [ ] 交互提示格式：让用户输入 A/B/... 选择文件，或输入 N 重定向到 `/viktor:think`
-  - [ ] 用户选择"已全部完成"文件时，追加二次确认警告（提醒先核查 src/ 是否已有实现）
-  - [ ] `docs/plans/` 下无文件时：停止并提示运行 `/viktor:plan`（与原逻辑一致）
-  - [ ] 原有"前置步骤：检查类型合约文件"章节内容不变、编号不变
+  - [x] 新章节标题为"前置步骤 0：会话感知冷启动检测"，位于合约文件检查之前
+  - [x] 在流模式：检测到对话中有 ANALYZE 导航卡 → 直接使用对应 tasks.md，跳过以下检测
+  - [x] 冷启动模式：扫描 `docs/plans/` 下所有 `*tasks.md`，按日期倒序列出，每项显示（文件名、功能名、总任务数/已完成数）
+  - [x] 全部任务已完成的文件标注 `⚠️ 已全部完成`
+  - [x] 交互提示格式：让用户输入 A/B/... 选择文件，或输入 N 重定向到 `/viktor:think`
+  - [x] 用户选择"已全部完成"文件时，追加二次确认警告（提醒先核查 src/ 是否已有实现）
+  - [x] `docs/plans/` 下无文件时：停止并提示运行 `/viktor:plan`（与原逻辑一致）
+  - [x] 原有"前置步骤：检查类型合约文件"章节内容不变、编号不变
 - **依赖**：无
 
 #### T004：更新 `skills/02-requirements-analysis/SKILL.md` — 会话感知冷启动检测 [skill]
@@ -77,13 +77,13 @@
 - **文件路径**：
   - 修改：`skills/02-requirements-analysis/SKILL.md`
 - **验收标准**：
-  - [ ] 新章节标题为"前置步骤：会话感知冷启动检测"，位于"第 1 步：解析文档结构"之前
-  - [ ] 在流模式：检测到对话中有 BRAINSTORM 导航卡 → 直接使用对应 spec，跳过以下检测
-  - [ ] 冷启动 - 多个 spec 文件：列出 `docs/specs/*.md`，让用户选择输入来源
-  - [ ] 冷启动 - 仅有一个 spec 文件：直接确认使用，无需选择
-  - [ ] 冷启动 - `docs/plans/` 下已有同功能 tasks.md：提示"检测到已有任务文件 [文件名]，是覆盖还是新建？"
-  - [ ] 无任何 spec 文件时：提示用户提供 PRD 文本或运行 `/viktor:think`（与原触发条件说明一致）
-  - [ ] 原有执行步骤 1~6 内容和编号不变
+  - [x] 新章节标题为"前置步骤：会话感知冷启动检测"，位于"第 1 步：解析文档结构"之前
+  - [x] 在流模式：检测到对话中有 BRAINSTORM 导航卡 → 直接使用对应 spec，跳过以下检测
+  - [x] 冷启动 - 多个 spec 文件：列出 `docs/specs/*.md`，让用户选择输入来源
+  - [x] 冷启动 - 仅有一个 spec 文件：直接确认使用，无需选择
+  - [x] 冷启动 - `docs/plans/` 下已有同功能 tasks.md：提示"检测到已有任务文件 [文件名]，是覆盖还是新建？"
+  - [x] 无任何 spec 文件时：提示用户提供 PRD 文本或运行 `/viktor:think`（与原触发条件说明一致）
+  - [x] 原有执行步骤 1~6 内容和编号不变
 - **依赖**：无
 
 #### T005：更新 `skills/07-type-contract/SKILL.md` — 会话感知冷启动检测 [skill]
@@ -92,11 +92,11 @@
 - **文件路径**：
   - 修改：`skills/07-type-contract/SKILL.md`
 - **验收标准**：
-  - [ ] 新章节标题为"前置步骤：会话感知冷启动检测"
-  - [ ] 在流模式：检测到对话中有 ANALYZE 导航卡（含 CONTRACT 选项）→ 直接使用对应 tasks.md，跳过以下检测
-  - [ ] 冷启动 - 多个 tasks.md：列出让用户选择
-  - [ ] 冷启动 - `docs/contracts/` 下已有合约文件：询问"覆盖现有合约？还是追加类型？"
-  - [ ] 无 tasks.md 且无 spec 文件时：停止并提示先运行 `/viktor:plan`（与原前置条件逻辑一致）
+  - [x] 新章节标题为"前置步骤：会话感知冷启动检测"
+  - [x] 在流模式：检测到对话中有 ANALYZE 导航卡（含 CONTRACT 选项）→ 直接使用对应 tasks.md，跳过以下检测
+  - [x] 冷启动 - 多个 tasks.md：列出让用户选择
+  - [x] 冷启动 - `docs/contracts/` 下已有合约文件：询问"覆盖现有合约？还是追加类型？"
+  - [x] 无 tasks.md 且无 spec 文件时：停止并提示先运行 `/viktor:plan`（与原前置条件逻辑一致）
 - **依赖**：无
 
 #### T006：更新 `skills/04-code-review/SKILL.md` — 会话感知冷启动检测 [skill]
@@ -105,12 +105,12 @@
 - **文件路径**：
   - 修改：`skills/04-code-review/SKILL.md`
 - **验收标准**：
-  - [ ] 新章节标题为"前置步骤：会话感知冷启动检测"，位于原"前置条件检查"之前
-  - [ ] 在流模式：检测到对话中有 TDD 完成导航卡 → 跳过以下检测，直接进入原前置条件检查
-  - [ ] 冷启动 - tasks.md 存在未勾选任务：显示未完成任务数量，警告"还有 N 个任务未完成，是否确认继续 CR？(y/n)"
-  - [ ] 冷启动 - `docs/reviews/` 下已有同功能 review.md：询问是否覆盖
-  - [ ] 冷启动 - 多个 tasks.md：列出让用户选择
-  - [ ] 原有前置条件检查和五轴审查框架内容不变
+  - [x] 新章节标题为"前置步骤：会话感知冷启动检测"，位于原"前置条件检查"之前
+  - [x] 在流模式：检测到对话中有 TDD 完成导航卡 → 跳过以下检测，直接进入原前置条件检查
+  - [x] 冷启动 - tasks.md 存在未勾选任务：显示未完成任务数量，警告"还有 N 个任务未完成，是否确认继续 CR？(y/n)"
+  - [x] 冷启动 - `docs/reviews/` 下已有同功能 review.md：询问是否覆盖
+  - [x] 冷启动 - 多个 tasks.md：列出让用户选择
+  - [x] 原有前置条件检查和五轴审查框架内容不变
 - **依赖**：无
 
 #### T007：更新 `skills/05-documentation/SKILL.md` — 会话感知冷启动检测 [skill]
@@ -119,13 +119,13 @@
 - **文件路径**：
   - 修改：`skills/05-documentation/SKILL.md`
 - **验收标准**：
-  - [ ] 新章节标题为"前置步骤：会话感知冷启动检测"
-  - [ ] 在流模式：检测到对话中有 REVIEW PASS 导航卡 → 直接使用对应 review.md，跳过以下检测
-  - [ ] 冷启动 - `docs/reviews/` 下有多个 review.md：列出让用户选择
-  - [ ] 冷启动 - 仅一个 review.md：直接确认使用
-  - [ ] 冷启动 - 选中的 review 文件包含 `[BLOCKING]` 标记：警告"该 Review 存在未解决的 BLOCKING 问题，建议先返回 `/viktor:code` 修复后再执行文档节点"，并给用户选择是否继续
-  - [ ] 无任何 review.md 时：停止并提示先运行 `/viktor:cr`
-  - [ ] 原有执行步骤内容不变
+  - [x] 新章节标题为"前置步骤：会话感知冷启动检测"
+  - [x] 在流模式：检测到对话中有 REVIEW PASS 导航卡 → 直接使用对应 review.md，跳过以下检测
+  - [x] 冷启动 - `docs/reviews/` 下有多个 review.md：列出让用户选择
+  - [x] 冷启动 - 仅一个 review.md：直接确认使用
+  - [x] 冷启动 - 选中的 review 文件包含 `[BLOCKING]` 标记：警告"该 Review 存在未解决的 BLOCKING 问题，建议先返回 `/viktor:code` 修复后再执行文档节点"，并给用户选择是否继续
+  - [x] 无任何 review.md 时：停止并提示先运行 `/viktor:cr`
+  - [x] 原有执行步骤内容不变
 - **依赖**：无
 
 ---
@@ -138,8 +138,8 @@
 - **文件路径**：
   - 修改：`CLAUDE.md`
 - **验收标准**：
-  - [ ] ANALYZE / CONTRACT / TDD / REVIEW / DOCUMENT 节点描述中，各加一行说明：「**冷启动行为**：对话中无上游节点信号时，自动扫描现有产物并请用户确认」
-  - [ ] 格式与现有节点描述格式一致
+  - [x] ANALYZE / CONTRACT / TDD / REVIEW / DOCUMENT 节点描述中，各加一行说明：「**冷启动行为**：对话中无上游节点信号时，自动扫描现有产物并请用户确认」
+  - [x] 格式与现有节点描述格式一致
 - **依赖**：T003～T007 完成
 
 #### T009：同步 `AGENTS.md` + `.cursor/rules/workflow.mdc` [sync]
@@ -149,9 +149,9 @@
   - 修改：`AGENTS.md`
   - 修改：`.cursor/rules/workflow.mdc`
 - **验收标准**：
-  - [ ] AGENTS.md 各节点说明包含冷启动行为的简要描述
-  - [ ] .cursor/rules/workflow.mdc 同步对应说明
-  - [ ] 三端描述逻辑无矛盾
+  - [x] AGENTS.md 各节点说明包含冷启动行为的简要描述
+  - [x] .cursor/rules/workflow.mdc 同步对应说明
+  - [x] 三端描述逻辑无矛盾
 - **依赖**：T008
 
 ---
@@ -168,8 +168,8 @@
 
 ## 验收总结
 
-- [ ] T001~T002 完成：`/viktor:context` 和 `/viktor:digest` 出现在 Claude Code 命令列表
-- [ ] T003~T007 完成：5 个节点 Skill 均有"前置步骤：会话感知冷启动检测"章节
-- [ ] 在流模式：上游节点刚完成 → 直接执行，无弹出确认
-- [ ] 冷启动模式：无上游信号 → 扫描产物 + 显示选择/确认提示
-- [ ] T008~T009 完成：三端入口文档同步
+- [x] T001~T002 完成：`/viktor:context` 和 `/viktor:digest` 出现在 Claude Code 命令列表
+- [x] T003~T007 完成：5 个节点 Skill 均有"前置步骤：会话感知冷启动检测"章节
+- [x] 在流模式：上游节点刚完成 → 直接执行，无弹出确认
+- [x] 冷启动模式：无上游信号 → 扫描产物 + 显示选择/确认提示
+- [x] T008~T009 完成：三端入口文档同步
