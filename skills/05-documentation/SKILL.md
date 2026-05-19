@@ -156,7 +156,7 @@ git add docs/adrs/ docs/component-catalog.md docs/api-catalog.md docs/architectu
 git commit -m "docs: add ADR and update changelog for <feature-name>"
 ```
 
-### 第 7 步：完成提示
+### 第 7 步：完成提示与 digest 检测
 
 提示用户：
 > "🎉 文档沉淀完成！本次需求已走完完整工作流。
@@ -169,6 +169,12 @@ git commit -m "docs: add ADR and update changelog for <feature-name>"
 > - CHANGELOG 已更新
 >
 > 可以开始下一个需求了。输入 `/viktor:think` 继续。"
+
+**digest 非阻塞建议**（在完成提示之后执行一次检测）：
+
+统计 `docs/adrs/` 下 `.md` 文件数量（排除 `README.md`）。若数量 > 0 且为 5 的倍数，输出：
+
+> 💡 已累积 **N** 个 ADR，建议执行 `/viktor:digest` 生成阶段性整合文档，便于团队回顾和归档。（可跳过，不影响后续开发）
 
 ---
 
