@@ -33,6 +33,8 @@
 | `viktor:code` / `/viktor:code` | TDD |
 | `viktor:cr` / `/viktor:cr` | REVIEW |
 | `viktor:doc` / `/viktor:doc` | DOCUMENT |
+| `viktor:context` / `/viktor:context` | CONTEXT |
+| `viktor:digest` / `/viktor:digest` | DIGEST |
 
 自然语言也触发（用户不输入命令时）：
 
@@ -44,6 +46,8 @@
 | "开始写代码" / "按任务实现" | TDD |
 | "code review" / "审查代码" | REVIEW |
 | "生成文档" / "补 ADR" | DOCUMENT |
+| "看看项目现状" / "查一下现有组件" / "列出现有接口" | CONTEXT |
+| "生成整合文档" / "做阶段总结" / "整理一下文档" | DIGEST |
 
 ---
 
@@ -158,6 +162,34 @@
 3. 自动编号（读取 docs/adrs/ 文件数 +1 → ADR-001 格式）；询问是否替代历史 ADR，指定编号后自动更新旧 ADR 状态为 `已替代（见 ADR-XXX）`；生成 ADR 文档，状态默认为 `已接受`
 4. 条件更新活文档：组件变更 → `component-catalog.md`；API 变更 → `api-catalog.md`；架构决策 → `architecture.md`；任意 ADR → `adrs/README.md`
 5. 更新 CHANGELOG.md
+6. 完成后检测 ADR 数量：若为 5 的倍数，非阻塞建议执行 `viktor:digest`
+
+---
+
+### CONTEXT（工具节点，随时可用）
+
+**触发**：`viktor:context`
+**前置**：无
+**输出**：格式化快照到对话（不生成文件，不创建 commit）
+
+1. 逐一检查 5 个活文档是否存在（project-context / component-catalog / api-catalog / architecture / adrs/README）
+2. 将各文件内容格式化为 5 个区块输出到对话
+3. 缺失文件给出说明（建议执行 `viktor:init`），不报错
+
+**集成**：BRAINSTORM 开始时，若 project-context.md 存在，非阻塞提示用户可执行本命令
+
+---
+
+### DIGEST（工具节点，随时可用）
+
+**触发**：`viktor:digest`
+**前置**：无（可随时手动执行）
+**输出**：`docs/digest/YYYY-MM-DD--digest.md`
+
+1. 扫描 docs/ 下各子目录文件数量
+2. 读取各文件提取关键信息（需求列表、ADR 状态、Review 问题）
+3. 生成包含 5 个章节的摘要文档（当前状态 / 完成需求 / 架构决策 / 活文档现状 / 待关注问题）
+4. Commit 产物
 
 ---
 
@@ -180,6 +212,8 @@
 - `skills/03-tdd-cycle/SKILL.md`
 - `skills/04-code-review/SKILL.md`
 - `skills/05-documentation/SKILL.md`
+- `skills/08-context/SKILL.md`
+- `skills/09-digest/SKILL.md`
 
 ## 产物目录规范
 
@@ -193,8 +227,9 @@ docs/
 ├── plans/                  # viktor:plan 产物
 ├── contracts/              # viktor:contract 产物（可选）
 ├── reviews/                # viktor:cr 产物
-└── adrs/                   # viktor:doc 产物
-    └── README.md           # ADR 索引，viktor:doc 持续更新
+├── adrs/                   # viktor:doc 产物
+│   └── README.md           # ADR 索引，viktor:doc 持续更新
+└── digest/                 # viktor:digest 产物（阶段性整合摘要）
 ```
 
 ## 编码规范参考

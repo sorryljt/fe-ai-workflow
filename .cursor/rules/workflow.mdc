@@ -21,6 +21,8 @@ alwaysApply: true
 | 开始写组件/功能/工具函数 | TDD | `skills/03-tdd-cycle/SKILL.md` |
 | 功能实现完成，需要检查 | REVIEW | `skills/04-code-review/SKILL.md` |
 | CR 通过，需要文档沉淀 | DOCUMENT | `skills/05-documentation/SKILL.md` |
+| 查看项目现状 / 查现有组件接口（随时） | CONTEXT | `skills/08-context/SKILL.md` |
+| 做阶段总结 / 整合文档（随时） | DIGEST | `skills/09-digest/SKILL.md` |
 
 ## Hard Gate（强制检查）
 
@@ -115,6 +117,27 @@ alwaysApply: true
 3. 自动编号（ADR-001 格式）；询问是否替代历史 ADR；生成 ADR 文档
 4. 条件更新活文档（component-catalog / api-catalog / architecture / adrs/README）
 5. 更新 `CHANGELOG.md`
+6. 完成后检测 ADR 数量：若为 5 的倍数，非阻塞建议执行 `/viktor:digest`
+
+### CONTEXT — 项目快照（工具节点，随时可用）
+
+触发：`/viktor:context`（无前置条件）
+
+执行：
+1. 读取 `skills/08-context/SKILL.md`
+2. 检查 5 个活文档是否存在，格式化输出到对话
+3. 不生成文件，不创建 commit
+
+**集成**：BRAINSTORM 开始时，若 project-context.md 存在，非阻塞提示用户可执行本命令
+
+### DIGEST — 文档整合（工具节点，随时可用）
+
+触发：`/viktor:digest`（无前置条件，或响应 DOCUMENT 建议）
+
+执行：
+1. 读取 `skills/09-digest/SKILL.md`
+2. 扫描并读取 docs/ 下所有文档
+3. 生成 `docs/digest/YYYY-MM-DD--digest.md`（5 个章节），commit
 
 ## 产物目录规范
 
@@ -128,8 +151,9 @@ docs/
 ├── plans/                  # tasks.md（/viktor:plan 产物）
 ├── contracts/              # types.ts（/viktor:contract 产物，可选）
 ├── reviews/                # review.md（/viktor:cr 产物）
-└── adrs/                   # adr.md（/viktor:doc 产物）
-    └── README.md           # ADR 索引，/viktor:doc 持续更新
+├── adrs/                   # adr.md（/viktor:doc 产物）
+│   └── README.md           # ADR 索引，/viktor:doc 持续更新
+└── digest/                 # digest.md（/viktor:digest 产物）
 ```
 
 ## 技术栈
