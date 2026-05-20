@@ -7,6 +7,16 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- **三端命令协议对齐**：`.cursor/rules/workflow.mdc` 中旧命令名（`/brainstorm`、`/analyze`、`/tdd`、`/review`）已统一更新为 `viktor:*` 协议，与 Claude Code 和 Codex 端保持一致。([ADR-006](docs/adrs/2026-05-20--p0-consistency-fixes--adr.md))
+- **Cursor BRAINSTORM 策略对齐**：`workflow.mdc` 中 BRAINSTORM 步骤描述从"苏格拉底式逐个提问"更正为"批量最多 3 问"，与 SKILL.md 实际行为一致。([ADR-006](docs/adrs/2026-05-20--p0-consistency-fixes--adr.md))
+- **技术栈去硬编码**：`workflow.mdc` 技术栈节不再写死 Next.js 14 版本，改为引用 `docs/project-context.md`（由 `/viktor:init` 生成）。([ADR-006](docs/adrs/2026-05-20--p0-consistency-fixes--adr.md))
+- **REVIEW 框架名称统一**：`skills/04-code-review/SKILL.md` 内"五轴"全部更正为"六轴"（共 4 处：章节标题、step 3、验证清单、review 模板）。([ADR-006](docs/adrs/2026-05-20--p0-consistency-fixes--adr.md))
+- **DIGEST 触发描述更正**：`skills/using-fe-workflow/SKILL.md` 命令速查表 digest 行从"ADR 累积到 5 的倍数"更正为"每次 DOCUMENT 完成后无条件触发"。([ADR-006](docs/adrs/2026-05-20--p0-consistency-fixes--adr.md))
+- **CONTRACT 措辞修正**：`commands/viktor/contract.md` 第 5 节从"执行中 Hard Gate"重命名为"执行中约束（会话锁）"，避免与强制前置条件的"Hard Gate"概念混淆。([ADR-006](docs/adrs/2026-05-20--p0-consistency-fixes--adr.md))
+- **DOCUMENT 活文档触发条件去框架专属**：`skills/05-documentation/SKILL.md` step 4 表格中"React 组件"改为"前端组件（React / Vue / Svelte 等）"，"Server Action"改为"接口函数"。([ADR-006](docs/adrs/2026-05-20--p0-consistency-fixes--adr.md))
+
 ### Added
 
 - **`/viktor:context` 节点**：只读项目快照命令，读取 5 个活文档并格式化输出到对话，无副作用，随时可用。文件缺失时给出说明而非报错。([ADR-003](docs/adrs/2026-05-19--context-digest-nodes--adr.md))

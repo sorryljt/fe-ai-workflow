@@ -12,3 +12,4 @@
 | ADR-003 | 新增 CONTEXT 和 DIGEST 两个工具节点 | 2026-05-19 | 已接受 | [链接](2026-05-19--context-digest-nodes--adr.md) |
 | ADR-004 | 引入会话感知冷启动检测机制，修复 context/digest 命令入口 | 2026-05-19 | 已接受 | [链接](2026-05-19--session-aware-confirmation--adr.md) |
 | ADR-005 | 补全工作流完整性缺口：BRAINSTORM 冷启动、INIT 幂等化、digest 触发优化、references 变更检测 | 2026-05-19 | 已接受 | [链接](2026-05-19--workflow-completeness-polish--adr.md) |
+| ADR-006 | P0 修复批次：统一三端 viktor:* 命令协议、六轴命名、digest 触发描述，清理框架专属术语和措辞 bug | 2026-05-20 | 已接受 | [链接](2026-05-20--p0-consistency-fixes--adr.md) |
