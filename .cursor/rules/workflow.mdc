@@ -37,19 +37,19 @@ alwaysApply: true
 
 ### BRAINSTORM — 需求澄清
 
-触发：`/brainstorm` 或检测到模糊需求
+触发：`/viktor:think` 或检测到模糊需求
 冷启动：扫描 `docs/specs/` 下已有文件；有文件时询问新建还是更新已有文档，选择更新则加载该文件直接进入修改模式
 
 执行：
 1. 读取 `skills/01-brainstorming/SKILL.md`
-2. 通过苏格拉底式提问逐步澄清需求（每次只问一个问题）
+2. 识别关键决策点，一次性批量提出最多 3 个问题；可由上下文推断的直接采用并在假设中声明
 3. 提出 2-3 个技术方案并对比
 4. 生成并保存 `docs/specs/YYYY-MM-DD--<feature>.md`
-5. 用户确认后提示进入 `/analyze`
+5. 用户确认后提示进入 `/viktor:plan`
 
 ### ANALYZE — 需求分析
 
-触发：`/analyze` 或 BRAINSTORM 完成
+触发：`/viktor:plan` 或 BRAINSTORM 完成
 冷启动：对话中无 BRAINSTORM 信号时，扫描 `docs/specs/` 供选择；已有 tasks.md 时询问覆盖或新建
 
 执行：
@@ -74,7 +74,7 @@ alwaysApply: true
 
 ### TDD — 测试驱动开发
 
-触发：`/tdd`
+触发：`/viktor:code`
 冷启动：对话中无 ANALYZE 信号时，列出所有 tasks.md 及完成度；全部完成的加警告；用户选文件或选 N 重定向到 `think`
 
 执行（每个任务循环）：
@@ -85,13 +85,13 @@ alwaysApply: true
 5. REFACTOR：重构，确认测试仍通过
 6. `git commit -m "feat/fix: 描述"`
 7. 循环直到所有任务完成
-8. 提示进入 `/review`
+8. 提示进入 `/viktor:cr`
 
 **强制规则**：没有红色的失败测试，禁止写实现代码。
 
 ### REVIEW — 代码审查
 
-触发：`/review`
+触发：`/viktor:cr`
 冷启动：对话中无 TDD 完成信号时，检查 tasks.md 未完成任务数并警告；已有 review.md 时询问是否覆盖
 
 执行：
@@ -100,7 +100,7 @@ alwaysApply: true
    - 轴六仅在 `docs/contracts/` 存在合约文件时执行
 3. 标记问题：`[BLOCKING]` / `[SUGGESTED]` / `[NIT]`
 4. 生成 `docs/reviews/YYYY-MM-DD--review.md`
-5. 有 BLOCKING → 提示修复后返回 `/tdd`；无 BLOCKING → 提示 `/document`
+5. 有 BLOCKING → 提示修复后返回 `/viktor:code`；无 BLOCKING → 提示 `/viktor:doc`
 
 ### INIT — 项目初始化
 
@@ -165,9 +165,6 @@ docs/
 
 ## 技术栈
 
-React / Next.js 14 App Router / TypeScript（strict mode）/ Vitest / React Testing Library / MSW
+由 `docs/project-context.md` 提供（执行 `/viktor:init` 后自动生成，框架无关）。
 
-参考规范：
-- `references/react-nextjs-conventions.md`
-- `references/testing-patterns.md`
-- `references/living-docs-conventions.md`
+React/Next.js 参考实现见 `references/react-nextjs-conventions.md`。
