@@ -62,7 +62,6 @@ B. 2026-05-18 · contract-node（已确认）
 > 💡 **新项目建议**：如果项目有大量已有代码（组件库、现成 Hooks、API 路由），建议先单独执行 `/viktor:init` 获得更完整的知识地图，再回来执行 `/viktor:think`。自动扫描（步骤 2）仅执行基础扫描，`/viktor:init` 会做更深度的分类整理。（非阻塞，可忽略）
 
 完成以上任一情况后，额外执行：
-- 查看 `docs/specs/` 下已有的 design.md（避免重复）
 - 检查 `references/react-nextjs-conventions.md` 中的相关规范
 
 **检测输入类型**：
