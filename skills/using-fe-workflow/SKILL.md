@@ -23,7 +23,7 @@ description: 前端 AI 开发工作流元调度器 - 对话开始时加载，提
 | `/viktor:cr` | REVIEW | 实现完成后，六轴代码审查 |
 | `/viktor:doc` | DOCUMENT | CR 通过后，生成 ADR（自动编号）、更新活文档、沉淀 CHANGELOG |
 | `/viktor:context` | CONTEXT | 随时可用，输出 5 个活文档的格式化快照到对话（只读） |
-| `/viktor:digest` | DIGEST | 随时手动执行，或 ADR 累积到 5 的倍数时响应 DOCUMENT 建议 |
+| `/viktor:digest` | DIGEST | 随时手动执行，或响应每次 DOCUMENT 完成后的非阻塞建议（无条件触发，不依赖 ADR 数量） |
 
 ## Codex 触发规则
 
