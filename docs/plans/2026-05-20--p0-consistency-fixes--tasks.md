@@ -142,9 +142,9 @@
 
 ## 验收总结
 
-- [ ] 所有 P0 任务完成，改动已 committed
-- [ ] `grep -r "/brainstorm\|/analyze\b\|/tdd\b\|/review\b" .cursor/` 无输出
-- [ ] `grep "五轴" skills/04-code-review/SKILL.md` 无输出
-- [ ] `grep "5 的倍数" skills/using-fe-workflow/SKILL.md` 无输出
-- [ ] `grep "Hard Gate" commands/viktor/contract.md` 无输出
-- [ ] `grep "React 组件\|Server Action" skills/05-documentation/SKILL.md` 在 step 4 表格中无输出
+- [x] 所有 P0 任务完成，改动已 committed
+- [x] `grep -r "/brainstorm\|/analyze\b\|/tdd\b\|/review\b" .cursor/` 无输出
+- [x] `grep "五轴" skills/04-code-review/SKILL.md` 无输出
+- [x] `grep "5 的倍数" skills/using-fe-workflow/SKILL.md` 无输出
+- [x] `grep "Hard Gate" commands/viktor/contract.md` 无输出
+- [x] `grep "React 组件\|Server Action" skills/05-documentation/SKILL.md` 在 step 4 表格中无输出
