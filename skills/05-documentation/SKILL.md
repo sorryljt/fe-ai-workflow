@@ -168,8 +168,8 @@ ADR 标题中填入实际编号（如 `# ADR-002: ...`），状态默认填写 `
 
 | 变更类型 | 更新目标文件 | 更新规则 |
 |---------|------------|---------|
-| 新增或修改了 React 组件 | `docs/component-catalog.md` | 在组件表格中追加或更新对应行 |
-| 新增或修改了 API 路由 / Server Action | `docs/api-catalog.md` | 在接口表格中追加或更新对应行 |
+| 新增或修改了前端组件（React / Vue / Svelte 等） | `docs/component-catalog.md` | 在组件表格中追加或更新对应行 |
+| 新增或修改了 API 路由 / 接口函数 | `docs/api-catalog.md` | 在接口表格中追加或更新对应行 |
 | 做出了重要架构决策（有方案对比的） | `docs/architecture.md` | 在决策速览表中追加一行摘要 |
 | 任意本次产出了 ADR | `docs/adrs/README.md` | 在 ADR 索引表中追加新条目 |
 
