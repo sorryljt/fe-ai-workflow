@@ -231,6 +231,14 @@ T002 useLoginForm
 ## review-report.md 模板
 
 ```markdown
+---
+feature: <feature-name>
+date: YYYY-MM-DD
+result: PASS | BLOCK
+reviewed_at: YYYY-MM-DD
+plan: docs/plans/YYYY-MM-DD--<feature>--tasks.md
+---
+
 # Code Review 报告：[功能名称]
 
 **日期**：YYYY-MM-DD
