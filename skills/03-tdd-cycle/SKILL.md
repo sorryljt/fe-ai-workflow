@@ -18,9 +18,17 @@ description: 测试驱动开发循环 - 框架无关的完整 TDD 红绿重构�
 
 ## TDD 分层规范（框架无关）
 
-> **框架适配**：以下分层规范默认以 React/Next.js/Vitest 为示例。
-> 如 `docs/project-context.md` 显示其他框架（Vue / Svelte 等），参照相应框架测试实践，
-> 测试工具替换为对应生态（如 Vitest + Vue Test Utils），其余 TDD 循环原则不变。
+> **框架适配**：本 SKILL 适用于所有前端框架。在开始前，先读取
+> `docs/project-context.md` 确认当前项目的框架和测试工具：
+>
+> | 框架 | 推荐测试工具 | 组件测试库 |
+> |------|------------|-----------|
+> | React / Next.js | Vitest | React Testing Library (RTL) |
+> | Vue 3 | Vitest | Vue Test Utils |
+> | Svelte | Vitest | @testing-library/svelte |
+> | 其他框架 | 项目已有测试工具 | 对应生态测试库 |
+>
+> 以下示例代码以 **React/Next.js + Vitest** 为参考实现，其他框架按对应工具类比执行。
 
 ### 强制 TDD（必须先写测试再写实现）
 
