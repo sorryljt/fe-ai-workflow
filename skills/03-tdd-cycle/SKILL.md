@@ -39,8 +39,8 @@ description: 测试驱动开发循环 - 框架无关的完整 TDD 红绿重构�
 | 状态管理 | Zustand store, Context provider | Vitest |
 | 数据处理 | API 响应转换、数据格式化 | Vitest |
 | 表单校验 | 校验规则、错误消息生成 | Vitest |
-| Server Actions | 表单提交处理、数据变更 | Vitest + MSW |
-| API 路由 | Next.js route handlers | Vitest + MSW |
+| 服务端数据变更逻辑 | Server Action / API handler 等服务端函数 | Vitest + MSW（或框架对应 mock 库）|
+| API 路由 / 接口处理函数 | Route handler、API endpoint | Vitest + MSW（或框架对应 mock 库）|
 
 ### 适度 TDD（有明确交互行为时写测试）
 
