@@ -5,6 +5,22 @@
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- **validate-workflow.sh 用户文档**：README 新增"验证三端一致性"章节，team-workflow-guide 新增"场景四"，均包含脚本用法说明和 Git Bash / WSL 运行环境要求。([ADR-010](docs/adrs/2026-05-21--p4-codex-review-fixes--adr.md))
+- **Workflow-Meta Lane 三端完整化**：AGENTS.md 补充完整对照表（4 维度），`.cursor/rules/workflow.mdc` 补充精简定义块，Workflow-Meta Lane 成为三端一等概念，Codex 和 Cursor 用户可感知。([ADR-010](docs/adrs/2026-05-21--p4-codex-review-fixes--adr.md))
+
+### Fixed
+
+- **旧 digest 触发描述修正**：team-workflow-guide 两处"ADR 累积到 5 的倍数才建议 digest"旧描述改为"每次 DOCUMENT 完成后导航卡固定提供选项"，与 ADR-005 实际行为对齐。([ADR-010](docs/adrs/2026-05-21--p4-codex-review-fixes--adr.md))
+- **P3 产物 frontmatter 补全**：`docs/specs/2026-05-21--p3-framework-agnostic.md` 和对应 plan 补写 YAML frontmatter，DIGEST 可机读状态字段。([ADR-010](docs/adrs/2026-05-21--p4-codex-review-fixes--adr.md))
+- **review 路径占位格式统一**：7 处旧写法 `YYYY-MM-DD--review.md` 统一为 `YYYY-MM-DD--<feature>--review.md`，涉及 skills/04-code-review/SKILL.md、skills/05-documentation/SKILL.md、workflow.mdc、team-workflow-guide.md。([ADR-010](docs/adrs/2026-05-21--p4-codex-review-fixes--adr.md))
+- **team-workflow-guide 日期更新**：文档日期从 2026-05-19 更新为 2026-05-21，与当前 v0.8.0 版本对齐。([ADR-010](docs/adrs/2026-05-21--p4-codex-review-fixes--adr.md))
+
+---
+
 ## [0.8.0] - 2026-05-21
 
 ### Added
