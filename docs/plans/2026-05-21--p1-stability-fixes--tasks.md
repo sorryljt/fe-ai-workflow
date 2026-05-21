@@ -22,8 +22,8 @@
 - **描述**：Step 1 两条 git diff 命令只检测 `HEAD~1 HEAD`（最后一次 commit），多 commit feature 中早期的 skills/ 变更会被静默漏检。改为相对 main 的 merge-base
 - **文件路径**：`skills/05-documentation/SKILL.md`
 - **验收标准**：
-  - [ ] 文件中不再出现 `HEAD~1 HEAD`（用于 git diff 检测的两处）
-  - [ ] 两处均替换为 `$(git merge-base HEAD main) HEAD`
+  - [x] 文件中不再出现 `HEAD~1 HEAD`（用于 git diff 检测的两处）
+  - [x] 两处均替换为 `$(git merge-base HEAD main) HEAD`
 - **具体改动**（2 处）：
 
   | # | old_string | new_string |
@@ -40,9 +40,9 @@
 - **描述**：当 tasks.md 含 [api]/[hook]/[store] 任务但 contracts/ 目录下无对应合约文件时，当前行为是无条件静默继续。用户可能未意识到跳过了 CONTRACT 节点。改为有条件非阻塞提醒
 - **文件路径**：`skills/03-tdd-cycle/SKILL.md`
 - **验收标准**：
-  - [ ] "不存在时"分支不再是无条件静默
-  - [ ] 有对 [api]/[hook]/[store] 任务的检查逻辑
-  - [ ] 提醒为非阻塞（可跳过，不影响继续执行）
+  - [x] "不存在时"分支不再是无条件静默
+  - [x] 有对 [api]/[hook]/[store] 任务的检查逻辑
+  - [x] 提醒为非阻塞（可跳过，不影响继续执行）
 - **具体改动**（1 处）：
 
   | # | old_string | new_string |
@@ -58,8 +58,8 @@
 - **描述**：当前 step 2 只从 reviews/ 提取 [BLOCKING] 和 TODO，[SUGGESTED] 技术债务在 digest 摘要中消失，团队失去对已知但延后处理问题的可见性
 - **文件路径**：`skills/09-digest/SKILL.md`
 - **验收标准**：
-  - [ ] step 2 中 reviews 提取规则包含 [SUGGESTED] 说明
-  - [ ] [SUGGESTED] 被分配到"已知技术债务"，有别于"待关注问题"
+  - [x] step 2 中 reviews 提取规则包含 [SUGGESTED] 说明
+  - [x] [SUGGESTED] 被分配到"已知技术债务"，有别于"待关注问题"
 - **具体改动**（1 处）：
 
   | # | old_string | new_string |
@@ -75,8 +75,8 @@
 - **描述**：在摘要模板的第 5 章节（待关注问题）之后添加第 6 章节"已知技术债务"，收录 [SUGGESTED] 问题
 - **文件路径**：`skills/09-digest/SKILL.md`
 - **验收标准**：
-  - [ ] 摘要模板中有 `## 6. 已知技术债务` 章节
-  - [ ] 验证标准中"必需章节"数量从 5 更新为 6
+  - [x] 摘要模板中有 `## 6. 已知技术债务` 章节
+  - [x] 验证标准中"必需章节"数量从 5 更新为 6
 - **具体改动**（2 处）：
 
   | # | old_string | new_string |
@@ -93,8 +93,8 @@
 - **描述**：冷启动"选择已有文件（更新模式）"分支当前跳过 step 1-3，导致在项目上下文（project-context.md）发生变化后，AI 可能用旧上下文修改 spec。仅跳过 step 2-3（评估/提问），step 1（读上下文）应保留
 - **文件路径**：`skills/01-brainstorming/SKILL.md`
 - **验收标准**：
-  - [ ] 更新模式分支不再写"跳过第 1-3 步"
-  - [ ] 明确说明先执行 step 1（读 project-context.md），然后跳过 step 2-3
+  - [x] 更新模式分支不再写"跳过第 1-3 步"
+  - [x] 明确说明先执行 step 1（读 project-context.md），然后跳过 step 2-3
 - **具体改动**（1 处）：
 
   | # | old_string | new_string |
@@ -110,10 +110,10 @@
 - **描述**：仓库缺少强制 UTF-8 和换行符规范的配置，中文文档在 Windows 环境下可能出现 CRLF 混入（git 已发出 LF→CRLF 警告）
 - **文件路径**：`.editorconfig`（新建）
 - **验收标准**：
-  - [ ] 文件存在于仓库根目录
-  - [ ] 包含 `charset = utf-8`
-  - [ ] 包含 `end_of_line = lf`
-  - [ ] `[*.md]` 节有 `trim_trailing_whitespace = false`（保留 Markdown 换行语义）
+  - [x] 文件存在于仓库根目录
+  - [x] 包含 `charset = utf-8`
+  - [x] 包含 `end_of_line = lf`
+  - [x] `[*.md]` 节有 `trim_trailing_whitespace = false`（保留 Markdown 换行语义）
 - **依赖**：无
 
 ---
@@ -123,9 +123,9 @@
 - **描述**：补充 git 层面的换行符约束，确保跨平台 checkout 时不引入 CRLF
 - **文件路径**：`.gitattributes`（新建）
 - **验收标准**：
-  - [ ] 文件存在于仓库根目录
-  - [ ] 包含 `* text=auto eol=lf`
-  - [ ] 包含 `*.md text eol=lf`
+  - [x] 文件存在于仓库根目录
+  - [x] 包含 `* text=auto eol=lf`
+  - [x] 包含 `*.md text eol=lf`
 - **依赖**：无
 
 ---
@@ -140,10 +140,10 @@
 
 ## 验收总结
 
-- [ ] 所有 P1 任务完成，改动已 committed
-- [ ] `grep "HEAD~1 HEAD" skills/05-documentation/SKILL.md` 无输出
-- [ ] `grep "静默继续，无需提示，正常执行" skills/03-tdd-cycle/SKILL.md` 无输出
-- [ ] `grep "SUGGESTED" skills/09-digest/SKILL.md` 有输出
-- [ ] `grep "6 个必需章节" skills/09-digest/SKILL.md` 有输出
-- [ ] `grep "跳过第 1-3 步" skills/01-brainstorming/SKILL.md` 无输出
-- [ ] `.editorconfig` 和 `.gitattributes` 均存在
+- [x] 所有 P1 任务完成，改动已 committed
+- [x] `grep "HEAD~1 HEAD" skills/05-documentation/SKILL.md` 无输出
+- [x] `grep "静默继续，无需提示，正常执行" skills/03-tdd-cycle/SKILL.md` 无输出
+- [x] `grep "SUGGESTED" skills/09-digest/SKILL.md` 有输出
+- [x] `grep "6 个必需章节" skills/09-digest/SKILL.md` 有输出
+- [x] `grep "跳过第 1-3 步" skills/01-brainstorming/SKILL.md` 无输出
+- [x] `.editorconfig` 和 `.gitattributes` 均存在
