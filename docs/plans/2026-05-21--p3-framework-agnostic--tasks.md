@@ -26,8 +26,8 @@ P3-2：新建 bash 脚本，参照 `scripts/sync-workflow.sh` 风格，chmod +x 
 - **描述**：SKILL frontmatter 的 `description` 字段仍写"针对 React/Next.js/Vitest 项目"，与项目框架无关定位矛盾
 - **文件路径**：`skills/03-tdd-cycle/SKILL.md`
 - **验收标准**：
-  - [ ] description 字段不再含"针对 React/Next.js/Vitest 项目"
-  - [ ] description 改为体现框架无关性（含"框架无关"或"参考实现"等表述）
+  - [x] description 字段不再含"针对 React/Next.js/Vitest 项目"
+  - [x] description 改为体现框架无关性（含"框架无关"或"参考实现"等表述）
 - **具体改动**（1 处）：
 
   | old_string | new_string |
@@ -43,8 +43,8 @@ P3-2：新建 bash 脚本，参照 `scripts/sync-workflow.sh` 风格，chmod +x 
 - **描述**：`## TDD 分层规范（React/Next.js 特化）` 是最显眼的框架绑定声明，与项目定位直接矛盾
 - **文件路径**：`skills/03-tdd-cycle/SKILL.md`
 - **验收标准**：
-  - [ ] 章节标题不再含"React/Next.js 特化"
-  - [ ] 章节标题含"框架无关"
+  - [x] 章节标题不再含"React/Next.js 特化"
+  - [x] 章节标题含"框架无关"
 - **具体改动**（1 处）：
 
   | old_string | new_string |
@@ -60,8 +60,8 @@ P3-2：新建 bash 脚本，参照 `scripts/sync-workflow.sh` 风格，chmod +x 
 - **描述**：现有"框架适配"块只有 3 行简短说明，缺少具体的框架→测试工具对照表，执行者仍需自行查找
 - **文件路径**：`skills/03-tdd-cycle/SKILL.md`
 - **验收标准**：
-  - [ ] "框架适配"块包含框架/测试工具对照表（至少含 React、Vue、Svelte 三行）
-  - [ ] 说明"以下示例以 React/Next.js + Vitest 为参考实现"
+  - [x] "框架适配"块包含框架/测试工具对照表（至少含 React、Vue、Svelte 三行）
+  - [x] 说明"以下示例以 React/Next.js + Vitest 为参考实现"
 - **具体改动**（1 处）：
 
   将现有块：
@@ -94,9 +94,9 @@ P3-2：新建 bash 脚本，参照 `scripts/sync-workflow.sh` 风格，chmod +x 
 - **描述**：表格中"Server Actions"和"API 路由"两行的示例列和测试工具列使用了 Next.js 专有术语，Vue/Svelte 项目无法对应
 - **文件路径**：`skills/03-tdd-cycle/SKILL.md`
 - **验收标准**：
-  - [ ] "Server Actions"行改为框架无关描述，示例列不再特指 Next.js Server Action
-  - [ ] "API 路由"行改为框架无关描述，示例列不再特指"Next.js route handlers"
-  - [ ] 测试工具列说明"框架对应 mock 库"
+  - [x] "Server Actions"行改为框架无关描述，示例列不再特指 Next.js Server Action
+  - [x] "API 路由"行改为框架无关描述，示例列不再特指"Next.js route handlers"
+  - [x] 测试工具列说明"框架对应 mock 库"
 - **具体改动**（2 处）：
 
   | # | old_string | new_string |
@@ -113,7 +113,7 @@ P3-2：新建 bash 脚本，参照 `scripts/sync-workflow.sh` 风格，chmod +x 
 - **描述**：表格"测试工具"列全部为 RTL（React Testing Library）专有标注，Vue/Svelte 项目看到此表无法直接套用
 - **文件路径**：`skills/03-tdd-cycle/SKILL.md`
 - **验收标准**：
-  - [ ] "测试工具"列不再裸写"RTL"，改为"组件测试库"并注明 React 场景使用 RTL
+  - [x] "测试工具"列不再裸写"RTL"，改为"组件测试库"并注明 React 场景使用 RTL
 - **具体改动**（4 处，replace_all 可一次处理相近内容）：
 
   | # | old_string | new_string |
@@ -132,8 +132,8 @@ P3-2：新建 bash 脚本，参照 `scripts/sync-workflow.sh` 风格，chmod +x 
 - **描述**：REFACTOR 步骤的"规范"检查项硬编码引用 `references/react-nextjs-conventions.md`，非 React 项目读到此处会困惑
 - **文件路径**：`skills/03-tdd-cycle/SKILL.md`
 - **验收标准**：
-  - [ ] 规范检查项不再直接写死 `references/react-nextjs-conventions.md`
-  - [ ] 改为条件性说明（React 项目参照该文件，其他框架参照自身规范）
+  - [x] 规范检查项不再直接写死 `references/react-nextjs-conventions.md`
+  - [x] 改为条件性说明（React 项目参照该文件，其他框架参照自身规范）
 - **具体改动**（1 处）：
 
   | old_string | new_string |
@@ -149,7 +149,7 @@ P3-2：新建 bash 脚本，参照 `scripts/sync-workflow.sh` 风格，chmod +x 
 - **描述**：第 2 步（RED）的测试模板直接以 Vitest/RTL 代码开始，未说明这是 React/Next.js 专用示例。非 React 用户看到 `@testing-library/react` import 会困惑
 - **文件路径**：`skills/03-tdd-cycle/SKILL.md`
 - **验收标准**：
-  - [ ] "工具函数测试模板"之前有一行说明，标注"以下为 React/Next.js 参考实现"
+  - [x] "工具函数测试模板"之前有一行说明，标注"以下为 React/Next.js 参考实现"
 - **具体改动**（1 处）：
 
   | old_string | new_string |
@@ -165,12 +165,12 @@ P3-2：新建 bash 脚本，参照 `scripts/sync-workflow.sh` 风格，chmod +x 
 - **描述**：目前三端一致性只能靠人工检查。新建 bash 脚本，检查 9 个 viktor:* 命令在三端的存在性 + 10 个 Skill 文件存在于磁盘，输出彩色 ✅/❌ 列表，全通过 exit 0，有失败 exit 1
 - **文件路径**：`scripts/validate-workflow.sh`（新建）
 - **验收标准**：
-  - [ ] 文件存在于 `scripts/` 目录
-  - [ ] 包含 9 个 viktor:* 命令的三端检查（共 27 项）
-  - [ ] 包含 10 个 Skill 文件存在性检查
-  - [ ] 在仓库根目录运行时所有检查均为 ✅（当前状态）
-  - [ ] exit code：全通过 0，有失败 1
-  - [ ] 文件有可执行权限（或脚本说明中含 `bash scripts/validate-workflow.sh` 用法）
+  - [x] 文件存在于 `scripts/` 目录
+  - [x] 包含 9 个 viktor:* 命令的三端检查（共 27 项）
+  - [x] 包含 10 个 Skill 文件存在性检查
+  - [x] 在仓库根目录运行时所有检查均为 ✅（37/37 通过）
+  - [x] exit code：全通过 0，有失败 1
+  - [x] 文件说明中含 `bash scripts/validate-workflow.sh` 用法
 - **依赖**：T001-T007（Skill 文件检查依赖 Skill 文件存在，逻辑上需 P3-1 先完成）
 
 ---
@@ -185,12 +185,12 @@ P3-2：新建 bash 脚本，参照 `scripts/sync-workflow.sh` 风格，chmod +x 
 
 ## 验收总结
 
-- [ ] 所有 8 个任务完成，改动已 committed
-- [ ] `grep "React/Next.js 特化" skills/03-tdd-cycle/SKILL.md` 无输出
-- [ ] `grep "框架无关" skills/03-tdd-cycle/SKILL.md` 有输出
-- [ ] `grep "参考实现" skills/03-tdd-cycle/SKILL.md` 有输出（至少 2 处）
-- [ ] `grep "Next.js route handlers" skills/03-tdd-cycle/SKILL.md` 无输出
-- [ ] `grep "组件测试库" skills/03-tdd-cycle/SKILL.md` 有输出
-- [ ] `grep "react-nextjs-conventions" skills/03-tdd-cycle/SKILL.md` 存在且包含条件性说明
-- [ ] `[ -f scripts/validate-workflow.sh ]` 为真
-- [ ] `bash scripts/validate-workflow.sh` 在仓库根目录运行时 exit 0
+- [x] 所有 8 个任务完成，改动已 committed
+- [x] `grep "React/Next.js 特化" skills/03-tdd-cycle/SKILL.md` 无输出
+- [x] `grep "框架无关" skills/03-tdd-cycle/SKILL.md` 有输出（2 处）
+- [x] `grep "参考实现" skills/03-tdd-cycle/SKILL.md` 有输出（3 处）
+- [x] `grep "Next.js route handlers" skills/03-tdd-cycle/SKILL.md` 无输出
+- [x] `grep "组件测试库" skills/03-tdd-cycle/SKILL.md` 有输出（5 处）
+- [x] `grep "react-nextjs-conventions" skills/03-tdd-cycle/SKILL.md` 存在且包含条件性说明
+- [x] `[ -f scripts/validate-workflow.sh ]` 为真
+- [x] `bash scripts/validate-workflow.sh` 在仓库根目录运行时 exit 0（37/37 通过）
