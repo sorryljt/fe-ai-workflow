@@ -68,7 +68,7 @@ description: 架构决策记录与文档沉淀 - CR 通过后汇总所有产物�
 **工作流自身变更检测**（在 git 项目中执行，非 git 项目跳过此步）：
 
 ```bash
-git diff --name-only HEAD~1 HEAD | grep -E "^(skills/|commands/)"
+git diff --name-only $(git merge-base HEAD main) HEAD | grep -E "^(skills/|commands/)"
 ```
 
 若有输出（即本次涉及 `skills/` 或 `commands/` 路径的文件变更），在继续之前输出专项提示：
@@ -84,7 +84,7 @@ git diff --name-only HEAD~1 HEAD | grep -E "^(skills/|commands/)"
 **references 变更检测**（与工作流变更检测同时执行）：
 
 ```bash
-git diff --name-only HEAD~1 HEAD | grep -E "^references/"
+git diff --name-only $(git merge-base HEAD main) HEAD | grep -E "^references/"
 ```
 
 若有输出（即本次涉及 `references/` 路径的文件变更），追加提示：
