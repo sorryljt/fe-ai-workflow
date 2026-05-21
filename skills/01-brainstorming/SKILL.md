@@ -166,6 +166,13 @@ git commit -m "docs: add design spec for <feature-name>"
 ## 设计文档模板
 
 ```markdown
+---
+feature: <feature-name>
+date: YYYY-MM-DD
+status: draft | confirmed
+confirmed_at: YYYY-MM-DD | null
+---
+
 # [功能名称] 设计文档
 
 **日期**：YYYY-MM-DD
