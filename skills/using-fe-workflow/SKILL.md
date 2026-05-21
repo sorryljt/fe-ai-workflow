@@ -84,6 +84,40 @@ description: 前端 AI 开发工作流元调度器 - 对话开始时加载，提
 | CONTEXT | `skills/08-context/SKILL.md` |
 | DIGEST | `skills/09-digest/SKILL.md` |
 
+## Workflow-Meta Lane
+
+当用户意图是**修改工作流自身**（而非业务功能）时，进入 Workflow-Meta Lane。
+
+### 触发条件
+
+以下任一情况判定为 Workflow-Meta 变更：
+- 修改 `skills/` 下的任意 SKILL.md 文件
+- 修改 `commands/` 下的任意命令文件
+- 修改三端入口（`CLAUDE.md` / `AGENTS.md` / `.cursor/rules/workflow.mdc`）
+- 新增或删除工作流节点
+
+### Feature Lane vs. Workflow-Meta Lane
+
+| 维度 | Feature Lane（业务功能） | Workflow-Meta Lane（工作流修改） |
+|------|------------------------|-------------------------------|
+| TDD | 必须（有可运行代码） | 跳过（无代码，无测试运行器） |
+| 验收方式 | `vitest` + `tsc` + `eslint` | `grep` 精确文本核查 |
+| commit 粒度 | 每任务提交 | 每文件提交 |
+| REVIEW 执行 | 六轴完整执行 | 六轴适配为文档正确性框架（N/A 替代无法运行的检查项） |
+| DOCUMENT | 照常生成 ADR + 更新活文档 | 照常生成 ADR + 更新活文档 |
+| BRAINSTORM→ANALYZE | 照常 | 照常 |
+
+### 三端同步规则
+
+修改任何节点的**执行步骤或行为语义**时，必须同步检查并更新：
+- `CLAUDE.md`（节点定义 / 产物规范）
+- `AGENTS.md`（Codex 精简版执行步骤）
+- `.cursor/rules/workflow.mdc`（Cursor 路由规则）
+
+仅修改 SKILL 内部执行细节（不改节点语义）时，无需同步三端入口。
+
+---
+
 ## Hard Gate 规则（强制）
 
 **写任何实现代码之前，以下条件必须满足其一：**
