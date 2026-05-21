@@ -1,7 +1,7 @@
 ---
 feature: p4-codex-review-fixes
 date: 2026-05-21
-status: active
+status: completed
 spec: docs/specs/2026-05-21--p4-codex-review-fixes.md
 ---
 
@@ -93,10 +93,10 @@ spec: docs/specs/2026-05-21--p4-codex-review-fixes.md
 
 ## 验收总结
 
-- [ ] T01：README 和 team-workflow-guide 均有 validate-workflow.sh 说明及环境要求
-- [ ] T02：team-workflow-guide 中无"5 的倍数"字样
-- [ ] T03：AGENTS.md 和 workflow.mdc 均有 Workflow-Meta Lane 块
-- [ ] T04：P3 spec 和 plan 有合法 YAML frontmatter
-- [ ] T05：三处路径占位格式统一
-- [ ] T06：team-workflow-guide 日期为 2026-05-21
+- [x] T01：README 和 team-workflow-guide 均有 validate-workflow.sh 说明及环境要求
+- [x] T02：team-workflow-guide 中无"5 的倍数"字样
+- [x] T03：AGENTS.md 和 workflow.mdc 均有 Workflow-Meta Lane 块
+- [x] T04：P3 spec 和 plan 有合法 YAML frontmatter
+- [x] T05：三处路径占位格式统一
+- [x] T06：team-workflow-guide 日期为 2026-05-21
 - [ ] `bash scripts/validate-workflow.sh` 仍 37/37 PASS
