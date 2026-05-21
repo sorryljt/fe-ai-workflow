@@ -9,6 +9,8 @@
 
 ### Added
 
+- **TDD SKILL 框架无关化**：`/viktor:code` 的 TDD 规范不再绑定 React/Next.js，新增框架→测试工具对照表（React/Vue/Svelte/其他），强制TDD/适度TDD 表格改为框架无关描述，代码示例保留并显式标注为"React/Next.js 参考实现"，其他框架按对应工具类比执行。([ADR-009](docs/adrs/2026-05-21--p3-framework-agnostic--adr.md))
+- **三端一致性验证脚本**：新增 `scripts/validate-workflow.sh`，自动检查 9 个 viktor:* 命令在 CLAUDE.md / AGENTS.md / workflow.mdc 中的存在性（27 项）+ 10 个 Skill 文件存在于磁盘，彩色输出，exit 0/1，支持 CI 集成。([ADR-009](docs/adrs/2026-05-21--p3-framework-agnostic--adr.md))
 - **产物文档 YAML frontmatter**：`/viktor:think`、`/viktor:plan`、`/viktor:cr` 生成的文件现在包含机器可读的状态字段（specs: `status/confirmed_at`，plans: `status/spec`，reviews: `result/reviewed_at/plan`），DIGEST 优先读取 frontmatter，向后兼容无 frontmatter 的历史文件。([ADR-008](docs/adrs/2026-05-21--p2-workflow-polish--adr.md))
 - **Workflow-Meta Lane 正式化**：`skills/using-fe-workflow/SKILL.md` 新增独立章节，定义修改工作流文件时的专用通道（无 TDD、grep 验收、每文件 commit、三端同步粒度规则）；`CLAUDE.md` 流程图注释同步引用。([ADR-008](docs/adrs/2026-05-21--p2-workflow-polish--adr.md))
 - **TDD commit 粒度建议**：TDD SKILL commit 步骤新增三模式说明（每任务提交为默认推荐，里程碑提交为可选，全量一次性提交为不推荐），并说明 tasks.md 里程碑标记机制。([ADR-008](docs/adrs/2026-05-21--p2-workflow-polish--adr.md))
