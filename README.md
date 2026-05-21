@@ -23,7 +23,7 @@
 ```bash
 # 1. 引入 workflow 仓库并锁定版本
 git submodule add https://github.com/sorryljt/fe-ai-workflow.git .workflow/fe-ai-workflow
-cd .workflow/fe-ai-workflow && git checkout v0.7.0 && cd ../..
+cd .workflow/fe-ai-workflow && git checkout v0.8.0 && cd ../..
 
 # 2. 同步入口文件到项目根目录
 ./.workflow/fe-ai-workflow/scripts/sync-workflow.sh .workflow/fe-ai-workflow .
@@ -33,7 +33,7 @@ npm pkg set scripts.postinstall=".workflow/fe-ai-workflow/scripts/sync-workflow.
 
 # 4. 提交
 git add .gitmodules .workflow/fe-ai-workflow package.json
-git commit -m "chore: add fe-ai-workflow v0.7.0"
+git commit -m "chore: add fe-ai-workflow v0.8.0"
 ```
 
 同步后，各 AI 工具会自动读取对应的入口文件：

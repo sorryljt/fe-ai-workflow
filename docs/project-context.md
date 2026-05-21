@@ -13,7 +13,7 @@
 |------|-----|
 | 项目类型 | AI 开发工作流配置库（workflow meta repo） |
 | 用途 | 以 git submodule 方式接入业务项目，为 Claude Code / Cursor / Codex 提供标准化工作流 |
-| 当前版本 | v0.5.0（见 README.md） |
+| 当前版本 | v0.8.0（见 README.md） |
 | 兼容平台 | Claude Code（CLAUDE.md）/ OpenAI Codex（AGENTS.md）/ Cursor（.cursor/rules/workflow.mdc） |
 
 ## 目录结构
