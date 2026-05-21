@@ -283,7 +283,7 @@ npx vitest run src/lib/utils/validateEmail.test.ts
 - **命名**：函数名、变量名是否清晰表达意图？
 - **重复**：有没有相似逻辑可以提取？
 - **复杂度**：函数是否超过 30 行？
-- **规范**：是否符合 `references/react-nextjs-conventions.md`？
+- **规范**：是否符合项目约定的编码规范？（React/Next.js 项目参照 `references/react-nextjs-conventions.md`；其他框架参照 `docs/project-context.md` 中记录的规范）
 - **类型**：TypeScript 类型是否完整、严格？
 
 重构后立即运行测试：
