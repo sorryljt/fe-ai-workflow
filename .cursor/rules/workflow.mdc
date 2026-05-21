@@ -146,6 +146,18 @@ alwaysApply: true
 2. 扫描并读取 docs/ 下所有文档
 3. 生成 `docs/digest/YYYY-MM-DD--digest.md`（5 个章节），commit
 
+### Workflow-Meta Lane — 修改工作流文件时的专用通道
+
+**触发条件**：本次改动主要是 `skills/`、`commands/`、`CLAUDE.md`、`AGENTS.md`、`workflow.mdc` 等工作流自身文件。
+
+**规则**：
+- BRAINSTORM → ANALYZE → REVIEW → DOCUMENT 照常执行
+- **跳过 TDD**：无可运行测试，以 `grep` 内容核查替代 `vitest`
+- **每文件独立 commit**：保持 meta 变更的原子粒度
+- **必须三端同步**：修改任何节点行为时，同步更新 CLAUDE.md / AGENTS.md / workflow.mdc
+
+详见 `skills/using-fe-workflow/SKILL.md` 的"Workflow-Meta Lane"章节。
+
 ## 产物目录规范
 
 ```

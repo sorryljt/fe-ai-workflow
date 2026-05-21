@@ -198,6 +198,24 @@
 3. 生成包含 5 个章节的摘要文档（当前状态 / 完成需求 / 架构决策 / 活文档现状 / 待关注问题）
 4. Commit 产物
 
+### Workflow-Meta Lane（修改工作流文件时的专用通道）
+
+**触发条件**：本次改动的文件主要是 `skills/`、`commands/`、`CLAUDE.md`、`AGENTS.md`、`.cursor/rules/workflow.mdc` 等工作流自身文件。
+
+**与 Feature Lane 的区别**：
+
+| 维度 | Feature Lane（常规） | Workflow-Meta Lane |
+|------|-------------------|--------------------|
+| TDD | 强制先写测试 | 跳过（无可运行测试） |
+| 验收方式 | `vitest run` 通过 | `grep` 内容核查 |
+| commit 粒度 | 每任务一 commit | 每文件一 commit |
+| 三端同步 | 视需要 | 必须同步（CLAUDE.md / AGENTS.md / workflow.mdc） |
+
+**执行规则**：
+- BRAINSTORM → ANALYZE → REVIEW → DOCUMENT 照常执行
+- 实现阶段以内容自审 + grep 验收代替 TDD
+- 修改任何节点行为时，必须同步三端入口文件
+
 ---
 
 ## 核心约束
