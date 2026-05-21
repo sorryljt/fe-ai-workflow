@@ -28,6 +28,11 @@
 
 注：[CONTRACT] 为可选节点，由 ANALYZE 根据任务构成智能推荐，用户决定是否执行。
 
+Workflow-Meta Lane（修改 skills/ 或 commands/ 时）：
+  跳过 TDD，以 grep 验收替代 vitest，每文件独立 commit。
+  其余节点（BRAINSTORM → ANALYZE → REVIEW → DOCUMENT）照常执行。
+  详见 skills/using-fe-workflow/SKILL.md 的"Workflow-Meta Lane"章节。
+
 工具节点（随时可用，不影响主流程）：
   /viktor:context — 只读输出 5 个活文档的格式化快照
   /viktor:digest  — 整合 docs/ 下所有文档，生成阶段性摘要
