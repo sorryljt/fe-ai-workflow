@@ -9,6 +9,12 @@
 
 ### Fixed
 
+- **git diff 检测范围修正**：`/viktor:doc` 工作流变更检测从 `HEAD~1 HEAD` 改为 `$(git merge-base HEAD main) HEAD`，多 commit feature 分支中早期的 `skills/` 变更不再被漏检。([ADR-007](docs/adrs/2026-05-21--p1-stability-fixes--adr.md))
+- **TDD 合约遗漏提醒**：tasks.md 含 `[api]`/`[hook]`/`[store]` 类型任务但无合约文件时，TDD 冷启动输出非阻塞提醒，帮助用户感知跳过了 CONTRACT 节点。([ADR-007](docs/adrs/2026-05-21--p1-stability-fixes--adr.md))
+- **DIGEST 技术债务可见性**：`/viktor:digest` 现从 review 文件提取 `[SUGGESTED]` 条目归入新增的"已知技术债务"章节（第 6 节），技术债务不再在摘要中消失。([ADR-007](docs/adrs/2026-05-21--p1-stability-fixes--adr.md))
+- **BRAINSTORM 更新模式上下文遗漏**：更新已有 spec 时不再跳过 step 1（读取 `docs/project-context.md`），确保基于最新项目上下文修改文档。([ADR-007](docs/adrs/2026-05-21--p1-stability-fixes--adr.md))
+- **编码规范约束**：新增 `.editorconfig` 和 `.gitattributes`，统一 UTF-8 编码和 LF 换行符，消除 Windows 环境 CRLF 混入问题。([ADR-007](docs/adrs/2026-05-21--p1-stability-fixes--adr.md))
+
 - **三端命令协议对齐**：`.cursor/rules/workflow.mdc` 中旧命令名（`/brainstorm`、`/analyze`、`/tdd`、`/review`）已统一更新为 `viktor:*` 协议，与 Claude Code 和 Codex 端保持一致。([ADR-006](docs/adrs/2026-05-20--p0-consistency-fixes--adr.md))
 - **Cursor BRAINSTORM 策略对齐**：`workflow.mdc` 中 BRAINSTORM 步骤描述从"苏格拉底式逐个提问"更正为"批量最多 3 问"，与 SKILL.md 实际行为一致。([ADR-006](docs/adrs/2026-05-20--p0-consistency-fixes--adr.md))
 - **技术栈去硬编码**：`workflow.mdc` 技术栈节不再写死 Next.js 14 版本，改为引用 `docs/project-context.md`（由 `/viktor:init` 生成）。([ADR-006](docs/adrs/2026-05-20--p0-consistency-fixes--adr.md))

@@ -13,3 +13,4 @@
 | ADR-004 | 引入会话感知冷启动检测：对话内在流零打扰，跨会话冷启动扫描产物并确认；修复 context/digest 命令入口缺失 | 2026-05-19 | 已接受 | [ADR-004](adrs/2026-05-19--session-aware-confirmation--adr.md) |
 | ADR-005 | 补全工作流完整性缺口：BRAINSTORM 冷启动（检测已有 spec）、INIT 幂等化（A/B 两模式）、digest 固定导航卡选项、references 变更检测 | 2026-05-19 | 已接受 | [ADR-005](adrs/2026-05-19--workflow-completeness-polish--adr.md) |
 | ADR-006 | P0 修复批次：统一三端 viktor:* 命令协议、六轴命名、digest 触发描述，清理框架专属术语和措辞 bug | 2026-05-20 | 已接受 | [ADR-006](adrs/2026-05-20--p0-consistency-fixes--adr.md) |
+| ADR-007 | P1 修复批次：git merge-base 检测、TDD 合约提醒、DIGEST 技术债务可见性、BRAINSTORM 更新模式上下文、编码规范约束 | 2026-05-21 | 已接受 | [ADR-007](adrs/2026-05-21--p1-stability-fixes--adr.md) |
