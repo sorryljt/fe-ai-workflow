@@ -1,3 +1,10 @@
+---
+feature: p3-framework-agnostic
+date: 2026-05-21
+status: completed
+spec: docs/specs/2026-05-21--p3-framework-agnostic.md
+---
+
 # P3 框架无关化与验证脚本 任务列表
 
 **日期**：2026-05-21

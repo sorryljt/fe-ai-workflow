@@ -1,3 +1,10 @@
+---
+feature: p3-framework-agnostic
+date: 2026-05-21
+status: confirmed
+confirmed_at: 2026-05-21
+---
+
 # P3 框架无关化与验证脚本 设计文档
 
 **日期**：2026-05-21
