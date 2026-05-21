@@ -25,9 +25,9 @@ T001-T004 处理 frontmatter（写入方 → 读取方）；T005-T006 处理 Met
 - **描述**：在 `skills/01-brainstorming/SKILL.md` 的设计文档模板（`## 设计文档模板` 章节）开头插入 YAML frontmatter 块，使 BRAINSTORM 生成的 spec 文件包含机器可读状态字段
 - **文件路径**：`skills/01-brainstorming/SKILL.md`
 - **验收标准**：
-  - [ ] 模板中含 `status: draft | confirmed` 字段
-  - [ ] 模板中含 `confirmed_at: YYYY-MM-DD | null` 字段
-  - [ ] frontmatter 位于模板的 `# [功能名称] 设计文档` 标题之前
+  - [x] 模板中含 `status: draft | confirmed` 字段
+  - [x] 模板中含 `confirmed_at: YYYY-MM-DD | null` 字段
+  - [x] frontmatter 位于模板的 `# [功能名称] 设计文档` 标题之前
 - **具体改动**：
 
   将设计文档模板中：
@@ -61,9 +61,9 @@ T001-T004 处理 frontmatter（写入方 → 读取方）；T005-T006 处理 Met
 - **描述**：在 `skills/02-requirements-analysis/SKILL.md` 的 `tasks.md 模板` 章节开头插入 YAML frontmatter 块
 - **文件路径**：`skills/02-requirements-analysis/SKILL.md`
 - **验收标准**：
-  - [ ] 模板中含 `status: active | completed` 字段
-  - [ ] 模板中含 `spec: docs/specs/...` 引用字段
-  - [ ] frontmatter 位于模板标题之前
+  - [x] 模板中含 `status: active | completed` 字段
+  - [x] 模板中含 `spec: docs/specs/...` 引用字段
+  - [x] frontmatter 位于模板标题之前
 - **具体改动**：
 
   将 tasks.md 模板中：
@@ -97,9 +97,9 @@ T001-T004 处理 frontmatter（写入方 → 读取方）；T005-T006 处理 Met
 - **描述**：在 `skills/04-code-review/SKILL.md` 的 `review-report.md 模板` 章节开头插入 YAML frontmatter 块
 - **文件路径**：`skills/04-code-review/SKILL.md`
 - **验收标准**：
-  - [ ] 模板中含 `result: PASS | BLOCK` 字段
-  - [ ] 模板中含 `reviewed_at: YYYY-MM-DD` 字段
-  - [ ] frontmatter 位于模板标题之前
+  - [x] 模板中含 `result: PASS | BLOCK` 字段
+  - [x] 模板中含 `reviewed_at: YYYY-MM-DD` 字段
+  - [x] frontmatter 位于模板标题之前
 - **具体改动**：
 
   将 review 模板中：
@@ -134,10 +134,10 @@ T001-T004 处理 frontmatter（写入方 → 读取方）；T005-T006 处理 Met
 - **描述**：在 `skills/09-digest/SKILL.md` 的 step 2 中，为 specs/plans/reviews 的读取逻辑各追加一句"若文件有 frontmatter，优先读取对应字段；否则降级正文扫描"，保证向后兼容
 - **文件路径**：`skills/09-digest/SKILL.md`
 - **验收标准**：
-  - [ ] step 2 specs 条目说明"优先读取 frontmatter `status` 字段"
-  - [ ] step 2 plans 条目说明"优先读取 frontmatter `status` 字段"
-  - [ ] step 2 reviews 条目说明"优先读取 frontmatter `result` 字段"
-  - [ ] 说明中包含"降级正文扫描"的向后兼容描述
+  - [x] step 2 specs 条目说明"优先读取 frontmatter `status` 字段"
+  - [x] step 2 plans 条目说明"优先读取 frontmatter `status` 字段"
+  - [x] step 2 reviews 条目说明"优先读取 frontmatter `result` 字段"
+  - [x] 说明中包含"降级正文扫描"的向后兼容描述
 - **具体改动**（3 处，分别追加到 specs/plans/reviews 的说明末尾）：
 
   | # | 目标条目（追加位置） | 追加内容 |
@@ -155,10 +155,10 @@ T001-T004 处理 frontmatter（写入方 → 读取方）；T005-T006 处理 Met
 - **描述**：在元调度器 Skill 中新增独立章节，正式描述"对工作流自身做修改"这条通道的触发条件、与 Feature Lane 的区别对比表、三端同步规则
 - **文件路径**：`skills/using-fe-workflow/SKILL.md`
 - **验收标准**：
-  - [ ] 文件中存在 `## Workflow-Meta Lane` 章节标题
-  - [ ] 章节中含 Feature Lane vs. Workflow-Meta Lane 对比表
-  - [ ] 对比表覆盖：TDD / 验收方式 / commit 粒度 / REVIEW / DOCUMENT 五个维度
-  - [ ] 章节中含触发条件描述（skills/ / commands/ / CLAUDE.md / AGENTS.md / workflow.mdc）
+  - [x] 文件中存在 `## Workflow-Meta Lane` 章节标题
+  - [x] 章节中含 Feature Lane vs. Workflow-Meta Lane 对比表
+  - [x] 对比表覆盖：TDD / 验收方式 / commit 粒度 / REVIEW / DOCUMENT 五个维度
+  - [x] 章节中含触发条件描述（skills/ / commands/ / CLAUDE.md / AGENTS.md / workflow.mdc）
 - **依赖**：无
 
 ---
@@ -168,8 +168,8 @@ T001-T004 处理 frontmatter（写入方 → 读取方）；T005-T006 处理 Met
 - **描述**：在 `CLAUDE.md` 的工作流概览（流程图注释处）追加一行说明 Workflow-Meta Lane 的存在
 - **文件路径**：`CLAUDE.md`
 - **验收标准**：
-  - [ ] CLAUDE.md 流程图注释中含 Workflow-Meta Lane 相关说明
-  - [ ] 说明指出触发条件（修改 skills/ 或 commands/）及验收方式（grep）
+  - [x] CLAUDE.md 流程图注释中含 Workflow-Meta Lane 相关说明
+  - [x] 说明指出触发条件（修改 skills/ 或 commands/）及验收方式（grep）
 - **具体改动**：
 
   在工作流概览图的注释（`注：[CONTRACT] 为可选节点...`）之后，追加：
@@ -189,10 +189,10 @@ T001-T004 处理 frontmatter（写入方 → 读取方）；T005-T006 处理 Met
 - **描述**：在 `skills/03-tdd-cycle/SKILL.md` 的 TDD 循环任务末尾（REFACTOR 步骤之后）追加 commit 时机建议块，说明每任务提交（默认）和里程碑提交（可选）两种模式
 - **文件路径**：`skills/03-tdd-cycle/SKILL.md`
 - **验收标准**：
-  - [ ] 文件中含"commit 时机建议"段落
-  - [ ] 说明"每任务提交"为默认推荐
-  - [ ] 说明"里程碑提交"为可选（通过 tasks.md 中 `# --- commit here ---` 标记）
-  - [ ] 说明"全部完成后一次性提交"为不推荐
+  - [x] 文件中含"commit 时机建议"段落
+  - [x] 说明"每任务提交"为默认推荐
+  - [x] 说明"里程碑提交"为可选（通过 tasks.md 中 `# --- commit here ---` 标记）
+  - [x] 说明"全部完成后一次性提交"为不推荐
 - **依赖**：无
 
 ---
@@ -207,11 +207,11 @@ T001-T004 处理 frontmatter（写入方 → 读取方）；T005-T006 处理 Met
 
 ## 验收总结
 
-- [ ] 所有 7 个任务完成，改动已 committed
-- [ ] `grep "status: draft" skills/01-brainstorming/SKILL.md` 有输出
-- [ ] `grep "status: active" skills/02-requirements-analysis/SKILL.md` 有输出
-- [ ] `grep "result: PASS" skills/04-code-review/SKILL.md` 有输出
-- [ ] `grep "frontmatter" skills/09-digest/SKILL.md` 有输出
-- [ ] `grep "Workflow-Meta Lane" skills/using-fe-workflow/SKILL.md` 有输出
-- [ ] `grep "Workflow-Meta Lane" CLAUDE.md` 有输出
-- [ ] `grep "commit 时机建议" skills/03-tdd-cycle/SKILL.md` 有输出
+- [x] 所有 7 个任务完成，改动已 committed
+- [x] `grep "status: draft" skills/01-brainstorming/SKILL.md` 有输出
+- [x] `grep "status: active" skills/02-requirements-analysis/SKILL.md` 有输出
+- [x] `grep "result: PASS" skills/04-code-review/SKILL.md` 有输出
+- [x] `grep "frontmatter" skills/09-digest/SKILL.md` 有输出
+- [x] `grep "Workflow-Meta Lane" skills/using-fe-workflow/SKILL.md` 有输出
+- [x] `grep "Workflow-Meta Lane" CLAUDE.md` 有输出
+- [x] `grep "commit 时机建议" skills/03-tdd-cycle/SKILL.md` 有输出
