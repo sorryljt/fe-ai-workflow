@@ -50,9 +50,9 @@ description: 文档整合 - 读取 docs/ 下所有文档，生成阶段性摘要
 
 逐一读取文件，提取：
 
-- **specs/**：每个文件的功能名称 + 日期 + 状态（已确认/草稿）
-- **plans/**：每个文件的功能名称 + 任务总数 + 验收总结勾选情况
-- **reviews/**：提取两类条目：① 标注为 `[BLOCKING]` 或 `TODO` 的条目（归入"待关注问题"）；② 标注为 `[SUGGESTED]` 的条目（归入"已知技术债务"）
+- **specs/**：每个文件的功能名称 + 日期 + 状态（已确认/草稿）（优先读取 frontmatter `status` 字段；无 frontmatter 时降级扫描正文 `**状态**` 字段）
+- **plans/**：每个文件的功能名称 + 任务总数 + 验收总结勾选情况（优先读取 frontmatter `status` 字段；无 frontmatter 时降级扫描正文完成状态）
+- **reviews/**：提取两类条目：① 标注为 `[BLOCKING]` 或 `TODO` 的条目（归入"待关注问题"）；② 标注为 `[SUGGESTED]` 的条目（归入"已知技术债务"）（优先读取 frontmatter `result` 字段获取 PASS/BLOCK 结论；无 frontmatter 时降级扫描正文 `**结论**` 字段）
 - **adrs/**：每个 ADR 的编号 + 标题 + 状态（已接受/已替代/已废弃）
 - **活文档**：组件数量、接口数量、架构决策数量
 
