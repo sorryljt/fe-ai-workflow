@@ -207,6 +207,13 @@ git commit -m "docs: add task breakdown for <feature-name>"
 ## tasks.md 模板
 
 ```markdown
+---
+feature: <feature-name>
+date: YYYY-MM-DD
+status: active | completed
+spec: docs/specs/YYYY-MM-DD--<feature>.md
+---
+
 # [功能名称] 任务列表
 
 **日期**：YYYY-MM-DD
