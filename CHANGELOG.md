@@ -7,6 +7,12 @@
 
 ## [Unreleased]
 
+### Added
+
+- **产物文档 YAML frontmatter**：`/viktor:think`、`/viktor:plan`、`/viktor:cr` 生成的文件现在包含机器可读的状态字段（specs: `status/confirmed_at`，plans: `status/spec`，reviews: `result/reviewed_at/plan`），DIGEST 优先读取 frontmatter，向后兼容无 frontmatter 的历史文件。([ADR-008](docs/adrs/2026-05-21--p2-workflow-polish--adr.md))
+- **Workflow-Meta Lane 正式化**：`skills/using-fe-workflow/SKILL.md` 新增独立章节，定义修改工作流文件时的专用通道（无 TDD、grep 验收、每文件 commit、三端同步粒度规则）；`CLAUDE.md` 流程图注释同步引用。([ADR-008](docs/adrs/2026-05-21--p2-workflow-polish--adr.md))
+- **TDD commit 粒度建议**：TDD SKILL commit 步骤新增三模式说明（每任务提交为默认推荐，里程碑提交为可选，全量一次性提交为不推荐），并说明 tasks.md 里程碑标记机制。([ADR-008](docs/adrs/2026-05-21--p2-workflow-polish--adr.md))
+
 ### Fixed
 
 - **git diff 检测范围修正**：`/viktor:doc` 工作流变更检测从 `HEAD~1 HEAD` 改为 `$(git merge-base HEAD main) HEAD`，多 commit feature 分支中早期的 `skills/` 变更不再被漏检。([ADR-007](docs/adrs/2026-05-21--p1-stability-fixes--adr.md))
