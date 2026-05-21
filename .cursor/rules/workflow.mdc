@@ -99,7 +99,7 @@ alwaysApply: true
 2. 按六轴框架审查：正确性 / 可维护性 / 性能 / 安全性 / 测试质量 / 类型合约一致性
    - 轴六仅在 `docs/contracts/` 存在合约文件时执行
 3. 标记问题：`[BLOCKING]` / `[SUGGESTED]` / `[NIT]`
-4. 生成 `docs/reviews/YYYY-MM-DD--review.md`
+4. 生成 `docs/reviews/YYYY-MM-DD--<feature>--review.md`
 5. 有 BLOCKING → 提示修复后返回 `/viktor:code`；无 BLOCKING → 提示 `/viktor:doc`
 
 ### INIT — 项目初始化

@@ -219,7 +219,7 @@ T002 useLoginForm
 **如有 [BLOCKING] 问题**：
 1. 清晰输出每个 BLOCKING 问题的修复建议
 2. 提示：
-   > "发现 N 个 [BLOCKING] 问题（详见 docs/reviews/YYYY-MM-DD--review.md）。
+   > "发现 N 个 [BLOCKING] 问题（详见 docs/reviews/YYYY-MM-DD--<feature>--review.md）。
    > 请修复后返回 `/viktor:code` 重新实现，完成后再次运行 `/viktor:cr`。"
 
 **无 [BLOCKING] 问题**：
@@ -388,7 +388,7 @@ Review 完成后**必须**输出（根据结论二选一）：
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ✅ REVIEW 通过
-📄 产物：docs/reviews/YYYY-MM-DD--review.md
+📄 产物：docs/reviews/YYYY-MM-DD--<feature>--review.md
 ──────────────────────────────
 ▶ 下一步：输入 /viktor:doc
   沉淀架构决策记录（完成后可选择执行 /viktor:digest）
@@ -399,7 +399,7 @@ Review 完成后**必须**输出（根据结论二选一）：
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ❌ REVIEW 未通过（N 个 BLOCKING 问题）
-📄 产物：docs/reviews/YYYY-MM-DD--review.md
+📄 产物：docs/reviews/YYYY-MM-DD--<feature>--review.md
 ──────────────────────────────
 ▶ 下一步：修复上方问题后输入 /code
   修复完成后重新执行 /viktor:cr

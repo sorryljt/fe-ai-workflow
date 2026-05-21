@@ -142,7 +142,7 @@ bash scripts/validate-workflow.sh
 
 ### 4.5 `/viktor:cr` / `viktor:cr`
 
-六轴代码审查（正确性 / 可维护性 / 性能 / 安全性 / 测试质量 / 类型合约一致性），生成 `docs/reviews/YYYY-MM-DD--review.md`。有 `[BLOCKING]` 问题必须修复后才能继续。
+六轴代码审查（正确性 / 可维护性 / 性能 / 安全性 / 测试质量 / 类型合约一致性），生成 `docs/reviews/YYYY-MM-DD--<feature>--review.md`。有 `[BLOCKING]` 问题必须修复后才能继续。
 
 ### 4.6 `/viktor:doc` / `viktor:doc`
 

@@ -56,7 +56,7 @@ description: 架构决策记录与文档沉淀 - CR 通过后汇总所有产物�
 收集并列举以下文件：
 - `docs/specs/YYYY-MM-DD--design.md`（设计文档）
 - `docs/plans/YYYY-MM-DD--tasks.md`（任务列表）
-- `docs/reviews/YYYY-MM-DD--review.md`（Review 报告）
+- `docs/reviews/YYYY-MM-DD--<feature>--review.md`（Review 报告）
 - 所有实现文件路径
 - 所有测试文件路径
 
@@ -292,7 +292,7 @@ git commit -m "docs: add ADR and update changelog for <feature-name>"
 
 - 设计文档：[docs/specs/YYYY-MM-DD--design.md](../specs/...)
 - 任务列表：[docs/plans/YYYY-MM-DD--tasks.md](../plans/...)
-- Review 报告：[docs/reviews/YYYY-MM-DD--review.md](../reviews/...)
+- Review 报告：[docs/reviews/YYYY-MM-DD--<feature>--review.md](../reviews/...)
 ```
 
 ---
