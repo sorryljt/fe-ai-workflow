@@ -1,6 +1,6 @@
 ---
 name: 03-tdd-cycle
-description: 测试驱动开发循环 - 针对 React/Next.js/Vitest 项目的完整 TDD 红绿重构规范，每个任务单元循环执行
+description: 测试驱动开发循环 - 框架无关的完整 TDD 红绿重构规范，以 React/Next.js/Vitest 为参考实现，每个任务单元循环执行
 ---
 
 # TDD — 测试驱动开发循环
@@ -16,7 +16,7 @@ description: 测试驱动开发循环 - 针对 React/Next.js/Vitest 项目的完
 - `docs/plans/` 下必须存在 `tasks.md`
 - 如果没有：停止，提示 "请先运行 `/viktor:plan` 生成任务列表"
 
-## TDD 分层规范（React/Next.js 特化）
+## TDD 分层规范（框架无关）
 
 > **框架适配**：以下分层规范默认以 React/Next.js/Vitest 为示例。
 > 如 `docs/project-context.md` 显示其他框架（Vue / Svelte 等），参照相应框架测试实践，
