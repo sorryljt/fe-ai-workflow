@@ -146,7 +146,7 @@ bash scripts/validate-workflow.sh
 
 ### 4.6 `/viktor:doc` / `viktor:doc`
 
-生成 ADR（自动编号，支持标记历史 ADR 为"已替代"），有条件地更新活文档（组件目录 / 接口目录 / 架构速览 / ADR 索引），更新 `CHANGELOG.md`。若本次修改了工作流自身文件，会提示同步三端入口。若 ADR 累积到 5 的倍数，会非阻塞建议执行 `/viktor:digest`。
+生成 ADR（自动编号，支持标记历史 ADR 为"已替代"），有条件地更新活文档（组件目录 / 接口目录 / 架构速览 / ADR 索引），更新 `CHANGELOG.md`。若本次修改了工作流自身文件，会提示同步三端入口。每次完成后导航卡固定提供 `/viktor:digest` 非阻塞选项。
 
 ### 4.7 `/viktor:context` / `viktor:context`（工具节点，随时可用）
 
@@ -164,7 +164,7 @@ bash scripts/validate-workflow.sh
 
 - **随时可手动执行**，适合一批需求完成后做阶段性回顾
 - 摘要包含 5 个章节：项目当前状态 / 本阶段完成需求 / 关键架构决策 / 活文档现状 / 待关注问题
-- DOCUMENT 节点完成后，若 ADR 数量达到 5 的倍数（如 ADR-005、ADR-010），会非阻塞建议执行本命令
+- DOCUMENT 节点完成后，导航卡固定提供本命令作为非阻塞选项，随时可执行
 - 产物自动 commit
 
 ## 5. 试点建议与反馈入口
