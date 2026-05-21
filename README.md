@@ -70,6 +70,28 @@ npm install
 .workflow/fe-ai-workflow/scripts/upgrade-workflow.sh <新版本tag>
 ```
 
+### 验证三端一致性
+
+workflow 提供了一个自动化验证脚本，检查 9 个 `viktor:*` 命令在三端入口文件（CLAUDE.md / AGENTS.md / workflow.mdc）中的存在性，以及 10 个 Skill 文件是否存在于磁盘，共 37 项检查：
+
+```bash
+bash scripts/validate-workflow.sh
+```
+
+> **运行环境**：脚本需在 **Git Bash 或 WSL** 下执行，不支持 PowerShell。
+> Windows 用户：右键项目目录 → "Git Bash Here"，再运行上述命令。
+
+输出示例：
+
+```
+[PASS] CLAUDE.md 包含 viktor:think
+[PASS] AGENTS.md 包含 viktor:think
+...
+37/37 checks passed
+```
+
+每次修改三端入口文件后运行，确保命令名称未遗漏。
+
 ## 工作流说明
 
 ```

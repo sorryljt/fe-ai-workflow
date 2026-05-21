@@ -69,6 +69,21 @@ npm install
 
 ---
 
+### 场景四：验证三端一致性
+
+每次修改 workflow 文件（CLAUDE.md / AGENTS.md / workflow.mdc）后，建议运行：
+
+```bash
+bash scripts/validate-workflow.sh
+```
+
+脚本检查 9 个 `viktor:*` 命令在三端入口的存在性 + 10 个 Skill 文件是否存在，共 37 项，输出彩色 PASS/FAIL 报告，exit 0/1，支持 CI 集成。
+
+> **运行环境**：需在 **Git Bash 或 WSL** 下执行，不支持 PowerShell。
+> Windows 用户：右键项目目录 → "Git Bash Here"，再运行上述命令。
+
+---
+
 ### 安装 / 升级后第一步
 
 直接用 `/viktor:think <需求描述>` 开始第一个需求即可。
